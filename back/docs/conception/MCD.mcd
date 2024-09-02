@@ -1,0 +1,29 @@
+message: code_Message, contenu
+ecrire, 11 message, 0N utilisateur
+:
+:
+:
+:
+:
+:
+:
+
+utilisateur: code_Utilisateur, nom, prénom, date_Naissance, courriel, mot_De_Passe, role
+faire, ON utilisateur, 11 reservation
+:
+:
+:
+:
+
+
+reservation: code_Réservation, date_Visite, statut, qrcode, quantité_Billet, prix_Total
+contenir, 1N reservation, 0N billet
+billet: code_Billet, nom, prix, description
+
+:
+:
+
+categorie: code_Catégorie, nom, description
+detenir, 0N categorie, 11 attraction
+attraction: code_Attraction, nom, description, image_Url, taille_Min, taille_Max
+:
