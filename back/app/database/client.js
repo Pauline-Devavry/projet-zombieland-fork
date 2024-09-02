@@ -1,7 +1,17 @@
-const pg = require('pg');
+import { Sequelize } from "sequelize";
 
-const client = new pg.Client(process.env.PG_URL);
+function sequelize() {
+  const connexion = new Sequelize(process.env.PG_URL, {
+    dialect: "postgres",
+    define: {
+      underscored: true,
+      createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    },
+  });
 
-client.connect();
+  return connexion;
+}
 
-module.exports = client;
+export { sequelize };
+
