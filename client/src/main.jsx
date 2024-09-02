@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import './index.css'
+import "./App.css"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
@@ -11,7 +11,7 @@ const router = createBrowserRouter([
   },
   {
     path: "hello",
-    element: <h1>Hello world page</h1>
+    element: <h1 className='text-red-500'>Hello world page</h1>
   }
 ])
 
