@@ -1,4 +1,4 @@
-message: code_Message, contenu
+message: code_Message, nom, prenom, courriel, contenu
 ecrire, 11 message, 0N utilisateur
 :
 :
@@ -8,7 +8,7 @@ ecrire, 11 message, 0N utilisateur
 :
 :
 
-utilisateur: code_Utilisateur, nom, prénom, date_Naissance, courriel, mot_De_Passe, role
+utilisateur: code_Utilisateur, nom, prénom, courriel, mot_De_Passe, role
 faire, ON utilisateur, 11 reservation
 :
 :
@@ -16,9 +16,9 @@ faire, ON utilisateur, 11 reservation
 :
 
 
-reservation: code_Réservation, date_Visite, statut, qrcode, quantité_Billet, prix_Total
+reservation: code_Réservation, num_Reservation, date_Visite, statut, prix_Total
 contenir, 1N reservation, 0N billet
-billet: code_Billet, nom, prix, description
+billet: code_Billet, nom, prix, quantite_Billet, description
 
 :
 :

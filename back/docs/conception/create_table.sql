@@ -13,10 +13,11 @@ CREATE TABLE attraction (
 
 CREATE TABLE billet (
   PRIMARY KEY (code_Billet),
-  code_Billet VARCHAR(42) NOT NULL,
-  nom         VARCHAR(42),
-  prix        VARCHAR(42),
-  description VARCHAR(42)
+  code_Billet     VARCHAR(42) NOT NULL,
+  nom             VARCHAR(42),
+  prix            VARCHAR(42),
+  quantite_Billet VARCHAR(42),
+  description     VARCHAR(42)
 );
 
 CREATE TABLE categorie (
@@ -35,6 +36,9 @@ CREATE TABLE contenir (
 CREATE TABLE message (
   PRIMARY KEY (code_Message),
   code_Message     VARCHAR(42) NOT NULL,
+  nom              VARCHAR(42),
+  prenom           VARCHAR(42),
+  courriel         VARCHAR(42),
   contenu          VARCHAR(42),
   code_Utilisateur VARCHAR(42) NOT NULL
 );
@@ -42,10 +46,9 @@ CREATE TABLE message (
 CREATE TABLE reservation (
   PRIMARY KEY (code_Reservation),
   code_Reservation VARCHAR(42) NOT NULL,
+  num_Reservation  VARCHAR(42),
   date_Visite      VARCHAR(42),
   statut           VARCHAR(42),
-  qrcode           VARCHAR(42),
-  quantite_Billet  VARCHAR(42),
   prix_Total       VARCHAR(42),
   code_Utilisateur VARCHAR(42) NOT NULL
 );
@@ -55,7 +58,6 @@ CREATE TABLE utilisateur (
   code_Utilisateur VARCHAR(42) NOT NULL,
   nom              VARCHAR(42),
   prenom           VARCHAR(42),
-  date_Naissance   VARCHAR(42),
   courriel         VARCHAR(42),
   mot_De_Passe     VARCHAR(42),
   role             VARCHAR(42)
