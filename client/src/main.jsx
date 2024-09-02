@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import "./App.css"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Connexion from './pages/Connexion.jsx'
 
 const router = createBrowserRouter([
   {
@@ -12,11 +13,16 @@ const router = createBrowserRouter([
   {
     path: "hello",
     element: <h1 className='text-red-500'>Hello world page</h1>
+    
+  },
+  { 
+    path: "connexion",
+    element: <Connexion/>
   }
 ])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+  <RouterProvider router={router} />
   </StrictMode>,
-)
+  )
