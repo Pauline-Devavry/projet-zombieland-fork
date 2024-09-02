@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import "./App.css"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import AttractionPage from './pages/AttractionPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
   {
     path: "hello",
     element: <h1 className='text-red-500'>Hello world page</h1>
+  },
+  {
+    path: "attractions",
+    element: <AttractionPage/>
   }
 ])
 
