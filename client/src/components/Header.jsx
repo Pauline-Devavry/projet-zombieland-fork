@@ -31,7 +31,7 @@ function Header() {
                     </a>
                 </nav>
             </div>
-            <div className="max-w-[75rem] mx-auto py-11 flex justify-between items-center font-rubik text-white sm:px-8 lg:px-12 px-6">
+            <div className="max-w-[75rem] mx-auto py-11 flex justify-between items-center font-rubik text-white px-6">
                 <div className="flex items-center gap-4">
                     <img className="w-8" src={ZombieLandLogo} alt="Logo de Zombieland"/>
                     <span className="text-[19px]">Zombieland</span>
