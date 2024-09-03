@@ -35,3 +35,5 @@ User.init(
     tableName: "user",
   }
 );
+
+export { User };
