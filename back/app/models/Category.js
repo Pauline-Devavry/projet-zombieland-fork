@@ -5,6 +5,7 @@ export class Category extends Model {}
 
 Category.init({
   name: {
+
     type: DataTypes.STRING(100),
     allowNull: false,
   },
@@ -15,4 +16,5 @@ Category.init({
 }, {
   sequelize,
   tableName: "category"
+
 });
