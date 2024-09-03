@@ -1,7 +1,7 @@
 const controller = {
-    get: (req, res) => {
-        res.send('Hello World');
-    }
-}
+  get: (req, res) => {
+    res.send("Hello World");
+  },
+};
 
-export { controller };   
+export { controller };

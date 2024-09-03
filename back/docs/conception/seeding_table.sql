@@ -1,37 +1,59 @@
-INSERT INTO categorie (code_Categorie, nom, description) VALUES
-('CAT001', 'Thrill Rides', 'Attractions à sensations fortes'),
-('CAT002', 'Family Rides', 'Attractions familiales'),
-('CAT003', 'Kids Rides', 'Attractions pour enfants');
+BEGIN;
 
--- Insertion de données dans la table attraction
-INSERT INTO attraction (code_Attraction, nom, description, image_Url, taille_Min, taille_Max, code_Categorie) VALUES
-('ATT001', 'Zombie Coaster', 'Montagnes russes à haute vitesse', 'zombie_coaster.jpg', '140', '200', 'CAT001'),
-('ATT002', 'Haunted Mansion', 'Maison hantée effrayante', 'haunted_mansion.jpg', '100', '190', 'CAT002'),
-('ATT003', 'Little Monsters', 'Manège pour enfants', 'little_monsters.jpg', '90', '150', 'CAT003');
+-- Insertion des catégories
+INSERT INTO "category" ("name", "description") VALUES 
+('Montagnes Russes', 'Attractions à grande vitesse avec des virages serrés.'),
+('Rides Aquatiques', 'Attractions rafraîchissantes avec éclaboussures et toboggans.'),
+('Rides Nocturnes', 'Attractions intérieures avec une narration immersive et des effets spéciaux.');
 
--- Insertion de données dans la table billet
-INSERT INTO billet (code_Billet, nom, prix, quantite_Billet, description) VALUES
-('BIL001', 'Pass Journée', '50', '100', 'Accès illimité pour une journée'),
-('BIL002', 'Pass Weekend', '80', '50', 'Accès illimité pour deux jours'),
-('BIL003', 'Pass VIP', '100', '25', 'Accès prioritaire et avantages VIP');
+-- Insertion des attractions
+INSERT INTO "attraction" ("name", "description", "image", "category_id") VALUES 
+('Tonnerre', 'Montagne russe à grande vitesse avec des virages serrés.', 'tonnerre.jpg', 1),
+('Chute Libre', 'Ride aquatique avec une grande descente et beaucoup d’éclaboussures.', 'chute_libre.jpg', 2),
+('Maison Hantée', 'Ride nocturne avec des fantômes et des goules.', 'maison_hantee.jpg', 3),
+('Grande Roue', 'Grande roue offrant une vue sur tout le parc.', 'grande_roue.jpg', 1),
+('Toboggan Flottant', 'Ride aquatique relaxant qui se termine par une grande éclaboussure.', 'toboggan_flottant.jpg', 2),
+('Aventure Spatiale', 'Ride nocturne à travers les étoiles.', 'aventure_spatiale.jpg', 3),
+('Cyclone', 'Montagne russe en bois avec des grandes descentes.', 'cyclone.jpg', 1),
+('Pirates des Caraïbes', 'Ride nocturne avec des animatroniques de pirates et des effets spéciaux.', 'pirates.jpg', 3),
+('Rapides du Fleuve', 'Ride aquatique simulant une aventure de rivière sauvage.', 'rapides_fleuve.jpg', 2),
+('Big Thunder Mountain', 'Montagne russe en train de mine qui déraille.', 'big_thunder.jpg', 1),
+('Le Kraken', 'Montagne russe sans sol avec plusieurs inversions.', 'kraken.jpg', 1),
+('Rivière Paresseuse', 'Ride aquatique calme où l’on flotte sur un courant doux.', 'rivière_paresseuse.jpg', 2),
+('Mine Mystérieuse', 'Montagne russe nocturne à travers une mine hantée.', 'mine_mysterieuse.jpg', 3),
+('Chutes Splash', 'Ride aquatique familial avec éclaboussures modérées.', 'chutes_splash.jpg', 2),
+('Défi Dragon', 'Montagne russe à grande vitesse avec deux pistes côte à côte.', 'defi_dragon.jpg', 1),
+('Train Fantôme', 'Ride nocturne à travers une gare hantée.', 'train_fantome.jpg', 3),
+('Piscine à Vagues', 'Grande piscine avec des vagues générées artificiellement.', 'piscine_vagues.jpg', 2),
+('Raptor', 'Montagne russe inversée avec plusieurs boucles.', 'raptor.jpg', 1),
+('Lagune des Sirènes', 'Ride nocturne sous la mer avec des sirènes et des créatures marines.', 'lagune_sirenes.jpg', 3),
+('Typhon', 'Toboggan aquatique envoyant les passagers dans une grande descente dans une piscine.', 'typhon.jpg', 2);
 
--- Insertion de données dans la table utilisateur
-INSERT INTO utilisateur (code_Utilisateur, nom, prenom, courriel, mot_De_Passe, role) VALUES
-('USR001', 'Dupont', 'Jean', 'jean.dupont@email.com', 'motdepasse123', 'client'),
-('USR002', 'Martin', 'Sophie', 'sophie.martin@email.com', 'password456', 'client'),
-('USR003', 'Admin', 'Admin', 'admin@zombieland.com', 'adminpass789', 'admin');
+-- Insertion des utilisateurs
+INSERT INTO "user" ("last_name", "first_name", "email", "password", "role") VALUES 
+('Dupont', 'Jean', 'jean.dupont@example.com', 'motdepasse123', 'utilisateur'),
+('Martin', 'Claire', 'claire.martin@example.com', 'motdepasse456', 'administrateur'),
+('Lemoine', 'Paul', 'paul.lemoine@example.com', 'motdepasse789', 'utilisateur'),
+('Dubois', 'Sophie', 'sophie.dubois@example.com', 'motdepasse321', 'utilisateur');
 
--- Insertion de données dans la table reservation
-INSERT INTO reservation (code_Reservation, num_Reservation, date_Visite, statut, prix_Total, code_Utilisateur) VALUES
-('RES001', 'ZL001', '2024-10-31', 'confirmé', '100', 'USR001'),
-('RES002', 'ZL002', '2024-11-01', 'en attente', '150', 'USR002');
+-- Insertion des billets
+INSERT INTO "ticket" ("name", "price", "quantity") VALUES 
+('Billet Enfant', 25.00, 100),
+('Billet Adulte', 50.00, 200),
+('Billet Senior', 35.00, 50);
 
--- Insertion de données dans la table contenir
-INSERT INTO contenir (code_Reservation, code_Billet) VALUES
-('RES001', 'BIL001'),
-('RES002', 'BIL002');
+-- Insertion des réservations
+INSERT INTO "reservation" ("user_id", "attraction_id", "visit_date", "status") VALUES 
+(1, 1, '2024-09-01', 'confirmée'),
+(2, 2, '2024-09-02', 'annulée'),
+(3, 3, '2024-09-03', 'confirmée'),
+(4, 4, '2024-09-04', 'confirmée');
 
--- Insertion de données dans la table message
-INSERT INTO message (code_Message, nom, prenom, courriel, contenu, code_Utilisateur) VALUES
-('MSG001', 'Dupont', 'Jean', 'jean.dupont@email.com', 'Question sur les horaires', 'USR001'),
-('MSG002', 'Martin', 'Sophie', 'sophie.martin@email.com', 'Demande de remboursement', 'USR002');
+-- Insertion des réservations de tickets
+INSERT INTO "reservation_ticket" ("reservation_id", "ticket_id", "quantity") VALUES 
+(1, 1, 2),
+(2, 2, 1),
+(3, 3, 4),
+(4, 1, 3);
+
+COMMIT;
