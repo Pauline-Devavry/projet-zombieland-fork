@@ -5,15 +5,15 @@ export class Category extends Model {}
 
 Category.init({
   name: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING,
     allowNull: false,
     unique: true
   },
 
   description: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING,
   }
 }, {
-  sequelize,
+  sequelize : sequelize(),
   tableName: "team"
 });
