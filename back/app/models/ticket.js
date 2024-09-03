@@ -23,3 +23,5 @@ Ticket.init(
     tableName: "ticket",
   }
 );
+
+export { Ticket };
