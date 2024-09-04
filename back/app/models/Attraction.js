@@ -6,7 +6,7 @@ class Attraction extends Model {}
 Attraction.init(
   {
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(150),
       allowNull: false,
     },
     description: {
@@ -14,7 +14,7 @@ Attraction.init(
       allowNull: false,
     },
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: false,
     },
     category_id: {

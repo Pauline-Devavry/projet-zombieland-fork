@@ -32,4 +32,12 @@ Ticket.belongsToMany(Reservation, {
 User.hasMany(Message, { foreignKey: "user_id" });
 Message.belongsTo(User, { foreignKey: "user_id" });
 
-export { Attraction, Category, Message, Reservation, Ticket, User };
+export {
+  Attraction,
+  Category,
+  Message,
+  Reservation,
+  Ticket,
+  User,
+  ReservationHasTicket,
+};
