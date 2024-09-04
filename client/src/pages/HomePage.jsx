@@ -8,11 +8,9 @@ function HomePage() {
     return (
         <main className="font-rubik min-h-screen">
             
-            
-            <Container>
-                <h1>Hello world</h1>
+            <Container className="bg-red-500">
+                <h1>Hemmp wprmd</h1>
             </Container>
-            
             
         </main>
     )
