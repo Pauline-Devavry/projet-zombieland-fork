@@ -50,6 +50,7 @@ CREATE TABLE "reservation" (
   "user_id" INT REFERENCES "user"("id"),
   "visit_date" DATE NOT NULL,
   "status" VARCHAR(20) NOT NULL CHECK (status IN ('confirmée', 'annulée'))
+  "total_price" DECIMAL(10, 2) NOT NULL,
 );
 
 -- Table "message" fait référence à "user"
