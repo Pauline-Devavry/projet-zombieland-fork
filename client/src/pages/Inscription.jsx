@@ -18,78 +18,188 @@ function Inscription() {
         console.log('Confirm Password:', confirmPassword)
         
     };
+
     return (
-        <div>
-            <h2>
-                Vous souhaitez vous inscrire dans un parc d’attraction incroyablement terrifiant, vous aimez les sensations fortes ? {' '}
-                Vous trouverez sur cette page ce que vous êtes venus chercher, notre {' '} 
-                <span>formulaire d’inscription </span>! {' '} 
-                Bonne chance chez Zombieland... 
-            </h2>
+        <div className="min-h-screen max-w-[75rem] mx-auto flex flex-col justify-center items-center bg-backgroundColor text-white font-rubik">
+            <div className="w-full">
+                <h2 className="text-lg mb-6">
+                    Vous souhaitez vous inscrire dans un parc d’attraction incroyablement terrifiant, vous aimez les sensations fortes ? {' '}
+                    Vous trouverez sur cette page ce que vous êtes venus chercher, notre {' '} 
+                    <span className="text-primaryColor">formulaire d’inscription </span>! {' '} 
+                    Bonne chance chez Zombieland... 
+                </h2>
+                {/* </div>
 
-            <form onSubmit={handleLogin}>
-                <div className="mb-4">
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Nom"
-                        required
-                    />
-                </div>
-                <div className="mb-4">
-                    <input
-                        type="text"
-                        value={lastname}
-                        onChange={(e) => setLastname(e.target.value)}
-                        placeholder="Prénom"
-                        required
-                    />
-              </div>
+                <div className="min-h-screen flex flex-col justify-center items-center bg-backgroundColor text-white font-rubik"> */}
 
-              <div className="mb-4">
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Courriel"
-                        required
-                    />
-              </div>
+                <form onSubmit={handleLogin} className="bg-backgroundColor max-w-[400px] mx-auto p-8 rounded-lg shadow-lg">
+                    <div className="mb-6">
+                        <label className="block text-sm font-medium mb-2" htmlFor="name">
+                            Nom
+                        </label>
+                        <input
+                            id="name"
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="Nom"
+                            required
+                            className="w-full p-3 bg-white text-black border border-borderColor rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+                        />
+                    </div>
+                    <div className="mb-6">
+                        <label className="block text-sm font-medium mb-2" htmlFor="lastname">
+                            Prénom
+                        </label>
+                        <input
+                            id="lastname"
+                            type="text"
+                            value={lastname}
+                            onChange={(e) => setLastname(e.target.value)}
+                            placeholder="Prénom"
+                            required
+                            className="w-full p-3 bg-white text-black border border-borderColor rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+                        />
+                    </div>
 
-              <div className="mb-4">
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Mot de passe"
-                        required
-                    />
-              </div>
+                    <div className="mb-6">
+                        <label className="block text-sm font-medium mb-2" htmlFor="email">
+                            Courriel
+                        </label>
+                        <input
+                            id="email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Courriel"
+                            required
+                            className="w-full p-3 bg-white text-black border border-borderColor rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+                        />
+                    </div>
 
-              <div className="mb-4">
-                    <input
-                        type="confirmPassword"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        placeholder="Confirmer votre mot de passe"
-                        required
-                    />
-              </div>
+                    <div className="mb-6">
+                        <label className="block text-sm font-medium mb-2" htmlFor="password">
+                            Mot de passe
+                        </label>
+                        <input
+                            id="password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Mot de passe"
+                            required
+                            className="w-full p-3 bg-white text-black border border-borderColor rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+                        />
+                    </div>
 
-              <div className="mt-6">
-            <button
-              type="submit"
-              className="w-full py-2 bg-primaryColor text-white font-bold rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-primaryColor"
-            >
-              Envoyer
-            </button>
-          </div>
+                    <div className="mb-6">
+                        <label className="block text-sm font-medium mb-2" htmlFor="confirmPassword">
+                            Confirmer votre mot de passe
+                        </label>
+                        <input
+                            id="confirmPassword"
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            placeholder="Confirmer votre mot de passe"
+                            required
+                            className="w-full p-3 bg-white text-black border border-borderColor rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+                        />
+                    </div>
 
-            </form>
+                    <div className="mt-6">
+                        <button
+                            type="submit"
+                            className="w-full py-3 bg-primaryColor text-white font-bold rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-primaryColor"
+                        >
+                            Envoyer
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-    )
+    );
 }
 
 export default Inscription;
-    
+
+//    return (
+//         <div className="min-h-screen flex flex-col justify-center items-center bg-backgroundColor text-white font-rubik">
+//             <div className="w-full max-w-md">
+//                 <h2 className="text-center text-lg mb-6">
+//                     Vous souhaitez vous inscrire dans un parc d’attraction incroyablement terrifiant, vous aimez les sensations fortes ? {' '}
+//                     Vous trouverez sur cette page ce que vous êtes venus chercher, notre {' '} 
+//                     <span className="text-primaryColor">formulaire d’inscription </span>! {' '} 
+//                     Bonne chance chez Zombieland... 
+//                 </h2>
+
+//                 <form onSubmit={handleLogin} className="bg-backgroundColor p-8 rounded-lg shadow-lg">
+//                     <div className="mb-4">
+//                         <input
+//                             type="text"
+//                             value={name}
+//                             onChange={(e) => setName(e.target.value)}
+//                             placeholder="Nom"
+//                             required
+//                             className="w-full p-3 bg-transparent border border-borderColor rounded text-white focus:outline-none focus:ring-2 focus:ring-primaryColor"
+//                         />
+//                     </div>
+//                     <div className="mb-4">
+//                         <input
+//                             type="text"
+//                             value={lastname}
+//                             onChange={(e) => setLastname(e.target.value)}
+//                             placeholder="Prénom"
+//                             required
+//                             className="w-full p-3 bg-transparent border border-borderColor rounded text-white focus:outline-none focus:ring-2 focus:ring-primaryColor"
+//                         />
+//                     </div>
+
+//                     <div className="mb-4">
+//                         <input
+//                             type="email"
+//                             value={email}
+//                             onChange={(e) => setEmail(e.target.value)}
+//                             placeholder="Courriel"
+//                             required
+//                             className="w-full p-3 bg-transparent border border-borderColor rounded text-white focus:outline-none focus:ring-2 focus:ring-primaryColor"
+//                         />
+//                     </div>
+
+//                     <div className="mb-4">
+//                         <input
+//                             type="password"
+//                             value={password}
+//                             onChange={(e) => setPassword(e.target.value)}
+//                             placeholder="Mot de passe"
+//                             required
+//                             className="w-full p-3 bg-transparent border border-borderColor rounded text-white focus:outline-none focus:ring-2 focus:ring-primaryColor"
+//                         />
+//                     </div>
+
+//                     <div className="mb-4">
+//                         <input
+//                             type="password"
+//                             value={confirmPassword}
+//                             onChange={(e) => setConfirmPassword(e.target.value)}
+//                             placeholder="Confirmer votre mot de passe"
+//                             required
+//                             className="w-full p-3 bg-transparent border border-borderColor rounded text-white focus:outline-none focus:ring-2 focus:ring-primaryColor"
+//                         />
+//                     </div>
+
+//                     <div className="mt-6">
+//                         <button
+//                             type="submit"
+//                             className="w-full py-3 bg-primaryColor text-white font-bold rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-primaryColor"
+//                         >
+//                             Envoyer
+//                         </button>
+//                     </div>
+//                 </form>
+//             </div>
+//         </div>
+//     );
+// }
+
+// export default Inscription;
