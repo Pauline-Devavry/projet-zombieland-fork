@@ -27,7 +27,7 @@ return (
                 {' '} <span className="text-primaryColor">formulaire de contact </span> {' '}
             que vous trouverez ci-dessous. {' '} Merci et à très bientôt chez Zombieland !
         </h2>
-        </Container>
+        </Container> 
 
     </div>
     

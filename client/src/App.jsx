@@ -5,6 +5,7 @@ import Connexion from "./pages/Connexion.jsx"
 import Inscription from "./pages/Inscription.jsx"
 import AttractionPage from "./pages/AttractionPage.jsx"
 import Contact from "./pages/Contact.jsx"
+import UserReservation from "./pages/UserReservation.jsx"
 
 
 const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact/>
+      },
+      {
+        path: "user/reservations",
+        element: <UserReservation/>
       }
     ]
   }
