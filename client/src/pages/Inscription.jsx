@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 function Inscription() {
     const [name, setName] = useState('');
-    const [lastname, setLastname] = useState('');
+    const [firstname, setFirstname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -11,16 +11,16 @@ function Inscription() {
     const handleLogin = (event) => {
         event.preventDefault();
 
-        console.log('Name:', name)
-        console.log('Last Name:', lastname)
-        console.log('Email:', email)
-        console.log('Password:', password)
-        console.log('Confirm Password:', confirmPassword)
+        console.log('Name:', name);
+        console.log('First Name:', firstname);
+        console.log('Email:', email);
+        console.log('Password:', password);
+        console.log('Confirm Password:', confirmPassword);
         
     };
 
     return (
-        <div className="min-h-screen max-w-[75rem] mx-auto flex flex-col justify-center items-center bg-backgroundColor text-white font-rubik">
+        <div className="min-h-screen max-w-[75rem] mx-auto flex flex-col justify-center items-center text-white font-rubik">
             <div className="w-full">
                 <h2 className="text-lg mb-6">
                     Vous souhaitez vous inscrire dans un parc d’attraction incroyablement terrifiant, vous aimez les sensations fortes ? {' '}
@@ -28,11 +28,8 @@ function Inscription() {
                     <span className="text-primaryColor">formulaire d’inscription </span>! {' '} 
                     Bonne chance chez Zombieland... 
                 </h2>
-                {/* </div>
 
-                <div className="min-h-screen flex flex-col justify-center items-center bg-backgroundColor text-white font-rubik"> */}
-
-                <form onSubmit={handleLogin} className="bg-backgroundColor max-w-[400px] mx-auto p-8 rounded-lg shadow-lg">
+                <form onSubmit={handleLogin} className="max-w-[400px] mx-auto p-8 rounded-lg shadow-lg">
                     <div className="mb-6">
                         <label className="block text-sm font-medium mb-2" htmlFor="name">
                             Nom
@@ -52,10 +49,10 @@ function Inscription() {
                             Prénom
                         </label>
                         <input
-                            id="lastname"
+                            id="firstname"
                             type="text"
-                            value={lastname}
-                            onChange={(e) => setLastname(e.target.value)}
+                            value={firstname}
+                            onChange={(e) => setFirstname(e.target.value)}
                             placeholder="Prénom"
                             required
                             className="w-full p-3 bg-white text-black border border-borderColor rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
@@ -123,83 +120,3 @@ function Inscription() {
 
 export default Inscription;
 
-//    return (
-//         <div className="min-h-screen flex flex-col justify-center items-center bg-backgroundColor text-white font-rubik">
-//             <div className="w-full max-w-md">
-//                 <h2 className="text-center text-lg mb-6">
-//                     Vous souhaitez vous inscrire dans un parc d’attraction incroyablement terrifiant, vous aimez les sensations fortes ? {' '}
-//                     Vous trouverez sur cette page ce que vous êtes venus chercher, notre {' '} 
-//                     <span className="text-primaryColor">formulaire d’inscription </span>! {' '} 
-//                     Bonne chance chez Zombieland... 
-//                 </h2>
-
-//                 <form onSubmit={handleLogin} className="bg-backgroundColor p-8 rounded-lg shadow-lg">
-//                     <div className="mb-4">
-//                         <input
-//                             type="text"
-//                             value={name}
-//                             onChange={(e) => setName(e.target.value)}
-//                             placeholder="Nom"
-//                             required
-//                             className="w-full p-3 bg-transparent border border-borderColor rounded text-white focus:outline-none focus:ring-2 focus:ring-primaryColor"
-//                         />
-//                     </div>
-//                     <div className="mb-4">
-//                         <input
-//                             type="text"
-//                             value={lastname}
-//                             onChange={(e) => setLastname(e.target.value)}
-//                             placeholder="Prénom"
-//                             required
-//                             className="w-full p-3 bg-transparent border border-borderColor rounded text-white focus:outline-none focus:ring-2 focus:ring-primaryColor"
-//                         />
-//                     </div>
-
-//                     <div className="mb-4">
-//                         <input
-//                             type="email"
-//                             value={email}
-//                             onChange={(e) => setEmail(e.target.value)}
-//                             placeholder="Courriel"
-//                             required
-//                             className="w-full p-3 bg-transparent border border-borderColor rounded text-white focus:outline-none focus:ring-2 focus:ring-primaryColor"
-//                         />
-//                     </div>
-
-//                     <div className="mb-4">
-//                         <input
-//                             type="password"
-//                             value={password}
-//                             onChange={(e) => setPassword(e.target.value)}
-//                             placeholder="Mot de passe"
-//                             required
-//                             className="w-full p-3 bg-transparent border border-borderColor rounded text-white focus:outline-none focus:ring-2 focus:ring-primaryColor"
-//                         />
-//                     </div>
-
-//                     <div className="mb-4">
-//                         <input
-//                             type="password"
-//                             value={confirmPassword}
-//                             onChange={(e) => setConfirmPassword(e.target.value)}
-//                             placeholder="Confirmer votre mot de passe"
-//                             required
-//                             className="w-full p-3 bg-transparent border border-borderColor rounded text-white focus:outline-none focus:ring-2 focus:ring-primaryColor"
-//                         />
-//                     </div>
-
-//                     <div className="mt-6">
-//                         <button
-//                             type="submit"
-//                             className="w-full py-3 bg-primaryColor text-white font-bold rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-primaryColor"
-//                         >
-//                             Envoyer
-//                         </button>
-//                     </div>
-//                 </form>
-//             </div>
-//         </div>
-//     );
-// }
-
-// export default Inscription;
