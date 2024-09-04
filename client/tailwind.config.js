@@ -20,12 +20,14 @@ export default {
       },
       fontSize: {
         "heading1-desktop": ['32px', { lineHeight: '38px' }],
-        "heading1-mobile": ['26px', { lineHeight: "38px"}]
+        "heading1-mobile": ['26px', { lineHeight: "38px"}],
+        "heading2-mobile": ['19px', { lineHeight: "38px"}],
+        "heading2-desktop": ['26px', { lineHeight: "38px"}],
       },
       keyframes: {
         bounce: {
-          '0%, 100%': { transform: 'translateY(-10px)' },
-          '50%': { transform: 'translateY(10px)' },
+          '0%, 100%': { transform: 'translateY(-20px)' },
+          '50%': { transform: 'translateY(20px)' },
         },
         scrollLeft: {
           '0%': { transform: 'translateX(0)' },

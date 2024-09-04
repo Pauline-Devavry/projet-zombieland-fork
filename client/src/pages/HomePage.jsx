@@ -10,6 +10,7 @@ import img2 from "../assets/homepage/image.png"
 import img3 from "../assets/homepage/image3.png"
 
 import { Link } from "react-router-dom"
+import InteractiveHomeMenu from "../components/InteractiveHomeMenu.jsx"
 
 function HomePage() {
 
@@ -48,7 +49,7 @@ function HomePage() {
             <div className="flex flex-col gap-0">
                 <img src={waveImg} alt="" className="w-full -mb-1" />
                 <div className="bg-gradient-to-b from-gradiantDarkRed to-primaryColor flex flex-col items-center gap-20 overflow-hidden py-24">
-                    <h2 className="text-heading1-mobile text-center">
+                    <h2 className="text-heading2-mobile text-center md:text-heading2-desktop">
                         De nombreuses attractions à découvrir
                     </h2>
                     <div className="container mx-auto px-4 py-8">
@@ -74,6 +75,9 @@ function HomePage() {
                 </div>
             </div>
 
+            {/* Interactive menu seperated in its own component*/}
+
+            <InteractiveHomeMenu/>
             
             
         </main>
