@@ -14,17 +14,17 @@ function Header() {
     }
 
     return (
-        <header className="w-screen relative">
-            <div className={`bg-backgroundColor w-screen p-6 absolute  shadow-xl border-b transform transition-transform duration-300 ease-in-out ${!showMenu ? "-translate-y-full" : "translate-y-0"}`}>
+        <header className="w-full relative">
+            <div className={`bg-backgroundColor w-full p-6 absolute  shadow-xl border-b transform transition-transform duration-300 ease-in-out ${!showMenu ? "-translate-y-full" : "translate-y-0"}`}>
                 <nav>
                     <ul className="flex flex-col items-center w-full gap-2">
-                        <li><NavLink to={'/'} className={(nav) => nav.isActive && "text-primaryColor"}>Accueil</NavLink></li>
-                        <li><NavLink to={'/attractions'} className={(nav) => nav.isActive && "text-primaryColor"}>Attractions</NavLink></li>
-                        <li><NavLink to={'/reserver'} className={(nav) => nav.isActive && "text-primaryColor"}>Reserver</NavLink></li>
-                        <li><NavLink to={'/faq'} className={(nav) => nav.isActive && "text-primaryColor"}>Faq</NavLink></li>
-                        <li><NavLink to={'/contact'} className={(nav) => nav.isActive && "text-primaryColor"}>Contacter-nous</NavLink></li>
-                        <li><NavLink to={'/a-propos'} className={(nav) => nav.isActive && "text-primaryColor"}>A propos</NavLink></li>
-                        <li><NavLink to={'/connexion'} className={(nav) => nav.isActive && "text-primaryColor"}>Se connecter</NavLink></li>
+                        <li><NavLink to={'/'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Accueil</NavLink></li>
+                        <li><NavLink to={'/attractions'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Attractions</NavLink></li>
+                        <li><NavLink to={'/reserver'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Reserver</NavLink></li>
+                        <li><NavLink to={'/faq'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Faq</NavLink></li>
+                        <li><NavLink to={'/contact'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Contacter-nous</NavLink></li>
+                        <li><NavLink to={'/a-propos'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>A propos</NavLink></li>
+                        <li><NavLink to={'/connexion'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Se connecter</NavLink></li>
                     </ul>
                     <a href="" className="absolute top-4 right-4" onClick={handleBurgerMenu}>
                         <img src={closeBurger} className="h-6" alt="Bouton pour fermer le menu de navigation" />
@@ -38,13 +38,13 @@ function Header() {
                 </div>
                 <nav>
                     <ul className="hidden md:flex gap-4 font-extralight">
-                        <li><NavLink to={'/'} className={(nav) => nav.isActive && "text-primaryColor"}>Accueil</NavLink></li>
-                        <li><NavLink to={'/attractions'} className={(nav) => nav.isActive && "text-primaryColor"}>Attractions</NavLink></li>
-                        <li><NavLink to={'/reserver'} className={(nav) => nav.isActive && "text-primaryColor"}>Reserver</NavLink></li>
-                        <li><NavLink to={'/faq'} className={(nav) => nav.isActive && "text-primaryColor"}>Faq</NavLink></li>
-                        <li><NavLink to={'/contact'} className={(nav) => nav.isActive && "text-primaryColor"}>Contacter-nous</NavLink></li>
-                        <li><NavLink to={'/a-propos'} className={(nav) => nav.isActive && "text-primaryColor"}>A propos</NavLink></li>
-                        <li><NavLink to={'/connexion'} className={(nav) => nav.isActive && "text-primaryColor"}>Se connecter</NavLink></li>
+                        <li><NavLink to={'/'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Accueil</NavLink></li>
+                        <li><NavLink to={'/attractions'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Attractions</NavLink></li>
+                        <li><NavLink to={'/reserver'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Reserver</NavLink></li>
+                        <li><NavLink to={'/faq'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Faq</NavLink></li>
+                        <li><NavLink to={'/contact'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Contacter-nous</NavLink></li>
+                        <li><NavLink to={'/a-propos'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>A propos</NavLink></li>
+                        <li><NavLink to={'/connexion'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Se connecter</NavLink></li>
                     </ul>
                     <a href="" onClick={handleBurgerMenu}>
                         <img src={burgerMenu} className="w-6 md:hidden" alt="Bouton pour ouvrir le menu de navigation." />
