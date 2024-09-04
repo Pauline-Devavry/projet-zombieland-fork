@@ -4,6 +4,7 @@ import App from './App.jsx'
 import "./App.css"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Connexion from './pages/Connexion.jsx'
+import Inscription from './pages/Inscription.jsx'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   { 
     path: "connexion",
     element: <Connexion/>
+  },
+  {
+    path: "inscription",
+    element: <Inscription/>
   }
 ])
 

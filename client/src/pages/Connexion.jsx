@@ -11,7 +11,7 @@ function Connexion() {
   };
 
 
-  return (
+return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-backgroundColor">
       <div className="bg-transparent p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-white text-lg mb-4">
