@@ -1,27 +1,30 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../database/client.js";
 
-class Ticket extends Model {}
+class Attraction extends Model {}
 
-Ticket.init(
+Attraction.init(
   {
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(150),
       allowNull: false,
     },
-    price: {
-      type: DataTypes.DECIMAL,
+    description: {
+
       allowNull: false,
     },
-    quantity: {
+    image: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
+    category_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
   {
     sequelize: sequelize(),
-    tableName: "ticket",
+    tableName: "attraction",
   }
 );
 
-export { Ticket };
