@@ -34,9 +34,9 @@
 | **Attribut**   | **Type de Donnée**           | **Longueur** | **Contraintes**                                  | **Description**                                             |
 | -------------- | ---------------------------- | ------------ | ------------------------------------------------ | ----------------------------------------------------------- |
 | id             | INT                          |              | PRIMARY KEY, AUTO_INCREMENT                      | Identifiant unique de la réservation, auto-incrémenté.      |
-| utilisateur_id | INT                          |              | NOT NULL, FOREIGN KEY REFERENCES Utilisateur(id) | Identifiant de l'utilisateur ayant effectué la réservation. |
-| attraction_id  | INT                          |              | NOT NULL, FOREIGN KEY REFERENCES Attraction(id)  | Identifiant de l'attraction réservée.                       |
-| date_visite    | DATE                         |              | NOT NULL                                         | Date de la visite réservée.                                 |
+| utilisateur_id | INT                          |              | NOT NULL, FOREIGN KEY REFERENCES Utilisateur(id) | Identifiant de l'utilisateur ayant effectué la réservation. |                      |
+| date_visite    | DATE                         |              | NOT NULL                                         | Date de la visite réservée.
+| prix_total    | DECIMAL                        |    (10, 2)          | NOT NULL                                         |Prix total du billet réservé.                               |
 | statut         | ENUM('confirmée', 'annulée') |              | NOT NULL                                         | Statut de la réservation.                                   |
 
 ## Table: Message

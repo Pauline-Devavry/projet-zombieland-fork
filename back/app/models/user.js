@@ -36,4 +36,3 @@ User.init(
   }
 );
 
-export { User };

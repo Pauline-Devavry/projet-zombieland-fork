@@ -10,7 +10,7 @@ Attraction.init(
       allowNull: false,
     },
     description: {
-      type: DataTypes.TEXT,
+
       allowNull: false,
     },
     image: {
@@ -27,3 +27,4 @@ Attraction.init(
     tableName: "attraction",
   }
 );
+
