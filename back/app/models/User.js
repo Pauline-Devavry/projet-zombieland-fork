@@ -1,7 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../database/client.js";
 
-class User extends Model {}
+export class User extends Model {}
 
 User.init(
   {
@@ -36,4 +36,4 @@ User.init(
   }
 );
 
-export { User };
+

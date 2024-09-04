@@ -1,7 +1,7 @@
 import { Attraction } from "./Attraction.js";
-import { Category } from "./category.js";
-import { Message } from "./message.js";
-import { Reservation } from "./reservation.js";
+import { Category } from "./Category.js";
+import { Message } from "./Message.js";
+import { Reservation } from "./Reservation.js";
 import { Ticket } from "./Ticket.js";
 import { User } from "./User.js";
 import { ReservationHasTicket } from "./ReservationHasTicket.js";

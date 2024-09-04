@@ -1,7 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../database/client.js";
 
-class Ticket extends Model {}
+export class Ticket extends Model {}
 
 Ticket.init(
   {
@@ -24,4 +24,3 @@ Ticket.init(
   }
 );
 
-export { Ticket };
