@@ -8,6 +8,7 @@ import waveImg from "../assets/homepage/wave.svg"
 import img1 from "../assets/homepage/image-1.png"
 import img2 from "../assets/homepage/image.png"
 import img3 from "../assets/homepage/image3.png"
+import planImg from "../assets/homepage/parc-plan-provisory.png"
 
 import rollerCosterIcon from "../assets/homepage/roller-coster-icon.svg"
 import ticketIcon from "../assets/homepage/ticket-icon.svg"
@@ -105,6 +106,11 @@ function HomePage() {
                     </h4>
                 </div>
             </div>
+
+            <Container className="pt-52 pb-20 flex justify-center flex-col items-center gap-12">
+                <h1 className="text-heading1-mobile md:text-heading1-desktop font-light">Carte du parc</h1>
+                <img src={planImg} className="max-h-[824px]" alt="Dessin du plan du parc d'attraction Zombieland" />
+            </Container>
             
             
         </main>
