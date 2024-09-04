@@ -9,7 +9,8 @@ export default {
       colors: {
         primaryColor: "#E5484D",
         backgroundColor: "#1C1C1C",
-        borderColor: "#191111",
+        secondaryBackgroundColor: "#111113",
+        borderColor: "#6E2920",
         adminTextColor: "#202020",
         adminSideBarColor: "#FCFCFC",
         adminBorderColor: "#CECECE",
