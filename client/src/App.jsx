@@ -7,6 +7,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <BaseLayout />,
+    errorElement: <h1>OOps ! Cannot find the page !</h1>,
     children: [
       {
         index: true,
