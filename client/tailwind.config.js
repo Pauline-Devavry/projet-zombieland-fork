@@ -16,7 +16,20 @@ export default {
         adminBorderColor: "#CECECE",
         adminCardColor: "#F0F0F0",
         adminTextGrayColor: "#484848",
-      }
+      },
+      fontSize: {
+        "heading1-desktop": ['32px', { lineHeight: '38px' }],
+        "heading1-mobile": ['26px', { lineHeight: "38px"}]
+      },
+      keyframes: {
+        bounce: {
+          '0%, 100%': { transform: 'translateY(-10px)' },
+          '50%': { transform: 'translateY(10px)' },
+        }
+      },
+      animation: {
+        bounce: 'bounce 2s infinite',
+      },
     },
     fontFamily: {
       rubik: ["Rubik"]
