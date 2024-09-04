@@ -57,7 +57,7 @@ function HomePage() {
                     <h2 className="text-heading2-mobile text-center md:text-heading2-desktop">
                         De nombreuses attractions à découvrir
                     </h2>
-                    <div className="container mx-auto px-4 py-8">
+                    <div className="mx-auto px-4 py-8">
                         <div className="flex flex-col md:flex-row md:space-x-4">
                             <div className="flex flex-col space-y-4 md:w-1/2">
                                 <div className="bg-secondaryBackgroundColor h-48 rounded-lg flex p-4">
