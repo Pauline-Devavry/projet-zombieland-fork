@@ -9,6 +9,10 @@ import img1 from "../assets/homepage/image-1.png"
 import img2 from "../assets/homepage/image.png"
 import img3 from "../assets/homepage/image3.png"
 
+import rollerCosterIcon from "../assets/homepage/roller-coster-icon.svg"
+import ticketIcon from "../assets/homepage/ticket-icon.svg"
+import hourglassIcon from "../assets/homepage/hourglass-icon.svg"
+
 import { Link } from "react-router-dom"
 import InteractiveHomeMenu from "../components/InteractiveHomeMenu.jsx"
 
@@ -78,6 +82,29 @@ function HomePage() {
             {/* Interactive menu seperated in its own component*/}
 
             <InteractiveHomeMenu/>
+
+            {/* Horizontal bar section */}
+
+            <div className="bg-secondaryBackgroundColor w-full py-10 border-b border-t border-borderColor flex flex-col gap-28 md:justify-around md:gap-0 md:flex-row">
+                <div className="flex flex-col items-center gap-4">
+                    <img src={rollerCosterIcon} alt="Illustration d'une montagne russe" />
+                    <h4>
+                        + <span className="text-primaryColor">30</span> Attractions
+                    </h4>
+                </div>
+                <div className="flex flex-col items-center gap-4">
+                    <img src={ticketIcon} alt="Illustration d'une montagne russe" />
+                    <h4>
+                        + <span className="text-primaryColor">324,520</span> Billets vendu
+                    </h4>
+                </div>
+                <div className="flex flex-col items-center gap-4">
+                    <img src={hourglassIcon} alt="Illustration d'une montagne russe" />
+                    <h4>
+                        + <span className="text-primaryColor">25</span> ans d&apos;existance
+                    </h4>
+                </div>
+            </div>
             
             
         </main>

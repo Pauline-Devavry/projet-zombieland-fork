@@ -68,7 +68,7 @@ function InteractiveHomeMenu() {
                         </div>
                     </div>
                 </div>
-                <RedShadow className="bottom-0 -left-20"/>
+                <RedShadow className="-bottom-32 -left-44"/>
             </Container>
     )
 
