@@ -3,6 +3,12 @@ import zombielandCurved from "../assets/homepage/zombieland-curved.svg"
 import arrowDown from "../assets/homepage/arrow-down.svg"
 import Container from "../components/Container"
 import RedShadow from "../components/ui/RedShadow.jsx"
+import waveImg from "../assets/homepage/wave.svg"
+
+import img1 from "../assets/homepage/image-1.png"
+import img2 from "../assets/homepage/image.png"
+import img3 from "../assets/homepage/image3.png"
+
 import { Link } from "react-router-dom"
 
 function HomePage() {
@@ -36,6 +42,39 @@ function HomePage() {
 
                 <img src={arrowDown} alt="" className="animate-bounce" />
             </Container>
+
+            {/* Wave section */}
+
+            <div className="flex flex-col gap-0">
+                <img src={waveImg} alt="" className="w-full -mb-1" />
+                <div className="bg-gradient-to-b from-gradiantDarkRed to-primaryColor flex flex-col items-center gap-20 overflow-hidden py-24">
+                    <h2 className="text-heading1-mobile text-center">
+                        De nombreuses attractions à découvrir
+                    </h2>
+                    <div className="container mx-auto px-4 py-8">
+                        <div className="flex flex-col md:flex-row md:space-x-4">
+                            <div className="flex flex-col space-y-4 md:w-1/2">
+                                <div className="bg-secondaryBackgroundColor h-48 rounded-lg flex p-4">
+                                    <img src={img1} alt="" className="w-full"/>
+                                </div>
+                                <div className="bg-secondaryBackgroundColor h-48 rounded-lg flex p-4">
+                                    <img src={img2} alt="" className="w-full"/>
+                                </div>
+                            </div>
+                            <div className="flex flex-col space-y-4 md:w-1/2">
+                                <div className="bg-secondaryBackgroundColor h-48 rounded-lg flex p-4">
+                                    <img src={img3} alt="" className="w-full"/>
+                                </div>
+                                <div className="bg-secondaryBackgroundColor h-48 rounded-lg flex p-4">
+                                    <img src={img1} alt="" className="w-full"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
             
         </main>
     )

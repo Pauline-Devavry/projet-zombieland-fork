@@ -16,6 +16,7 @@ export default {
         adminBorderColor: "#CECECE",
         adminCardColor: "#F0F0F0",
         adminTextGrayColor: "#484848",
+        gradiantDarkRed: "#5E1C16"
       },
       fontSize: {
         "heading1-desktop": ['32px', { lineHeight: '38px' }],
@@ -25,10 +26,20 @@ export default {
         bounce: {
           '0%, 100%': { transform: 'translateY(-10px)' },
           '50%': { transform: 'translateY(10px)' },
-        }
+        },
+        scrollLeft: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+        scrollRight: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(50%)' },
+        },
       },
       animation: {
         bounce: 'bounce 2s infinite',
+        scrollLeft: 'scrollLeft 20s linear infinite',
+        scrollRight: 'scrollRight 20s linear infinite',
       },
     },
     fontFamily: {
