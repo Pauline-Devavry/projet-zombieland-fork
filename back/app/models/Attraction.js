@@ -1,7 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../database/client.js";
 
-class Attraction extends Model {}
+export class Attraction extends Model {}
 
 Attraction.init(
   {
@@ -27,4 +27,5 @@ Attraction.init(
     tableName: "attraction",
   }
 );
+
 
