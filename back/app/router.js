@@ -1,7 +1,7 @@
 import { Router } from "express";
 
-import { controller } from "./controller/controller.js";
-import { attractionController } from "./controller/attractionController.js";
+import { controller } from "./controllers/controller.js";
+import { attractionController } from "./controllers/attractionController.js";
 
 export const router = Router();
 
