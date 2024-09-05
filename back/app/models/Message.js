@@ -16,7 +16,7 @@ Message.init(
     },
 
     email: {
-      type: DataTypes.STRIN(320),
+      type: DataTypes.STRING(320),
       unique: true,
       allowNull: false,
     },

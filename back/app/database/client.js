@@ -5,13 +5,12 @@ function sequelize() {
     dialect: "postgres",
     define: {
       underscored: true,
-      createdAt: 'created_at',
-    updatedAt: 'updated_at',
+      timestamps : false 
     },
   });
 
   return connexion;
 }
 
-export { sequelize };
+export { sequelize } ;
 
