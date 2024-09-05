@@ -5,6 +5,14 @@ import * as attractionController from './controllers/attractionController.js';
 import * as categoryController from './controllers/categoryController.js';
 import * as reservationController from './controllers/reservationController.js'
 import * as messageController from './controllers/messageController.js'
+
+
+import { isAdmin } from './authMiddleware.js'; 
+
+router.get('/admin', passport.authenticate('basic', { session: false }), isAdmin, (req, res) => {
+    res.json({ message: "Bienvenue sur le dashboard admin." });
+  });
+
 export const router = Router();
 
 router.get('/', controller.get);
