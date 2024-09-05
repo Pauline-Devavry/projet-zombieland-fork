@@ -1,16 +1,26 @@
-import dotenv from 'dotenv';
+import "dotenv/config";
+import passport from "passport";
+import express from "express";
+import { router } from "./app/router.js";
+import multer from "multer";
 
-import express from 'express';  
-import {router} from './app/router.js';
-import multer from 'multer';
-
+// Création de l'application
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(multer().none());
 
+// Body parsers
+app.use(express.json()); // application/json
+app.use(express.urlencoded({ extended: true })); // application/x-www-form-urlencoded
+app.use(multer().none()); // multipart/form-data
+
+app.use(passport.initialize());
+
+// Mise en place du router
 app.use(router);
 
+// Démarrage du serveur
 const port = process.env.PORT || 3000;
-await app.listen(port);
-console.log(`🚀 API Zombieland demarrée à l'adresse : http://localhost:${port}`);
+app.listen(port, () => {
+  console.log(
+    `🚀 API ZombieLand demarrée à l'adresse : http://localhost:${port}`
+  );
+});
