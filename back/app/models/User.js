@@ -5,7 +5,7 @@ export class User extends Model {}
 
 User.init(
   {
-    last_name: {
+    name: {
       type: DataTypes.STRING(80),
       allowNull: false,
     },

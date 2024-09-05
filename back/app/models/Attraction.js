@@ -9,17 +9,22 @@ Attraction.init(
       type: DataTypes.STRING(150),
       allowNull: false,
     },
-    description: {
 
-      allowNull: false,
+    description: {
+      type: DataTypes.TEXT,
     },
-    image: {
+
+    image_url: {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
+
     category_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      references: {
+        model: 'category', 
+        key: 'id', 
+      },
     },
   },
   {

@@ -13,8 +13,8 @@ Ticket.init(
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
-    quantity: {
-      type: DataTypes.INTEGER,
+    description: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
   },

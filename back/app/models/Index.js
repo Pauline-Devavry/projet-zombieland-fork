@@ -21,16 +21,13 @@ Reservation.belongsToMany(Ticket, {
   otherKey: "ticket_id",
   as: "tickets",
 });
+
 Ticket.belongsToMany(Reservation, {
   through: ReservationHasTicket,
   foreignKey: "ticket_id",
   otherKey: "reservation_id",
   as: "reservations",
 });
-
-// Relation User - Message
-User.hasMany(Message, { foreignKey: "user_id" });
-Message.belongsTo(User, { foreignKey: "user_id" });
 
 export {
   Attraction,

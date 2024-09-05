@@ -5,11 +5,7 @@ export class Message extends Model {}
 
 Message.init(
   {
-    user_id: {
-      type: DataTypes.INTEGER,
-    },
-
-    last_name: {
+    name: {
       type: DataTypes.STRING(80),
       allowNull: false,
     },
@@ -19,14 +15,15 @@ Message.init(
       allowNull: false,
     },
 
-    content: {
-      type: DataTypes.STRING(500),
+    email: {
+      type: DataTypes.STRIN(320),
+      unique: true,
       allowNull: false,
     },
 
-    sent_date: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
+    content: {
+      type: DataTypes.STRING(500),
+      allowNull: false,
     },
   },
   {

@@ -2,11 +2,11 @@ BEGIN;
 
 -- Insertion des catégories
 INSERT INTO "category" (name, description) VALUES
-('Chutes mortelles', "Des attractions à sensations fortes avec des loopings et des chutes vertigineuses"),
-('Tsunami macabre', "Des attractions terrifiantes et rafraîchissantes"),
-('Zombulator', "Plongez dans un univers post-apocalyptique où vous affrontez des attractions remplies de hordes de zombies."),
-('Spirale de la terreur', "Des attractions avec une descente vertigineuse dans l'obscurité totale, où chaque tour de spirale vous rapproche de vos plus grandes peurs."),
-('Apocalypse', "Une catégorie d'attractions immersives qui vous plongent dans un univers cataclysmique, avec des expériences intenses et des frissons garantis.");
+('Chutes mortelles', 'Des attractions à sensations fortes avec des loopings et des chutes vertigineuses'),
+('Tsunami macabre', 'Des attractions terrifiantes et rafraîchissantes'),
+('Zombulator', 'Plongez dans un univers post-apocalyptique où vous affrontez des attractions remplies de hordes de zombies.'),
+('Spirale de la terreur', 'Des attractions avec une descente vertigineuse où chaque tour de spirale vous rapproche de vos plus grandes peurs.'),
+('Apocalypse', 'Une catégorie d’attractions immersives qui vous plonge dans un univers cataclysmique.');
 
 -- Insertion des attractions
 INSERT INTO "attraction" (name, description, image_url, category_id) VALUES
@@ -38,7 +38,7 @@ INSERT INTO "attraction" (name, description, image_url, category_id) VALUES
 
 -- Insertion des tickets
 INSERT INTO "ticket" (name, price, description) VALUES
-('Billet', 45.00, "Ce billet vous donne accès à l'intégralité du parc ainsi qu'à toutes les attractions");
+('Billet', 45.00, 'Ce billet vous donne accès à l’intégralité du parc et à toutes les attractions');
 
 -- Insertion des utilisateurs
 INSERT INTO "user" (name, first_name, email, password, role) VALUES
@@ -52,20 +52,20 @@ INSERT INTO "user" (name, first_name, email, password, role) VALUES
 ('Moreau', 'Isabelle', 'isabelle.moreau@email.com', 'motdepasse161', 'utilisateur'),
 ('Roux', 'Thomas', 'thomas.roux@email.com', 'motdepasse718', 'utilisateur'),
 ('Robert', 'Nathalie', 'nathalie.robert@email.com', 'motdepasse192', 'utilisateur'),
-('Tremblay', 'Louis', 'losuis.tremblay@email.com', 'motdepasse223', 'utilisateur');
+('Tremblay', 'Louis', 'louis.tremblay@email.com', 'motdepasse223', 'utilisateur');
 
 -- Insertion des réservations
 INSERT INTO "reservation" (user_id, num_reservation, date_visit, status, total_price) VALUES
-(1, 'RES-2024-1258', '15-11-2024', 'confirmée', '45.00€'),
-(2, 'RES-2024-1259', '20-12-2024', 'confirmée', '90.00€');
+(1, 'RES-2024-1258', '2024-11-15', 'confirmée', '45.00'),
+(2, 'RES-2024-1259', '2024-12-20', 'confirmée', '90.00');
 
 -- Insertion des messages
 INSERT INTO "message" (name, first_name, email, content) VALUES
-(11, 'Santos', 'Marine', 'marine.s@email.com', 'J''ai hâte de visiter le parc !'),
-(22, 'Martin', 'Sophie', 'sophie.martin@email.com', 'Merci pour cette expérience incroyable.');
+('Santos', 'Marine', 'marine.s@email.com', 'J''ai hâte de visiter le parc !'),
+('Martin', 'Sophie', 'sophie.martin@email.com', 'Merci pour cette expérience incroyable.');
 
 -- Insertion des réservations de tickets
-INSERT INTO "reservation_has_ticket" (reservation_id,ticket_id, quantity_ticket) VALUES
+INSERT INTO "reservation_has_ticket" (reservation_id, ticket_id, quantity_ticket) VALUES
 (1, 1, 1),
 (2, 1, 2);
 

@@ -12,7 +12,7 @@ ReservationHasTicket.init({
         type: DataTypes.INTEGER,
       },
 
-      quantity: {
+      quantity_ticket: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },

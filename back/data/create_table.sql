@@ -41,7 +41,7 @@ CREATE TABLE "ticket" (
   "id" SERIAL PRIMARY KEY,
   "name" VARCHAR(100) NOT NULL,
   "price" DECIMAL(10, 2) NOT NULL,
-  "description" INT NOT NULL
+  "description" TEXT NOT NULL
 );
 
 -- Table "reservation" fait référence à "user" et "attraction"
@@ -49,7 +49,7 @@ CREATE TABLE "reservation" (
   "id" SERIAL PRIMARY KEY,
   "num_reservation" VARCHAR(20) UNIQUE,
   "date_visit" DATE NOT NULL,
-  "status" VARCHAR(20) NOT NULL CHECK (status IN ('confirmée', 'annulée'))
+  "status" VARCHAR(20) NOT NULL CHECK (status IN ('confirmée', 'annulée')),
   "total_price" DECIMAL(10, 2) NOT NULL,
   "user_id" INT REFERENCES "user"("id")
 );
@@ -59,7 +59,7 @@ CREATE TABLE "message" (
   "name" VARCHAR(80) NOT NULL,
   "first_name" VARCHAR(80) NOT NULL,
   "email" VARCHAR(320) UNIQUE NOT NULL,
-  "content" VARCHAR(500) NOT NULL,
+  "content" VARCHAR(500) NOT NULL
 );
 
 -- Table "reservation_ticket" fait référence à "reservation" et "ticket"
