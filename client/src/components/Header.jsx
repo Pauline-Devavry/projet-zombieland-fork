@@ -3,6 +3,7 @@ import burgerMenu from "../assets/icons/burger-icon.svg"
 import { NavLink } from "react-router-dom";
 import closeBurger from "../assets/icons/close-burger.svg"
 import { useState } from "react";
+import Logo from "./Logo";
 
 function Header() {
 
@@ -32,10 +33,7 @@ function Header() {
                 </nav>
             </div>
             <div className="max-w-[75rem] mx-auto py-11 flex justify-between items-center font-rubik text-white px-6">
-                <div className="flex items-center gap-4">
-                    <img className="w-8" src={ZombieLandLogo} alt="Logo de Zombieland"/>
-                    <span className="text-[19px]">Zombieland</span>
-                </div>
+                <Logo/>
                 <nav>
                     <ul className="hidden md:flex gap-4 font-extralight">
                         <li><NavLink to={'/'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Accueil</NavLink></li>
