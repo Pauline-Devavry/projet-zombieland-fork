@@ -54,10 +54,8 @@ CREATE TABLE "reservation" (
   "user_id" INT REFERENCES "user"("id")
 );
 
--- Table "message" fait référence à "user"
 CREATE TABLE "message" (
   "id" SERIAL PRIMARY KEY,
-  "user_id" INT REFERENCES "user"("id"),
   "name" VARCHAR(80) NOT NULL,
   "first_name" VARCHAR(80) NOT NULL,
   "email" VARCHAR(320) UNIQUE NOT NULL,
