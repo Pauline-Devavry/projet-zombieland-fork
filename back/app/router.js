@@ -6,6 +6,7 @@ import * as attractionController from "./controllers/attractionController.js";
 import * as categoryController from "./controllers/categoryController.js";
 import * as reservationController from "./controllers/reservationController.js";
 import * as messageController from "./controllers/messageController.js";
+import { ticketController } from "./controllers/ticketController.js";
 
 export const router = Router();
 
@@ -27,6 +28,9 @@ router.get("/reservations", reservationController.getAllReservations);
 router.get("/reservation/:id", reservationController.getOneReservation);
 router.patch("/category/:id", reservationController.updateOneReservation);
 router.delete("/category/:id", reservationController.deleteOneReservation);
+
+router.get("/tickets", ticketController.getAllTickets);
+router.get("/ticket/:id", ticketController.getOneTicket);
 
 router.get("/messages", messageController.getAllMessages);
 
