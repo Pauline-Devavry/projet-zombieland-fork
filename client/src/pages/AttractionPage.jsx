@@ -5,11 +5,11 @@ function AttractionPage() {
    return (
     <div className="bg-backgroundColor">
       
-      <header className="text-center p-8">
+      <div className="text-center p-8">
         <h1 className="text-2xl font-bold  text-white">
           En quête de frissons et de terreur ? Découvrez des attractions toutes aussi <span className="text-red-500">terrifiantes</span> les unes que les autres...
         </h1>
-      </header>
+      </div>
       <img src="" alt="image zombie " className="w-full rounded-lg mb-4" />
       <div className="flex justify-center">
         <img src="" alt="" className="" />

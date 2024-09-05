@@ -1,25 +1,27 @@
 import React from 'react';
 
-function App() {
+function AttractionInfo() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
+    <div className="flex flex-col items-center justify-center min-h-screen text-white">
       <div className="flex items-start bg-gray-800">
-        <img
-          src={dzsqdqSDqzsd}
-          alt="Zombie Attraction"
-          className="w-96 h-96 object-cover rounded-lg"
-        />
+      <div className="flex flex-col items-center">
+      <img src='./Image.jpg' alt="Attraction Zombie " className="image-parc-zombie" />
+
+      </div>
         <div className="space-y-4">
-          <div className="bg-gray-700 p-4 rounded-lg shadow-md">
+          <div className="bg-gray-700 p-4 rounded-lg shadow-md flex justify-between">
             <p className="text-sm text-gray-400">
-              texte
+            In non est purus. Quisque et velit est. 
+            Morbi sed velit eros. Nam at lacus velit. 
+            Nam at lacus velit.</p>
+            <p className="bg-gray-700 p-4 rounded-lg shadow-md flex justify-between">
+            Quisque et velit est. Nam at lacus velit.
+             In non est purus. Morbi sed velit eros. 
+             Nam at lacus velit. Quisque et velit est.
             </p>
-            <p className="text-sm text-red-500 mt-2">
-            texte
-            </p>
-
-          </div>
-
+          </div><div className="info-box">
+        <p>Roller coaster</p>
+      </div>
           <div className="flex items-center space-x-2 mt-4">
             <div className="bg-black p-4 rounded-full">
             </div>
@@ -31,7 +33,8 @@ function App() {
         Pour votre sécurité, soyez en bonne santé
       </p>
     </div>
+    
   );
 }
 
-export default App;
+export default AttractionInfo;    import React from 'react';

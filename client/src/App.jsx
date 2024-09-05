@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import BaseLayout from "./layouts/BaseLayout.jsx"
-
+import AttractionInfo from "./pages/AttractionInfo.jsx"
+import AttractionPage from "./pages/AttractionPage.jsx"
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,15 @@ const router = createBrowserRouter([
       {
         path: "hello",
         element: <h1>Hello page</h1>
+      },
+      {
+        path: "AttractionPage",
+        element: <AttractionPage />,
+        
+      },
+      {
+        path: "AttractionInfo",
+        element: <AttractionInfo />,
       }
     ]
   }
