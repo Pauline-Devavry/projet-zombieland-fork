@@ -4,7 +4,7 @@ import { controller } from "./controllers/controller.js";
 import * as attractionController from './controllers/attractionController.js';
 import * as categoryController from './controllers/categoryController.js';
 import * as reservationController from './controllers/reservationController.js'
-
+import * as messageController from './controllers/messageController.js'
 export const router = Router();
 
 router.get('/', controller.get);
@@ -25,4 +25,6 @@ router.get("/reservations", reservationController.getAllReservations);
 router.get("/reservation/:id", reservationController.getOneReservation);
 router.patch("/category/:id", reservationController.updateOneReservation);
 router.delete("/category/:id", reservationController.deleteOneReservation);
+
+router.get("/messages", messageController.getAllMessages);
 
