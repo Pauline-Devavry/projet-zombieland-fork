@@ -15,7 +15,7 @@ function Header() {
 
     return (
         <header className="w-full relative">
-            <div className={`bg-backgroundColor w-full p-6 absolute  shadow-xl border-b transform transition-transform duration-300 ease-in-out ${!showMenu ? "-translate-y-full" : "translate-y-0"}`}>
+            <div className={`bg-backgroundColor w-full fixed p-6 z-50   shadow-xl border-b transform transition-transform duration-300 ease-in-out ${!showMenu ? "-translate-y-full" : "translate-y-0"}`}>
                 <nav>
                     <ul className="flex flex-col items-center w-full gap-2">
                         <li><NavLink to={'/'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Accueil</NavLink></li>
