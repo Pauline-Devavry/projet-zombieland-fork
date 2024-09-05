@@ -2,58 +2,71 @@ BEGIN;
 
 -- Insertion des catégories
 INSERT INTO "category" (name, description) VALUES
-('Montagnes Russes', 'Des attractions à sensations fortes avec des loopings et des chutes vertigineuses'),
-('Attractions Aquatiques', 'Des attractions rafraîchissantes pour se divertir et se rafraîchir'),
-('Attractions Familiales', 'Des attractions pour tous les âges, parfaites pour toute la famille');
+('Chutes mortelles', "Des attractions à sensations fortes avec des loopings et des chutes vertigineuses"),
+('Tsunami macabre', "Des attractions terrifiantes et rafraîchissantes"),
+('Zombulator', "Plongez dans un univers post-apocalyptique où vous affrontez des attractions remplies de hordes de zombies."),
+('Spirale de la terreur', "Des attractions avec une descente vertigineuse dans l'obscurité totale, où chaque tour de spirale vous rapproche de vos plus grandes peurs."),
+('Apocalypse', "Une catégorie d'attractions immersives qui vous plongent dans un univers cataclysmique, avec des expériences intenses et des frissons garantis.");
 
 -- Insertion des attractions
-INSERT INTO "attraction" (name, description, image, "category_id") VALUES
-('Le Grand Huit', 'Montagnes russes à grande vitesse', 'grand_huit.jpg', 1),
-('Splash Mountain', 'Descente aquatique vertigineuse', 'splash_mountain.jpg', 2),
-('Carrousel Enchanté', 'Manège classique pour toute la famille', 'carrousel.jpg', 3),
-('Tornado', 'Montagnes russes inversées', 'tornado.jpg', 1),
-('River Rapids', 'Parcours en bouées sur rivière tumultueuse', 'river_rapids.jpg', 2),
-('Maison Hantée', 'Parcours effrayant dans le noir', 'maison_hantee.jpg', 3),
-('Looping Infernal', 'Montagnes russes avec loopings multiples', 'looping_infernal.jpg', 1),
-('Chute Libre', 'Tour de chute libre', 'chute_libre.jpg', 1),
-('Bateau Pirate', 'Navire qui se balance', 'bateau_pirate.jpg', 3),
-('Rivière Sauvage', 'Descente en radeaux', 'riviere_sauvage.jpg', 2),
-('Monorail Spatial', 'Voyage futuriste en monorail', 'monorail_spatial.jpg', 3),
-('Tourbillon Aquatique', 'Toboggans aquatiques en spirale', 'tourbillon_aquatique.jpg', 2),
-('Grand Huit Inversé', 'Montagnes russes avec loopings inversés', 'grand_huit_inverse.jpg', 1),
-('Cinéma 4D', 'Expérience cinématographique immersive', 'cinema_4d.jpg', 3),
-('Chaises Volantes', 'Manège aérien', 'chaises_volantes.jpg', 3),
-('Rapides de la Jungle', 'Aventure aquatique dans la jungle', 'rapides_jungle.jpg', 2),
-('Montagne de la Terreur', 'Montagnes russes dans le noir', 'montagne_terreur.jpg', 1),
-('Labyrinthe des Miroirs', 'Parcours amusant dans un labyrinthe de miroirs', 'labyrinthe_miroirs.jpg', 3),
-('Simulateur de Vol', 'Expérience de vol virtuelle', 'simulateur_vol.jpg', 3),
-('Plongeon de l''Extrême', 'Chute vertigineuse dans l''eau', 'plongeon_extreme.jpg', 2);
+INSERT INTO "attraction" (name, description, image_url, category_id) VALUES
+('Cyclone Mortel', 'Une descente ultra-rapide avec des virages serrés et des loopings enchaînés', 'cyclone_mortel.jpg', 1),
+('Chute du Condor', 'Une tour de chute libre où la gravité semble ne plus exister', 'chute_condor.jpg', 1),
+('Typhon Infernal', 'Un toboggan aquatique qui vous plonge dans l’obscurité et les courants furieux', 'typhon_infernal.jpg', 2),
+('Vortex Maudit', 'Un tourbillon aquatique où l’eau devient votre pire ennemi', 'vortex_maudit.jpg', 2),
+('Révolte Zombie', 'Un parcours sinistre dans une ville infestée de zombies', 'revolte_zombie.jpg', 3),
+('Forteresse Maudite', 'Explorez une forteresse en ruines peuplée de zombies et de dangers inattendus', 'forteresse_maudite.jpg', 3),
+('L’Abîme Spirale', 'Une attraction terrifiante dans une spirale qui semble ne jamais finir', 'abime_spirale.jpg', 4),
+('Tour de la Terreur', 'Une chute vertigineuse dans les ténèbres, où vos cris sont votre seul repère', 'tour_terreur.jpg', 4),
+('Ruée Apocalyptique', 'Un parcours intense dans un monde dévasté par des catastrophes naturelles', 'ruee_apocalyptique.jpg', 5),
+('Ère du Chaos', 'Voyagez dans un futur post-cataclysmique où la survie est un défi de chaque instant', 'ere_chaos.jpg', 5),
+('Ouragan Mortel', 'Une descente avec des virages serrés et des descentes rapides', 'ouragan_mortel.jpg', 1),
+('Tremblement Apocalyptique', 'Simulation d’un séisme avec des secousses et des chutes', 'tremblement_apocalyptique.jpg', 5),
+('Cascade Maudite', 'Un toboggan aquatique avec une descente abrupte et un final éclaboussant', 'cascade_maudite.jpg', 2),
+('Requiem des Profondeurs', 'Une aventure sous-marine dans un monde dévasté par les eaux', 'requiem_profondeurs.jpg', 5),
+('Invasion Zombie', 'Une maison hantée où des zombies surgissent à chaque coin', 'invasion_zombie.jpg', 3),
+('Spirale des Damnés', 'Une attraction qui vous emmène dans une spirale descendante sans fin', 'spirale_damnes.jpg', 4),
+('Tourbillon des Cendres', 'Une expérience dans un univers post-éruptif, avec de la fumée et des cendres', 'tourbillon_cendres.jpg', 5),
+('Vertige Fatal', 'Une descente avec des montées et descentes abruptes', 'vertige_fatal.jpg', 1),
+('Déluge des Enfers', 'Un toboggan aquatique avec des chutes brusques et des virages serrés', 'deluge_enfers.jpg', 2),
+('Dunes Maudites', 'Un parcours au milieu d’un désert post-apocalyptique', 'dunes_maudites.jpg', 5),
+('Zombus Invasion', 'Un tour à travers une ville dévastée par une invasion zombie', 'zombus_invasion.jpg', 3),
+('Descente du Destin', 'Une descente rapide dans un canyon désertique', 'descente_destin.jpg', 5),
+('Eau Sanglante', 'Un parcours en bouée dans une rivière teintée de rouge', 'eau_sanglante.jpg', 2),
+('Rafale Ténébreuse', 'Une descente à grande vitesse dans le noir total', 'rafale_tenebreuse.jpg', 4),
+('Jugement Apocalyptique', 'Une attraction où les visiteurs doivent échapper à une catastrophe imminente', 'jugement_apocalyptique.jpg', 5);
 
 -- Insertion des tickets
-INSERT INTO "ticket" (name, price, quantity) VALUES
-('Billet Adulte', 50.00, 1000),
-('Billet Enfant', 30.00, 1000),
-('Pass Famille', 150.00, 500);
+INSERT INTO "ticket" (name, price, description) VALUES
+('Billet', 45.00, "Ce billet vous donne accès à l'intégralité du parc ainsi qu'à toutes les attractions");
 
 -- Insertion des utilisateurs
-INSERT INTO "user" (last_name, first_name, email, password, role) VALUES
+INSERT INTO "user" (name, first_name, email, password, role) VALUES
+('Leroy', 'Paul', 'paul.leroy@email.com', 'motdepasse101', 'administrateur'),
 ('Dupont', 'Jean', 'jean.dupont@email.com', 'motdepasse123', 'utilisateur'),
-('Martin', 'Sophie', 'sophie.martin@email.com', 'motdepasse456', 'administrateur');
+('Martin', 'Sophie', 'sophie.martin@email.com', 'motdepasse456', 'utilisateur'),
+('Bernard', 'Alice', 'alice.bernard@email.com', 'motdepasse789', 'utilisateur'),
+('Durand', 'Marc', 'marc.durand@email.com', 'motdepasse112', 'utilisateur'),
+('Lemoine', 'Claire', 'claire.lemoine@email.com', 'motdepasse131', 'utilisateur'),
+('Garnier', 'Julien', 'julien.garnier@email.com', 'motdepasse415', 'utilisateur'),
+('Moreau', 'Isabelle', 'isabelle.moreau@email.com', 'motdepasse161', 'utilisateur'),
+('Roux', 'Thomas', 'thomas.roux@email.com', 'motdepasse718', 'utilisateur'),
+('Robert', 'Nathalie', 'nathalie.robert@email.com', 'motdepasse192', 'utilisateur'),
+('Tremblay', 'Louis', 'losuis.tremblay@email.com', 'motdepasse223', 'utilisateur');
 
 -- Insertion des réservations
-INSERT INTO "reservation" (user_id, visit_date, status, total_price) VALUES
-(1, '2024-07-15', 'confirmée', 25.00),
-(2, '2024-08-01', 'confirmée', 25.00);
+INSERT INTO "reservation" (user_id, num_reservation, date_visit, status, total_price) VALUES
+(1, 'RES-2024-1258', '15-11-2024', 'confirmée', '45.00€'),
+(2, 'RES-2024-1259', '20-12-2024', 'confirmée', '90.00€');
 
 -- Insertion des messages
-INSERT INTO "message" (user_id, last_name, first_name, content) VALUES
-(1, 'Dupont', 'Jean', 'J''ai hâte de visiter le parc !'),
-(2, 'Martin', 'Sophie', 'Merci pour cette expérience incroyable.');
+INSERT INTO "message" (name, first_name, email, content) VALUES
+(11, 'Santos', 'Marine', 'marine.s@email.com', 'J''ai hâte de visiter le parc !'),
+(22, 'Martin', 'Sophie', 'sophie.martin@email.com', 'Merci pour cette expérience incroyable.');
 
 -- Insertion des réservations de tickets
-INSERT INTO "reservation_ticket" (reservation_id, ticket_id, quantity) VALUES
-(1, 1, 2),
-(1, 2, 1),
-(2, 3, 1);
+INSERT INTO "reservation_has_ticket" (reservation_id,ticket_id, quantity_ticket) VALUES
+(1, 1, 1),
+(2, 1, 2);
 
 COMMIT;
