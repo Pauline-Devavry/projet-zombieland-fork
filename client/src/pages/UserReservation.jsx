@@ -1,4 +1,5 @@
 import React, { useState} from "react";
+import Container from "../components/Container"
 
 function UserReservation() {
     const [numberReservation, setNumbeReservation] = useState('');
@@ -22,7 +23,9 @@ function UserReservation() {
 
     return (
 
-        <div className="min-h-screen bg-secondaryBackgroundColor p-8 font-rubik">
+        <Container>
+
+        <div className="min-h-screen bg-secondaryBackgroundColor p-8 font-rubik mb-6 mt-6">
             <h2 className="text-white text-2xl font-bold mb-6">Mes réservations</h2>
                 <p className="text-white mb-8">
                     Vous voici sur la page <a href="/reservation" className="text-primaryColor">réservation</a>, vous pouvez effectuer votre réservation ci-dessous. 
@@ -165,6 +168,9 @@ function UserReservation() {
         </form>
     </div>
 </div>
+
+</Container>
+
 );
 }
 
