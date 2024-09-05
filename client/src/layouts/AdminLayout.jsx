@@ -1,20 +1,24 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { 
     faSquarePollVertical, 
     faUsers, 
     faComments, 
     faCalendarDays, 
     faTicketSimple, 
-    faTags,faFontAwesome 
+    faTags,faFontAwesome,
+    faArrowLeft 
 } from '@fortawesome/free-solid-svg-icons'
 import Logo from "../components/Logo"
-
 import MenuLink from '../pages/admin/MenuLink'
+import { NavLink, Outlet } from 'react-router-dom'
+
+import profilePlaceholder from "../assets/admindashboard/profile-placeholder.svg"
 
 function AdminLayout() {
 
     return (
         <div className="h-screen w-screen bg-[#F9F9F9] flex text-adminTextColor">
-            <div className=" h-full bg-adminSideBarColor p-4 px-8 border">
+            <div className=" h-full bg-adminSideBarColor p-4 px-8 border flex flex-col">
                 <div className="py-6">
                     <Logo width="w-[55px]" text="text-[22px] font-light"/>
                 </div>
@@ -71,14 +75,26 @@ function AdminLayout() {
                         </li>
                     </ul>
                 </nav>
+                <div className='flex-grow font-light flex items-end'>
+                    <NavLink to="/" className="flex gap-4 items-center">
+                        <FontAwesomeIcon icon={faArrowLeft} className="text-primaryColor"/>
+                        Revenir au site
+                    </NavLink>
+                </div>
             </div>
             <div className="flex-grow">
-                <header className="p-8 w-full bg-adminSideBarColor border-b">
-                    <span>Panel de gestion</span>
-                    <span>Dave Lopper</span>
+                <header className="p-8 w-full bg-adminSideBarColor border-b flex justify-between items-center">
+                    <h1 className='text-[19px] border-l-8 border-primaryColor pl-2 rounded'>Panel de gestion</h1>
+                    <div className='flex gap-4'>
+                        <img src={profilePlaceholder} alt=" " className='h-[52px]'/>
+                        <div>
+                            <p>Dave Lopper</p>
+                            <p>dave.lopper@gmail.com</p>
+                        </div>
+                    </div>
                 </header>
                 <main>
-                    Contenu du panel
+                    <Outlet />
                 </main>
             </div>
         </div>
