@@ -7,7 +7,7 @@ INSERT INTO "category" (name, description) VALUES
 ('Attractions Familiales', 'Des attractions pour tous les âges, parfaites pour toute la famille');
 
 -- Insertion des attractions
-INSERT INTO "attraction" (name, description, image, category_id) VALUES
+INSERT INTO "attraction" (name, description, image, "category_id") VALUES
 ('Le Grand Huit', 'Montagnes russes à grande vitesse', 'grand_huit.jpg', 1),
 ('Splash Mountain', 'Descente aquatique vertigineuse', 'splash_mountain.jpg', 2),
 ('Carrousel Enchanté', 'Manège classique pour toute la famille', 'carrousel.jpg', 3),
