@@ -3,6 +3,7 @@ import { Router } from "express";
 import { controller } from "./controllers/controller.js";
 import * as attractionController from './controllers/attractionController.js';
 import * as categoryController from './controllers/categoryController.js';
+import * as reservationController from './controllers/reservationController.js'
 
 export const router = Router();
 
@@ -20,4 +21,8 @@ router.post("/category/:id", categoryController.createOneCategory);
 router.patch("/category/:id", categoryController.updateOneCategory);
 router.delete("/category/:id", categoryController.deleteOneCategory);
 
+router.get("/reservations", reservationController.getAllReservations);
+router.get("/reservation/:id", reservationController.getOneReservation);
+router.patch("/category/:id", reservationController.updateOneReservation);
+router.delete("/category/:id", reservationController.deleteOneReservation);
 
