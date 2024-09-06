@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Connexion() {
   const [email, setEmail] = useState('');
@@ -16,7 +17,7 @@ return (
       <div className="bg-transparent p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-white text-lg mb-4">
           Pas de compte chez Zombieland ?{' '}
-          <span className="text-primaryColor">Inscrivez-vous !</span>
+          <NavLink to={"/inscription"} className="text-primaryColor">Inscrivez-vous !</NavLink>
         </h2>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
