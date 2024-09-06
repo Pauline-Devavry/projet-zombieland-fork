@@ -6,47 +6,49 @@ import Inscription from "./pages/Inscription.jsx"
 import AttractionPage from "./pages/AttractionPage.jsx"
 import Contact from "./pages/Contact.jsx"
 import UserReservation from "./pages/UserReservation.jsx"
+import AdminLayout from "./layouts/AdminLayout.jsx"
+import Overview from "./pages/admin/Overview.jsx"
 
 
 const router = createBrowserRouter([
+
   {
-    path: "/",
-    element: <BaseLayout />,
-    errorElement: <h1>OOps ! Cannot find the page !</h1>,
-    children: [
-      {
-        index: true,
-        element: <HomePage />
-      },
-      {
-        path: "attractions",
-        element: <AttractionPage/>
-      },
-      {
-        path: "inscription",
-        element: <Inscription/>
-      },
-      {
-        path: "connexion",
-        element: <Connexion/>
-      },
-      {
-        path: "contact",
-        element: <Contact/>
-      },
-      {
-        path: "user/reservations",
-        element: <UserReservation/>
-      }
-    ]
-  }
-])
+  path: "/",
+  element: <BaseLayout />,
+  errorElement: <h1>OOps ! Cannot find the page !</h1>,
+  children: [
+    {
+      index: true,
+      element: <HomePage />
+    },
+    {
+      path: "attractions",
+      element: <AttractionPage/>
+    },
+    {
+      path: "inscription",
+      element: <Inscription/>
+    },
+    {
+      path: "connexion",
+      element: <Connexion/>
+    },
+    {
+      path: "contact",
+      element: <Contact/>
+    },
+    {
+      path: "user/reservations",
+      element: <UserReservation/>
+    }
+  ]
+}
 
 function App() {
-
-  return (
-    <RouterProvider router={router}/>
-  )
+	
+	return (
+		<RouterProvider router={router}/>
+	)
 }
 
 export default App
