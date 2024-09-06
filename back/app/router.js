@@ -35,4 +35,5 @@ router.patch("/category/:id", reservationController.updateOneReservation);
 router.delete("/category/:id", reservationController.deleteOneReservation);
 
 router.get("/messages", messageController.getAllMessages);
+router.get("/message/:id", messageController.getOneMessage);
 
