@@ -33,5 +33,6 @@ router.get("/tickets", ticketController.getAllTickets);
 router.get("/ticket/:id", ticketController.getOneTicket);
 
 router.get("/messages", messageController.getAllMessages);
+router.get("/message/:id", messageController.getOneMessage);
 
 // router.post("/register", userController.register);
