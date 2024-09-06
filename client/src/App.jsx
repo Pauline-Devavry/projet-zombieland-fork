@@ -11,48 +11,38 @@ import Overview from "./pages/admin/Overview.jsx"
 
 
 const router = createBrowserRouter([
-	{
-		path: "/",
-		element: <BaseLayout />,
-		errorElement: <h1>OOps ! Cannot find the page !</h1>,
-		children: [
-			{
-				index: true,
-				element: <HomePage />
-			},
-			{
-				path: "attraction",
-				element: <AttractionPage/>
-			},
-			{
-				path: "inscription",
-				element: <Inscription/>
-			},
-			{
-				path: "connexion",
-				element: <Connexion/>
-			},
-			{
-				path: "contact",
-				element: <Contact/>
-			},
-			{
-				path: "user/reservations",
-				element: <UserReservation/>
-			}
-		]
-	},
-	{
-		path: "/admin",
-		element: <AdminLayout/>,
-		children: [
-			{
-				index: true,
-				element: <Overview/>
-			}
-		]
-	}
-])
+
+  {
+  path: "/",
+  element: <BaseLayout />,
+  errorElement: <h1>OOps ! Cannot find the page !</h1>,
+  children: [
+    {
+      index: true,
+      element: <HomePage />
+    },
+    {
+      path: "attractions",
+      element: <AttractionPage/>
+    },
+    {
+      path: "inscription",
+      element: <Inscription/>
+    },
+    {
+      path: "connexion",
+      element: <Connexion/>
+    },
+    {
+      path: "contact",
+      element: <Contact/>
+    },
+    {
+      path: "user/reservations",
+      element: <UserReservation/>
+    }
+  ]
+}
 
 function App() {
 	
