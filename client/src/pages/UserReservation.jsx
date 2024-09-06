@@ -2,7 +2,7 @@ import React, { useState} from "react";
 import Container from "../components/Container"
 
 function UserReservation() {
-    const [numberReservation, setNumbeReservation] = useState('');
+    const [numberReservation, setNumberReservation] = useState('');
     const [dateVisit, setDateVisit] = useState('');
     const [quantityTickets, setQuantityTickets] = useState('');
     const [status, setStatus] = useState('');

@@ -8,6 +8,7 @@ import Contact from "./pages/Contact.jsx"
 import UserReservation from "./pages/UserReservation.jsx"
 import AdminLayout from "./layouts/AdminLayout.jsx"
 import Overview from "./pages/admin/Overview.jsx"
+import UserProfil from "./pages/UserProfil.jsx"
 
 
 const router = createBrowserRouter([
@@ -38,11 +39,16 @@ const router = createBrowserRouter([
       element: <Contact/>
     },
     {
-      path: "user/reservations",
+      path: "utilisateur/reservations",
       element: <UserReservation/>
+    },
+    {
+      path: "utilisateur/profil",
+      element: <UserProfil/>
     }
   ]
-}
+  }
+  ])
 
 function App() {
 	
