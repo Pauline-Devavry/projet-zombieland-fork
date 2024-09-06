@@ -7,6 +7,7 @@ import AttractionPage from "./pages/AttractionPage.jsx"
 import Contact from "./pages/Contact.jsx"
 import UserReservation from "./pages/UserReservation.jsx"
 import AdminLayout from "./layouts/AdminLayout.jsx"
+import Overview from "./pages/admin/Overview.jsx"
 
 
 const router = createBrowserRouter([
@@ -43,7 +44,13 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "/admin",
-		element: <AdminLayout/>
+		element: <AdminLayout/>,
+		children: [
+			{
+				index: true,
+				element: <Overview/>
+			}
+		]
 	}
 ])
 
