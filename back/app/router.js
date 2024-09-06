@@ -14,13 +14,13 @@ router.get("/", controller.get);
 
 router.get("/attractions", attractionController.getAllAttractions);
 router.get("/attraction/:id", attractionController.getOneAttraction);
-router.post("/attractions", attractionController.createOneAttraction);
+router.post("/attraction", attractionController.createOneAttraction);
 router.patch("/attraction/:id", attractionController.updateOneAttraction);
 router.delete("/attraction/:id", attractionController.deleteOneAttraction);
 
 router.get("/categories", categoryController.getAllCategory);
 router.get("/category/:id", categoryController.getOneCategory);
-router.post("/category/:id", categoryController.createOneCategory);
+router.post("/category", categoryController.createOneCategory);
 router.patch("/category/:id", categoryController.updateOneCategory);
 router.delete("/category/:id", categoryController.deleteOneCategory);
 
@@ -34,4 +34,4 @@ router.get("/ticket/:id", ticketController.getOneTicket);
 
 router.get("/messages", messageController.getAllMessages);
 
-router.post("/register", userController.register);
+// router.post("/register", userController.register);

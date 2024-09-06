@@ -14,5 +14,3 @@ export async function getOneTicket(req, res, next) {
     next();
   }
 }
-
-export { ticketController };
