@@ -4,6 +4,7 @@ import Joi from "joi";
 export async function getAllAttractions(req, res) {
   const attractions = await Attraction.findAll({
     include: Category,
+    order: [["id", "ASC"]],
   });
 
   return res.json(attractions).status(200);
