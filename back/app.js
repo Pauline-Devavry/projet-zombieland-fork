@@ -3,6 +3,7 @@ import passport from "passport";
 import express from "express";
 import { router } from "./app/router.js";
 import multer from "multer";
+import { notFound, errorHandler } from "./app/middlewares/errorHandlers.js";
 
 // Création de l'application
 const app = express();
@@ -16,6 +17,8 @@ app.use(passport.initialize());
 
 // Mise en place du router
 app.use(router);
+app.use(notFound);
+app.use(errorHandler);
 
 // Démarrage du serveur
 const port = process.env.PORT || 3000;
