@@ -11,8 +11,8 @@ export const router = Router();
 
 router.get("/", controller.get);
 
-router.get("/attractions/all", attractionController.getAllAttractions);
-router.get("/attractions", attractionController.getFifteenAttractions);
+router.get("/attractions", attractionController.getAllAttractions);
+// router.get("/attractions", attractionController.getFifteenAttractions);
 router.get("/attraction/:id", attractionController.getOneAttraction);
 router.post("/attraction", attractionController.createOneAttraction);
 router.patch("/attraction/:id", attractionController.updateOneAttraction);
