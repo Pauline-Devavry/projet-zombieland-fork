@@ -177,7 +177,7 @@ function MessagePage() {
             </ul>
             <div className="w-1/4">
                 <div className="bg-adminCardColor p-4 rounded-lg min-h-[140px] flex flex-col justify-between relative overflow-hidden">
-                    <span>Total messages</span>
+                    <span className="text-adminTextGrayColor">Total messages</span>
                     <span className="self-end z-20 text-white">234</span>
                     <div className="absolute w-32 h-32 bg-primaryColor rounded-full -right-8 -bottom-8"/>
                 </div>
