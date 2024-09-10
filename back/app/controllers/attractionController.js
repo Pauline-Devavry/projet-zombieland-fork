@@ -76,41 +76,26 @@ export async function deleteOneAttraction(req, res, next) {
 }
 
 export async function updateOneAttraction(req, res, next) {
+
+    const id = Number(req.params.id);
+
     const attractionSchema = Joi.object({
-        name: Joi.string().min(1).required(),
-        description: Joi.string().required(),
-        image_url: Joi.string().required(),
-        category_id: Joi.number().required(),
+        name: Joi.string().min(1),
+        description: Joi.string(),
+        image_url: Joi.string(),
+        category_id: Joi.number()
     });
     
     const { error } = attractionSchema.validate(req.body);
     if (error) {
-        const errorMessage = { message: "Vous devez remplir tous les champs" };
-        return res.status(400).json(errorMessage);
+        return res.status(400).json({error});
     }
     
-    const id = Number(req.params.id);
-    
-    const { name, description, image_url, category_id } = req.body;
     const attraction = await Attraction.findByPk(id);
+
+    if(!attraction) return res.send({erreur: "Attraction non trouvé !"})
     
-    if (name) {
-        attraction.name = name;
-    }
-    
-    if (description) {
-        attraction.description = description;
-    }
-    
-    if (image_url) {
-        attraction.image_url = image_url;
-    }
-    
-    if (category_id) {
-        attraction.category_id = category_id;
-    }
-    
-    const updatedOneAttraction = await attraction.save();
+    const updatedOneAttraction = await attraction.update(req.body);
     
     return res.status(200).json({
         message: "Attraction mise a jour avec succès.",
