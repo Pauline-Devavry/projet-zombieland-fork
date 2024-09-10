@@ -1,37 +1,57 @@
-import React from 'react';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Container from "../components/Container";
+import { useParams } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
-      <div className="flex items-start bg-gray-800">
-        <img
-          src={dzsqdqSDqzsd}
-          alt="Zombie Attraction"
-          className="w-96 h-96 object-cover rounded-lg"
-        />
-        <div className="space-y-4">
-          <div className="bg-gray-700 p-4 rounded-lg shadow-md">
-            <p className="text-sm text-gray-400">
-              texte
-            </p>
-            <p className="text-sm text-red-500 mt-2">
-            texte
-            </p>
+function AttractionInfo() {
+	const [attractionsInfo, setAttractionsInfo] = useState([]);
+	
+	const { id } = useParams()
+	
+	useEffect(() => {
+		const fetchData = async () => {
+			// await axios.get("http://localhost:3000/attractions").then(data => setAttractions(data))
+			const response = await axios.get(`http://localhost:3000/attraction/${id}`);
+			setAttractionsInfo(response.data);
+			console.log(response.data)
+		};
+		fetchData();
+	}, []);
+	
+	return (
+		
+		<Container className="grid grid-cols-3 gap-4">
+			
+			<div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
+							<div className="flex items-start bg-gray-800">
+								<img
+									src=""
+									alt="Zombie Attraction"
+									className="w-96 h-96 object-cover rounded-lg"
+								/>
+								<div className="space-y-4">
+									<div className="bg-gray-700 p-4 rounded-lg shadow-md">
+										<p className="text-sm text-gray-400">
+										{
+											attractionsInfo.name
+										}
+										</p>
+										<p className="text-sm text-red-500 mt-2">
+										{
+											attractionsInfo.description
+										}
+										</p>
+									</div>
 
-          </div>
+								</div>
+							</div>
+							<p className="mt-10 text-center text-lg font-semibold">
+								Pour votre sécurité, soyez en bonne santé
+							</p>
+						</div>
 
-          <div className="flex items-center space-x-2 mt-4">
-            <div className="bg-black p-4 rounded-full">
-            </div>
-            <span className="text-sm">Hauteur minimale : 1m31</span>
-          </div>
-        </div>
-      </div>
-      <p className="mt-10 text-center text-lg font-semibold">
-        Pour votre sécurité, soyez en bonne santé
-      </p>
-    </div>
-  );
+		</Container>
+	)
 }
 
-export default App;
+export default AttractionInfo;

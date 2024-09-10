@@ -11,6 +11,7 @@ import Overview from "./pages/admin/Overview.jsx"
 import UserProfil from "./pages/UserProfil.jsx"
 import Accordion from "./pages/FaqPage.jsx"
 import TestPage from "./pages/TestPage.jsx"
+import AttractionInfo from "./pages/AttractionInfo.jsx"
 
 
 const router = createBrowserRouter([
@@ -53,8 +54,8 @@ const router = createBrowserRouter([
         element: <Accordion/>
       },
       {
-        path: "test",
-        element: <TestPage />
+        path: "attraction/:id",
+        element: <AttractionInfo/>
       }
     ]
   }

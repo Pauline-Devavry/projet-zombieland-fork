@@ -22,7 +22,7 @@ function AttractionPage() {
       <header className="text-center p-8">
         <h1 className="text-2xl font-bold  text-white">
           En quête de frissons et de terreur ? Découvrez des attractions toutes
-          aussi <span className="text-red-500">terrifiantes</span> les unes que
+          aussi <span className="text-primaryColor">terrifiantes</span> les unes que
           les autres...
         </h1>
       </header>
@@ -50,6 +50,7 @@ function AttractionPage() {
             return (
               <AttractionCard
                 key={attraction.id}
+                id= {attraction.id}
                 name={attraction.name}
                 description={attraction.description}
               />
