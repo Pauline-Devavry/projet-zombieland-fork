@@ -60,12 +60,7 @@ const router = createBrowserRouter([
     ]
   }
 ])
-        path: "test",
-        element: <TestPage />,
-      },
-    ],
-  },
-]);
+      
 
 function App() {
   return <RouterProvider router={router} />;
