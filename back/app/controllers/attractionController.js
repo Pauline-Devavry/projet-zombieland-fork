@@ -1,10 +1,16 @@
 import { Attraction, Category } from "../models/Index.js";
 import Joi from "joi";
+import { usePagination } from "../utils/pagination.js";
 
 export async function getAllAttractions(req, res) {
+
+  const { limit, offset } = usePagination(req.query)
+
   const attractions = await Attraction.findAll({
     include: Category,
     order: [["id", "ASC"]],
+    limit,
+    offset
   });
 
   return res.json(attractions).status(200);
