@@ -18,7 +18,7 @@ function AdminLayout() {
 
     return (
         <div className="h-screen w-screen bg-[#F9F9F9] flex text-adminTextColor font-rubik">
-            <div className=" h-full bg-adminSideBarColor p-4 px-8 border flex flex-col">
+            <div className=" h-full bg-adminSideBarColor p-4 px-8 border flex flex-col min-w-fit">
                 <div className="py-6">
                     <Logo width="w-[55px]" text="text-[22px] font-light"/>
                 </div>
@@ -29,6 +29,7 @@ function AdminLayout() {
                             <MenuLink 
                                 faIcon={faSquarePollVertical} 
                                 text="Apercu"
+                                url=""
                             />
                         </li>
                         <li className="w-full flex">

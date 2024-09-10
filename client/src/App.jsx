@@ -8,6 +8,7 @@ import Contact from "./pages/Contact.jsx"
 import UserReservation from "./pages/UserReservation.jsx"
 import AdminLayout from "./layouts/AdminLayout.jsx"
 import Overview from "./pages/admin/Overview.jsx"
+import MessagePage from "./pages/admin/MessagesPage.jsx"
 
 
 const router = createBrowserRouter([
@@ -49,7 +50,23 @@ const router = createBrowserRouter([
 			{
 				index: true,
 				element: <Overview/>
-			}
+			},
+      {
+        path: "membres",
+        element: <h1>members page</h1>
+      },
+      {
+        path: "messages",
+        element: <MessagePage/>
+      },
+      {
+        path: "reservations",
+        element: <h1>reservations page</h1>
+      },
+      {
+        path: "categories",
+        element: <h1>categories page</h1>
+      },
 		]
 	}
 ])
