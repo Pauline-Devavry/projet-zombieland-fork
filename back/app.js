@@ -3,11 +3,12 @@ import passport from "passport";
 import express from "express";
 import { router } from "./app/router.js";
 import multer from "multer";
-
+import cors from 'cors'
 
 // Création de l'application
 const app = express();
 
+app.use(cors())
 // Body parsers
 app.use(express.json()); // application/json
 app.use(express.urlencoded({ extended: true })); // application/x-www-form-urlencoded

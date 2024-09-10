@@ -10,56 +10,61 @@ import AdminLayout from "./layouts/AdminLayout.jsx"
 import Overview from "./pages/admin/Overview.jsx"
 import UserProfil from "./pages/UserProfil.jsx"
 import Accordion from "./pages/FaqPage.jsx"
+import TestPage from "./pages/TestPage.jsx"
 
 
 const router = createBrowserRouter([
-
+  
   {
-  path: "/",
-  element: <BaseLayout />,
-  errorElement: <h1>OOps ! Cannot find the page !</h1>,
-  children: [
-    {
-      index: true,
-      element: <HomePage />
-    },
-    {
-      path: "attractions",
-      element: <AttractionPage/>
-    },
-    {
-      path: "inscription",
-      element: <Inscription/>
-    },
-    {
-      path: "connexion",
-      element: <Connexion/>
-    },
-    {
-      path: "contact",
-      element: <Contact/>
-    },
-    {
-      path: "utilisateur/reservations",
-      element: <UserReservation/>
-    },
-    {
-      path: "utilisateur/profil",
-      element: <UserProfil/>
-    },
-	{
-		path: "faq",
-		element: <Accordion/>
-	}
-  ]
+    path: "/",
+    element: <BaseLayout />,
+    errorElement: <h1>OOps ! Cannot find the page !</h1>,
+    children: [
+      {
+        index: true,
+        element: <HomePage />
+      },
+      {
+        path: "attractions",
+        element: <AttractionPage/>
+      },
+      {
+        path: "inscription",
+        element: <Inscription/>
+      },
+      {
+        path: "connexion",
+        element: <Connexion/>
+      },
+      {
+        path: "contact",
+        element: <Contact/>
+      },
+      {
+        path: "utilisateur/reservations",
+        element: <UserReservation/>
+      },
+      {
+        path: "utilisateur/profil",
+        element: <UserProfil/>
+      },
+      {
+        path: "faq",
+        element: <Accordion/>
+      },
+      {
+        path: "test",
+        element: <TestPage />
+      }
+    ]
   }
-  ])
+])
 
 function App() {
-	
-	return (
-		<RouterProvider router={router}/>
-	)
+  
+  return (
+    <RouterProvider router={router}/>
+  )
 }
 
 export default App
