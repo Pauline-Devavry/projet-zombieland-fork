@@ -12,46 +12,46 @@ import UserProfil from "./pages/UserProfil.jsx"
 import Accordion from "./pages/FaqPage.jsx"
 import TestPage from "./pages/TestPage.jsx"
 import AttractionInfo from "./pages/AttractionInfo.jsx"
+import NotFoundPage from "./pages/404.jsx"
 
 
 const router = createBrowserRouter([
-  
   {
     path: "/",
     element: <BaseLayout />,
-    errorElement: <h1>OOps ! Cannot find the page !</h1>,
+    errorElement: <NotFoundPage />,
     children: [
       {
         index: true,
-        element: <HomePage />
+        element: <HomePage />,
       },
       {
         path: "attractions",
-        element: <AttractionPage/>
+        element: <AttractionPage />,
       },
       {
         path: "inscription",
-        element: <Inscription/>
+        element: <Inscription />,
       },
       {
         path: "connexion",
-        element: <Connexion/>
+        element: <Connexion />,
       },
       {
         path: "contact",
-        element: <Contact/>
+        element: <Contact />,
       },
       {
         path: "utilisateur/reservations",
-        element: <UserReservation/>
+        element: <UserReservation />,
       },
       {
         path: "utilisateur/profil",
-        element: <UserProfil/>
+        element: <UserProfil />,
       },
       {
         path: "faq",
-        element: <Accordion/>
+        element: <Accordion />,
       },
       {
         path: "attraction/:id",
@@ -60,12 +60,15 @@ const router = createBrowserRouter([
     ]
   }
 ])
+        path: "test",
+        element: <TestPage />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  
-  return (
-    <RouterProvider router={router}/>
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
