@@ -58,7 +58,7 @@ CREATE TABLE "message" (
   "id" SERIAL PRIMARY KEY,
   "name" VARCHAR(80) NOT NULL,
   "first_name" VARCHAR(80) NOT NULL,
-  "email" VARCHAR(320) UNIQUE NOT NULL,
+  "email" VARCHAR(320) NOT NULL,
   "content" VARCHAR(500) NOT NULL
 );
 
