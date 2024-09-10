@@ -12,6 +12,7 @@ import MessagePage from "./pages/admin/MessagesPage.jsx"
 
 
 const router = createBrowserRouter([
+<<<<<<< HEAD
 	{
 		path: "/",
 		element: <BaseLayout />,
@@ -70,6 +71,40 @@ const router = createBrowserRouter([
 		]
 	}
 ])
+=======
+
+  {
+  path: "/",
+  element: <BaseLayout />,
+  errorElement: <h1>OOps ! Cannot find the page !</h1>,
+  children: [
+    {
+      index: true,
+      element: <HomePage />
+    },
+    {
+      path: "attractions",
+      element: <AttractionPage/>
+    },
+    {
+      path: "inscription",
+      element: <Inscription/>
+    },
+    {
+      path: "connexion",
+      element: <Connexion/>
+    },
+    {
+      path: "contact",
+      element: <Contact/>
+    },
+    {
+      path: "user/reservations",
+      element: <UserReservation/>
+    }
+  ]
+}
+>>>>>>> 88f71c296e15818b19eb4eba0264237c1b9c8f8d
 
 function App() {
 	
