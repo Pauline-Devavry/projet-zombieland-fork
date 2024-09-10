@@ -7,13 +7,13 @@ export async function getAllMessages(req, res) {
 	const offset = (page - 1) * limit
 
 	const messages = await Message.findAll({
-		limit,
-		offset
+		offset,
+		limit
 	})
 
 	res.json(messages)
 
-  };
+};
 
 export async function getOneMessage(req, res, next) {
 	
