@@ -40,17 +40,21 @@ const router = createBrowserRouter([
       element: <Contact/>
     },
     {
-      path: "utilisateur/reservations",
+      path: "utilisateur/:id",
       element: <UserReservation/>
     },
     {
-      path: "utilisateur/profil",
+      path: "utilisateur/:id",
       element: <UserProfil/>
     },
 	{
 		path: "faq",
 		element: <Accordion/>
-	}
+	},
+  {
+    path: "attraction/:id",
+    element: <AttractionInfo/>
+  }
   ]
   }
   ])
