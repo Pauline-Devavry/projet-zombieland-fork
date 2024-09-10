@@ -20,6 +20,16 @@ export async function getOneAttraction(req, res, next) {
   }
 }
 
+export async function getFifteenAttractions(req, res) {
+  const attractions = await Attraction.findAll({
+    include: Category,
+    order: [["id", "ASC"]],
+    limit: 15,
+  });
+
+  return res.json(attractions).status(200);
+}
+
 export async function createOneAttraction(req, res, next) {
   const attractionSchema = Joi.object({
     name: Joi.string().min(1).required(),

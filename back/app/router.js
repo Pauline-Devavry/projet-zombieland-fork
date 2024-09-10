@@ -11,7 +11,8 @@ export const router = Router();
 
 router.get("/", controller.get);
 
-router.get("/attractions", attractionController.getAllAttractions);
+router.get("/attractions/all", attractionController.getAllAttractions);
+router.get("/attractions", attractionController.getFifteenAttractions);
 router.get("/attraction/:id", attractionController.getOneAttraction);
 router.post("/attraction", attractionController.createOneAttraction);
 router.patch("/attraction/:id", attractionController.updateOneAttraction);
@@ -35,4 +36,3 @@ router.get("/messages", messageController.getAllMessages);
 router.get("/message/:id", messageController.getOneMessage);
 
 // router.post("/register", userController.register);
-
