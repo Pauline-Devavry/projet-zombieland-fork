@@ -1,8 +1,15 @@
 import { Category } from "../models/Index.js";
 import Joi from "joi";
+import { usePagination } from "../utils/pagination.js";
 
 export async function getAllCategory(req, res) {
-  const category = await Category.findAll();
+
+  const { limit, offset } = usePagination(req.query)
+
+  const category = await Category.findAll({
+    limit,
+    offset
+  });
 
   return res.json(category).status(200);
 }
