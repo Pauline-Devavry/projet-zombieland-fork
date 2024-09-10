@@ -36,7 +36,6 @@ export async function createOneAttraction(req, res, next) {
 
   const { name, description, image_url, category_id } = req.body;
 
-  // Création de l'attraction
   const createdOneAttraction = await Attraction.create({
     name,
     description,
@@ -44,7 +43,7 @@ export async function createOneAttraction(req, res, next) {
     category_id,
   });
 
-  // Si la création réussit, envoyer une réponse de succès
+
   return res.status(201).json({
     message: "Attraction créée avec succès.",
     attraction: createdOneAttraction,

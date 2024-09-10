@@ -3,10 +3,17 @@ import passport from "passport";
 import express from "express";
 import { router } from "./app/router.js";
 import multer from "multer";
-
+import cors from "cors";
 
 // Création de l'application
 const app = express();
+
+app.use(cors({
+  origin: 'http://localhost:5173', 
+  methods: 'GET,POST,PUT,DELETE',  // Méthodes HTTP autorisées
+  allowedHeaders: 'Content-Type,Authorization'  // En-têtes autorisés
+}));
+
 
 // Body parsers
 app.use(express.json()); // application/json
