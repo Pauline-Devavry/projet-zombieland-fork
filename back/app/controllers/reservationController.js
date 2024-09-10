@@ -1,9 +1,15 @@
 import { Reservation, User } from "../models/Index.js";
 import Joi from "joi";
+import { usePagination } from "../utils/pagination.js";
 
 export async function getAllReservations(req, res) {
+
+  const { limit, offset } = usePagination(req.query)
+
   const reservations = await Reservation.findAll({
     include: User,
+    limit,
+    offset
   });
 
   return res.json(reservations).status(200);
