@@ -1,19 +1,17 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import BaseLayout from "./layouts/BaseLayout.jsx"
-import HomePage from "./pages/HomePage.jsx"
-import Connexion from "./pages/Connexion.jsx"
-import Inscription from "./pages/Inscription.jsx"
-import AttractionPage from "./pages/AttractionPage.jsx"
-import Contact from "./pages/Contact.jsx"
-import UserReservation from "./pages/UserReservation.jsx"
-import AdminLayout from "./layouts/AdminLayout.jsx"
-import Overview from "./pages/admin/Overview.jsx"
-import UserProfil from "./pages/UserProfil.jsx"
-import Accordion from "./pages/FaqPage.jsx"
-import TestPage from "./pages/TestPage.jsx"
-import AttractionInfo from "./pages/AttractionInfo.jsx"
-import NotFoundPage from "./pages/404.jsx"
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import BaseLayout from "./layouts/BaseLayout.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import Connexion from "./pages/Connexion.jsx";
+import Inscription from "./pages/Inscription.jsx";
+import AttractionPage from "./pages/AttractionPage.jsx";
+import Contact from "./pages/Contact.jsx";
+import UserReservation from "./pages/UserReservation.jsx";
+import AdminLayout from "./layouts/AdminLayout.jsx";
+import Overview from "./pages/admin/Overview.jsx";
+import UserProfil from "./pages/UserProfil.jsx";
+import Accordion from "./pages/FaqPage.jsx";
+import AttractionInfo from "./pages/AttractionInfo.jsx";
+import NotFoundPage from "./pages/404.jsx";
 
 const router = createBrowserRouter([
   {
@@ -55,12 +53,11 @@ const router = createBrowserRouter([
       },
       {
         path: "attraction/:id",
-        element: <AttractionInfo/>
-      }
-    ]
-  }
-])
-      
+        element: <AttractionInfo />,
+      },
+    ],
+  },
+]);
 
 function App() {
   return <RouterProvider router={router} />;
