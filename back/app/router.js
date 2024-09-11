@@ -13,12 +13,6 @@ export const router = Router();
 
 router.get("/", controller.get);
 
-router.get("/categories", categoryController.getAllCategory);
-router.get("/category/:id", categoryController.getOneCategory);
-router.post("/category", categoryController.createOneCategory);
-router.patch("/category/:id", categoryController.updateOneCategory);
-router.delete("/category/:id", categoryController.deleteOneCategory);
-
 router.get("/reservations", reservationController.getAllReservations);
 router.get("/reservation/:id", reservationController.getOneReservation);
 router.patch("/reservation/:id", reservationController.updateOneReservation);
