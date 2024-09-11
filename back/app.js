@@ -8,7 +8,13 @@ import cors from 'cors'
 // Création de l'application
 const app = express();
 
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:5173', 
+  methods: 'GET,POST,PUT,DELETE',  // Méthodes HTTP autorisées
+  allowedHeaders: 'Content-Type,Authorization'  // En-têtes autorisés
+}));
+
+
 // Body parsers
 app.use(express.json()); // application/json
 app.use(express.urlencoded({ extended: true })); // application/x-www-form-urlencoded

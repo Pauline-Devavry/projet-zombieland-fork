@@ -39,34 +39,33 @@ export async function getOneAttraction(req, res, next) {
 // }
 
 export async function createOneAttraction(req, res, next) {
-    const attractionSchema = Joi.object({
-        name: Joi.string().min(1).required(),
-        description: Joi.string().required(),
-        image_url: Joi.string().required(),
-        category_id: Joi.number().required(),
-    });
-    
-    const { error } = attractionSchema.validate(req.body);
-    if (error) {
-        const errorMessage = { message: "Vous devez remplir tous les champs" };
-        return res.status(400).json(errorMessage);
-    }
-    
-    const { name, description, image_url, category_id } = req.body;
-    
-    // Création de l'attraction
-    const createdOneAttraction = await Attraction.create({
-        name,
-        description,
-        image_url,
-        category_id,
-    });
-    
-    // Si la création réussit, envoyer une réponse de succès
-    return res.status(201).json({
-        message: "Attraction créée avec succès.",
-        attraction: createdOneAttraction,
-    });
+  const attractionSchema = Joi.object({
+    name: Joi.string().min(1).required(),
+    description: Joi.string().required(),
+    image_url: Joi.string().required(),
+    category_id: Joi.number().required(),
+  });
+
+  const { error } = attractionSchema.validate(req.body);
+  if (error) {
+    const errorMessage = { message: "Vous devez remplir tous les champs" };
+    return res.status(400).json(errorMessage);
+  }
+
+  const { name, description, image_url, category_id } = req.body;
+
+  const createdOneAttraction = await Attraction.create({
+    name,
+    description,
+    image_url,
+    category_id,
+  });
+
+
+  return res.status(201).json({
+    message: "Attraction créée avec succès.",
+    attraction: createdOneAttraction,
+  });
 }
 
 export async function deleteOneAttraction(req, res, next) {
