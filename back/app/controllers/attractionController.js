@@ -93,7 +93,7 @@ export async function updateOneAttraction(req, res, next) {
     
     const attraction = await Attraction.findByPk(id);
 
-    if(!attraction) return res.send({erreur: "Attraction non trouvé !"})
+    if(!attraction) return res.status(404).send({erreur: "Attraction non trouvé !"})
     
     const updatedOneAttraction = await attraction.update(req.body);
     

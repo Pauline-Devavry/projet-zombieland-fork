@@ -48,36 +48,30 @@ export async function createOneCategory(req, res, next) {
 
 export async function deleteOneCategory(req, res, next) {
   const id = Number(req.params.id);
-  await Category.destroy({ where: { id: id } });
+  await Category.destroy({ where: { id } });
   res.json("Vous venez d'effacer la catégorie").status(204);
 }
 
 export async function updateOneCategory(req, res, next) {
-  const categorySchema = Joi.object({
-    name: Joi.string().min(1).required(),
-    description: Joi.string().required(),
-  });
-
-  const { error } = categorySchema.validate(req.body);
-  if (error) {
-    const errorMessage = { message: "Vous devez remplir tous les champs" };
-    return res.status(400).json(errorMessage);
-  }
 
   const id = Number(req.params.id);
 
-  const { name, description } = req.body;
+  const categorySchema = Joi.object({
+    name: Joi.string().min(1),
+    description: Joi.string(),
+  });
+
+  const { error } = categorySchema.validate(req.body);
+
+  if (error) {
+    return res.status(400).json({error});
+  }
+
   const category = await Category.findByPk(id);
 
-  if (name) {
-    category.name = name;
-  }
+  if(!category) return res.status(404).json({erreur: "La categorie n'a pas été trouvé."})
 
-  if (description) {
-    category.description = description;
-  }
-
-  const updatedOneCategory = await category.save();
+  const updatedOneCategory = await category.update(req.body);
 
   return res.status(200).json({
     message: "Catégorie mise a jour avec succès.",
