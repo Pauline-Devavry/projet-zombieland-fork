@@ -13,13 +13,6 @@ export const router = Router();
 
 router.get("/", controller.get);
 
-router.get("/reservations", reservationController.getAllReservations);
-router.get("/reservation/:id", reservationController.getOneReservation);
-router.patch("/reservation/:id", reservationController.updateOneReservation);
-router.delete("/reservation/:id", reservationController.deleteOneReservation);
-
-router.get("/tickets", ticketController.getAllTickets);
-router.get("/ticket/:id", ticketController.getOneTicket);
 
 router.get("/messages", messageController.getAllMessages);
 router.get("/message/:id", messageController.getOneMessage);
