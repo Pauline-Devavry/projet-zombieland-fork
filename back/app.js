@@ -1,7 +1,7 @@
 import "dotenv/config";
 import passport from "passport";
 import express from "express";
-import { router } from "./app/router.js";
+import router  from "./app/router/main.router.js";
 import multer from "multer";
 import cors from 'cors'
 
