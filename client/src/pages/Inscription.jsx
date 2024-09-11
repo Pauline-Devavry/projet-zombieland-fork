@@ -10,6 +10,8 @@ function Inscription() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
+    
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -19,13 +21,17 @@ function Inscription() {
         }
 
         try {
-            const response = await axios.post('/register', {
+            const response = await axios.post('http://localhost:3000/register', {
                 name,
                 first_name: firstname,
                 email,
                 password,
-                confirmation: confirmPassword,
-            });
+                confirmPassword,
+            }, {
+                headers: {"Content-Type": "application/json"}
+            }
+            );
+            
             setSuccess(response.data.message);
             setError('');
         } catch (error) {

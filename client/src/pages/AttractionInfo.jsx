@@ -41,6 +41,11 @@ function AttractionInfo() {
 											attractionsInfo.description
 										}
 										</p>
+										<p className="text-sm text-red-500 mt-2">
+										{
+											attractionsInfo.category
+										}
+										</p>
 									</div>
 
 								</div>
