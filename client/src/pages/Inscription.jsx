@@ -10,6 +10,8 @@ function Inscription() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
+    
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -25,7 +27,11 @@ function Inscription() {
                 email,
                 password,
                 confirmation: confirmPassword,
-            });
+            }, {
+                headers: {"Content-Type": "application/json"}
+            }
+            );
+            
             setSuccess(response.data.message);
             setError('');
         } catch (error) {

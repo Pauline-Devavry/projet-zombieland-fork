@@ -1,8 +1,18 @@
-const bcrypt = require('bcrypt');
-const User = require('../models/User.js');
+import bcrypt from 'bcrypt';
+import { User } from "../models/User.js";
 const saltRounds = 10;  
 
-exports.register = async (req, res) => {
+export async function getAllUsers(req, res) {
+  try {
+    const users = await User.findAll();
+    return res.status(200).json(users);  
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Erreur lors de la récupération des utilisateurs." });
+  }
+}
+
+export const register = async (req, res) => {
     const { name, first_name, email, password, confirmPassword } = req.body;
 
    
@@ -11,19 +21,19 @@ exports.register = async (req, res) => {
     }
 
     try {
-        const existingUser = await User.findOne({ email });
+      const existingUser = await User.findOne({ where: { email } });
         if (existingUser) {
             return res.status(400).json({ error: "Cet utilisateur existe déjà." });
         }
 
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-        const newUser = new User({
+          const newUser = await User.create({
             name,
             first_name,
             email,
-            password: hashedPassword, 
-            confirmPassword
+            password: hashedPassword,
+            role: "utilisateur"
         });
 
         await newUser.save();
