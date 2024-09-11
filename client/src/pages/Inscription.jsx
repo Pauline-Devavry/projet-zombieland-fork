@@ -21,12 +21,12 @@ function Inscription() {
         }
 
         try {
-            const response = await axios.post('/register', {
+            const response = await axios.post('http://localhost:3000/register', {
                 name,
                 first_name: firstname,
                 email,
                 password,
-                confirmation: confirmPassword,
+                confirmPassword,
             }, {
                 headers: {"Content-Type": "application/json"}
             }
