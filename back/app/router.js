@@ -35,5 +35,5 @@ router.get("/messages", messageController.getAllMessages);
 router.get("/message/:id", messageController.getOneMessage);
 router.post("/message", messageController.createOneMessage);
 
-// router.post("/register", userController.register);
+router.post("/register", userController.registerUser);
 
