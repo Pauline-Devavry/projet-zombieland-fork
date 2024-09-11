@@ -7,16 +7,11 @@ import * as reservationController from "./controllers/reservationController.js";
 import * as messageController from "./controllers/messageController.js";
 import * as ticketController from "./controllers/ticketController.js";
 
+import AttractionRouter from "./router/attractions.router.js"
+
 export const router = Router();
 
 router.get("/", controller.get);
-
-router.get("/attractions", attractionController.getAllAttractions);
-// router.get("/attractions", attractionController.getFifteenAttractions);
-router.get("/attraction/:id", attractionController.getOneAttraction);
-router.post("/attraction", attractionController.createOneAttraction);
-router.patch("/attraction/:id", attractionController.updateOneAttraction);
-router.delete("/attraction/:id", attractionController.deleteOneAttraction);
 
 router.get("/categories", categoryController.getAllCategory);
 router.get("/category/:id", categoryController.getOneCategory);
