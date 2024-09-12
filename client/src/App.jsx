@@ -54,7 +54,7 @@ const router = createBrowserRouter([
       {
         path: "attraction/:id",
         element: <AttractionInfo />,
-      },
+      }
     ],
   },
 ]);
