@@ -8,20 +8,51 @@ function UserProfil() {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [isEditing, setIsEditing] = useState(false); 
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const handleLogin = (event) => {
+  useEffect(() => {
+    
+    axios.get(`http://localhost:3000/users/${id}`)
+      .then(response => {
+        const { name, first_name, email } = response.data;
+        console.log(response.data);
+        setName(name);
+        setFirstname(first_name);
+        setEmail(email);
+      })
+      .catch(error => {
+        console.error("Erreur lors de la récupération des données:", error);
+      });
+  }, []); 
+
+  const handleLogin = async (event) => {
     event.preventDefault();
 
+    if (oldPassword === newPassword) {
+      setError("Les mots de passent sont identiques !")
+      return;
+    }
+
     try {
-      const response = await axios.get("http://localhost:3000/", {
+      const oneUser = await axios.get("http://localhost:3000/users/:id", {
           name,
           first_name: firstname,
           email,
-          content: message,
+          oldPassword,
+          newPassword,
       }, {
           headers: {"Content-Type": "application/json"}
       }
-      )
+      );
+
+
+      setSuccess(oneUser.data.message);
+      setError('');
+    } catch (error)  {
+      setError(error.oneUser.data.error || "Erreur lors de la modification");
+      setSuccess('');
+    }
 
     console.log('Name:', name);
     console.log('First Name:', firstname);
@@ -47,9 +78,9 @@ function UserProfil() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                
                   required
                   className="w-full p-3 bg-white rounded text-black"
+                  readOnly={!isEditing}
                 />
               </div>
     
@@ -62,6 +93,7 @@ function UserProfil() {
                   onChange={(e) => setFirstname(e.target.value)}
                   required
                   className="w-full p-3 bg-white rounded text-black"
+                  readOnly={!isEditing}
                 />
               </div>
     
@@ -74,6 +106,7 @@ function UserProfil() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   className="w-full p-3 bg-white rounded text-black"
+                  readOnly={!isEditing}
                 />
               </div>
     
@@ -137,6 +170,9 @@ function UserProfil() {
                   </button>
                 )}
               </div>
+
+          {error && <p className="text-red-500">{error}</p>}
+          {success && <p className="text-green-500">{success}</p>}
             </form>
             </div>
           </Container>
