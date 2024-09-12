@@ -4,9 +4,14 @@ import express from "express";
 import router  from "./app/router/main.router.js";
 import multer from "multer";
 import cors from 'cors'
+import configurePassport from "./app/strategies/passport.config.js";
 
 // Création de l'application
 const app = express();
+
+configurePassport()
+
+app.use(passport.initialize())
 
 app.use(cors({
   origin: 'http://localhost:5173', 
