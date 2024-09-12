@@ -1,0 +1,39 @@
+{
+  "width": 791,
+  "height": 567,
+  "cx": [
+    [ "MESSAGE", 58 ],
+    [ "ECRIRE", 166 ],
+    [ "UTILISATEUR", 166 ],
+    [ "FAIRE", 275 ],
+    [ "RESERVATION", 391 ],
+    [ "CONTENIR", 516 ],
+    [ "BILLET", 631 ],
+    [ "CATEGORIE", 275 ],
+    [ "DETENIR", 391 ],
+    [ "ATTRACTION", 516 ]
+  ],
+  "cy": [
+    [ "MESSAGE", 68 ],
+    [ "ECRIRE", 68 ],
+    [ "UTILISATEUR", 220 ],
+    [ "FAIRE", 220 ],
+    [ "RESERVATION", 313 ],
+    [ "CONTENIR", 313 ],
+    [ "BILLET", 313 ],
+    [ "CATEGORIE", 490 ],
+    [ "DETENIR", 490 ],
+    [ "ATTRACTION", 490 ]
+  ],
+  "shift": [
+    [ "ECRIRE,MESSAGE,0", 0 ],
+    [ "ECRIRE,UTILISATEUR,0", 0 ],
+    [ "FAIRE,UTILISATEUR,0", 0 ],
+    [ "FAIRE,RESERVATION,0", 0 ],
+    [ "CONTENIR,RESERVATION,0", 0 ],
+    [ "CONTENIR,BILLET,0", 0 ],
+    [ "DETENIR,CATEGORIE,0", 0 ],
+    [ "DETENIR,ATTRACTION,0", 0 ]
+  ],
+  "ratio": []
+}
