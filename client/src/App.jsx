@@ -10,6 +10,7 @@ import AdminLayout from "./layouts/AdminLayout.jsx"
 import Overview from "./pages/admin/Overview.jsx"
 import UserProfil from "./pages/UserProfil.jsx"
 import Accordion from "./pages/FaqPage.jsx"
+import ReservationPage from "./pages/ReservationPage.jsx"
 
 
 const router = createBrowserRouter([
@@ -50,7 +51,11 @@ const router = createBrowserRouter([
 	{
 		path: "faq",
 		element: <Accordion/>
-	}
+	},
+  {
+    path: "reservation",
+    element: <ReservationPage/>
+  },
   ]
   }
   ])
