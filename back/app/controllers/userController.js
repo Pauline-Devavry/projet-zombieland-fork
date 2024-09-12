@@ -12,6 +12,16 @@ export async function getAllUsers(req, res) {
   }
 }
 
+export async function getOneUser(req, res, next) {
+  const id = Number(req.params.id);
+  const oneUser = await User.findByPk(id);
+  if (oneUser) {
+    res.json(oneUser).status(200); 
+  } else {
+  next ();
+  }
+}
+
 export const register = async (req, res) => {
     const { name, first_name, email, password, confirmPassword } = req.body;
 

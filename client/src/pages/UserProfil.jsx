@@ -12,6 +12,17 @@ function UserProfil() {
   const handleLogin = (event) => {
     event.preventDefault();
 
+    try {
+      const response = await axios.get("http://localhost:3000/", {
+          name,
+          first_name: firstname,
+          email,
+          content: message,
+      }, {
+          headers: {"Content-Type": "application/json"}
+      }
+      )
+
     console.log('Name:', name);
     console.log('First Name:', firstname);
     console.log('Email:', email);
@@ -36,6 +47,7 @@ function UserProfil() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                
                   required
                   className="w-full p-3 bg-white rounded text-black"
                 />
