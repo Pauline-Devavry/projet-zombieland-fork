@@ -63,7 +63,7 @@ function UserProfil() {
       return (
         
           <Container>
-            <div className="max-w-2xl mx-auto mt-8 mb-8 p-6 bg-backgroundColor rounded shadow-lg">
+            <div className="max-w-2xl mx-auto mt-8 mb-8 p-6 bg-secondaryBackgroundColor rounded shadow-lg">
             <form onSubmit={handleUpdate}>
               <div className="mb-6">
                 <h2 className='text-2xl font-bold mb-6'>Mon profil</h2>

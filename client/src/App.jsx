@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BaseLayout from "./layouts/BaseLayout.jsx";
+import UserLayout from "./layouts/UserLayout.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import Connexion from "./pages/Connexion.jsx";
 import Inscription from "./pages/Inscription.jsx";
@@ -40,20 +41,28 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "utilisateur/reservations",
-        element: <UserReservation />,
-      },
-      {
-        path: "utilisateur/profil",
-        element: <UserProfil />,
-      },
-      {
         path: "faq",
         element: <Accordion />,
       },
       {
         path: "attraction/:id",
         element: <AttractionInfo />,
+      }, 
+      {
+        path: "utilisateur",
+        element: <UserLayout />,
+        errorElement: <NotFoundPage />,
+        children: [
+          {
+            path: "reservations",
+            element: <UserReservation />,
+          },
+          {
+            path: "profil",
+            element: <UserProfil />,
+          },
+
+    ]
       }
     ],
   },
