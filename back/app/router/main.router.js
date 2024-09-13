@@ -5,6 +5,7 @@ import messagesRouter from "./messages.router.js"
 import reservationsRouter from "./reservations.router.js"
 import ticketsRouter from "./tickets.router.js"
 import usersRouter from "./users.router.js"
+import authRouter from "./auth.router.js"
 
 const router = Router()
 
@@ -14,6 +15,7 @@ router.use(messagesRouter)
 router.use(reservationsRouter)
 router.use(ticketsRouter)
 router.use(usersRouter)
+router.use(authRouter)
 
 
 export default router
