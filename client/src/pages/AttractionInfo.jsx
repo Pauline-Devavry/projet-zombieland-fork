@@ -11,7 +11,6 @@ function AttractionInfo() {
 
   useEffect(() => {
     const fetchData = async () => {
-      // await axios.get("http://localhost:3000/attractions").then(data => setAttractions(data))
       const response = await axios.get(
         `http://localhost:3000/attractions/${id}`
       );
@@ -38,13 +37,20 @@ function AttractionInfo() {
               <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 relative z-20">
                 {attractionsInfo.name}
               </h1>
-              <p className="text-white text-lg relative z-20">
-                Description: {attractionsInfo.description} <br />
-                Categorie:{" "}
-                {attractionsInfo.Category && (
-                  <span>{attractionsInfo.Category.name}</span>
-                )}
-              </p>
+              {/* Description en dessous */}
+              <div className="relative z-20">
+                <p className="text-white text-lg mb-4">
+                  {attractionsInfo.description}
+                </p>
+                <p className="text-white text-lg">
+                  {" "}
+                  {attractionsInfo.Category && (
+                    <span className="inline-block bg-slate-500 text-white text-sm px-2 py-0.5 rounded-full">
+                      {attractionsInfo.Category.name}
+                    </span>
+                  )}
+                </p>
+              </div>
             </div>
           </div>
         </div>
