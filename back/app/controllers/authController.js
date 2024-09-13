@@ -2,10 +2,11 @@ import passport from "passport"
 import jwt from "jsonwebtoken"
 import { User } from "../models/Index.js"
 import bcrypt from "bcrypt"
+import { Refreshtoken } from "../models/Index.js"
 
 export const login = async (req,res,next) => {
 
-    passport.authenticate("local", {session: false}, (err, user, info) => {
+    passport.authenticate("local", {session: false}, async (err, user, info) => {
         
         if(err || !user) {
             return res.status(400).json({
@@ -13,11 +14,26 @@ export const login = async (req,res,next) => {
             })
         }
 
-        const token = jwt.sign({user_id: user.id}, process.env.JWT_SECRET, {expiresIn: "1h"})
-        return res.json({token})
+        const accessToken = jwt.sign({user_id: user.id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "15m"})
+        const refresh_token = jwt.sign({user_id: user.id}, process.env.REFRESH_TOKEN_SECRET, {expiresIn: "7d"})
+
+        await Refreshtoken.create({
+            token: refresh_token,
+            user_id: user.id,
+            expiryDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+        })
+
+        res.cookie('access_token', accessToken, {
+            secure: false,
+            httpOnly: true,
+            sameSite: "Strict",
+            maxAge: 15 * 60 * 1000
+        })
+
+        return res.json({accessToken})
 
     })(req,res,next)
-
+ {}
 }
 
 export const register = async (req, res) => {

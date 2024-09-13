@@ -46,4 +46,5 @@ export {
   Ticket,
   User,
   ReservationHasTicket,
+  Refreshtoken
 };
