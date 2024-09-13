@@ -3,6 +3,7 @@ BEGIN;
 -- Suppression des tables dans l'ordre inverse des dépendances
 DROP TABLE IF EXISTS "reservation_has_ticket";
 DROP TABLE IF EXISTS "ticket";
+DROP TABLE IF EXISTS "refreshtoken";
 DROP TABLE IF EXISTS "attraction";
 DROP TABLE IF EXISTS "category";
 DROP TABLE IF EXISTS "reservation";
@@ -67,6 +68,12 @@ CREATE TABLE "reservation_has_ticket" (
   "reservation_id" INT REFERENCES "reservation"("id"),
   "ticket_id" INT REFERENCES "ticket"("id"),
   "quantity_ticket" INT NOT NULL
+);
+
+CREATE TABLE "refreshtoken" (
+  "token" TEXT NOT NULL,
+  "user_id" INT REFERENCES "user"("id"),
+  "expiryDate" DATE NOT NULL
 );
 
 COMMIT;

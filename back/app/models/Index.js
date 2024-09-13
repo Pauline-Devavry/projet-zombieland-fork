@@ -5,6 +5,7 @@ import { Reservation } from "./Reservation.js";
 import { Ticket } from "./Ticket.js";
 import { User } from "./User.js";
 import { ReservationHasTicket } from "./ReservationHasTicket.js";
+import { Refreshtoken } from "./Refreshtoken.js";
 
 // Relation Category - Attraction
 Category.hasMany(Attraction, { foreignKey: "category_id" });
@@ -28,6 +29,14 @@ Ticket.belongsToMany(Reservation, {
   otherKey: "reservation_id",
   as: "reservations",
 });
+
+User.hasMany(Refreshtoken, {
+  foreignKey: "user_id"
+})
+
+Refreshtoken.belongsTo(User, {
+  foreignKey: "user_id"
+})
 
 export {
   Attraction,
