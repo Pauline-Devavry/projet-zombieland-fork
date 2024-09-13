@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Container from '../components/Container';
 
 const AccordionItem = ({ title, content }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,12 +9,23 @@ const AccordionItem = ({ title, content }) => {
   };
 
   return (
-    <div className="accordion-item text-2xl font-bold  text-white ml-20">
-      <div className="accordion-title text-2xl font-bold  text-white" onClick={toggleAccordion}>
-        <h3>{title}</h3>
-        <span>{isOpen ? '-' : '+'}</span>
-      </div>
-      {isOpen && <div className="accordion-content">{content}</div>}
+    <div className="bg-backgroundColor max-w-[35rem] mx-auto rounded-lg shadow-lg mb-6">
+      <Container>
+        <div className="border-t border-gray-300">
+          <div
+            className="flex justify-between items-center p-4 cursor-pointer bg-[#323232] text-white hover:bg-gray-700"
+            onClick={toggleAccordion}
+          >
+            <h3 className="text-lg font-semibold">{title}</h3>
+            <span className="text-lg">{isOpen ? '-' : '+'}</span>
+          </div>
+          {isOpen && (
+            <div className="p-4 bg-gray-800 text-white">
+              <p>{content}</p>
+            </div>
+          )}
+        </div>
+      </Container>
     </div>
   );
 };
@@ -36,10 +47,26 @@ const Accordion = () => {
   ];
 
   return (
-    <div className="accordion">
-      {faqItems.map((item, index) => (
-        <AccordionItem key={index} title={item.title} content={item.content} />
-      ))}
+    <div className="bg-backgroundColor py-8">
+      <Container>
+        <h2 className="text-white text-2xl font-semibold mb-6 text-center">
+          Questions Fréquemment Posées
+        </h2>
+        <div className="flex flex-col md:flex-row md:justify-between">
+          <div className="w-full md:w-2/3">
+            {faqItems.map((item, index) => (
+              <AccordionItem key={index} title={item.title} content={item.content} />
+            ))}
+          </div>
+          <div>
+            <img 
+              src="https://img.freepik.com/vecteurs-libre/zombie-vert-effrayant-style-cartoon_1308-132924.jpg?t=st=1726239478~exp=1726243078~hmac=c64a79fa90d45d7daa2ae4033370d136815d5da083641f056d41ded7a53288a1&w=740" 
+              alt="Image zombie" 
+              className="rounded-lg mb-4 w-1/3 mx-auto border-[2px] border-[#72232D]"
+            />
+          </div>
+        </div>
+      </Container>
     </div>
   );
 };
