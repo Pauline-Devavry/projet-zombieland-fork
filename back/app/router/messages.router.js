@@ -3,7 +3,8 @@ import * as messagesController from "../controllers/messageController.js"
 
 const router = Router()
 
-router.get("/messages", messagesController.getAllMessages)
-router.get("/messages/:id", messagesController.getOneMessage)
+router.get("/api/messages", messagesController.getAllMessages)
+router.get("/api/messages/:id", messagesController.getOneMessage)
+router.post("/api/messages", messagesController.createOneMessage)
 
 export default router

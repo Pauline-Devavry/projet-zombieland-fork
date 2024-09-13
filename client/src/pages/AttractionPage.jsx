@@ -1,4 +1,4 @@
-import axios from "axios";
+import { api } from "../api/axiosConfig.js"
 import { useEffect, useState } from "react";
 import Container from "../components/Container";
 import AttractionCard from "../components/AttractionCard";
@@ -15,14 +15,10 @@ function AttractionPage() {
   useEffect(() => {
     const fetchData = async () => {
       // await axios.get("http://localhost:3000/attractions").then(data => setAttractions(data))
-      const response = await axios.get(
-        "http://localhost:3000/attractions?limit=100"
-      );
+      const response = await api.get("/attractions?limit=100");
       setAttractions(response.data);
 
-      const responseCategory = await axios.get(
-        "http://localhost:3000/categories"
-      );
+      const responseCategory = await api.get("/categories");
       setCategory(responseCategory.data);
     };
     fetchData();

@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import Container from '../components/Container';
-import axios from 'axios';
+import { api } from '../api/axiosConfig';
 
 function Contact() {
 
@@ -15,7 +15,7 @@ function Contact() {
         event.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:3000/message", {
+            const response = await api.post("/messages", {
                 name,
                 first_name: firstname,
                 email,

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Container from "../components/Container";
-import axios from "axios";
+import { api } from "../api/axiosConfig";
+
 
 //obliger de mettre un commentaire pour enregitsrer, car j'avais fais un commit mais on a été obligé de le supprimer à cause du merge qui a tout suppr, je vais l'enlever après
 
@@ -15,10 +16,12 @@ function UserProfil() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
+  const userId = 10; 
+
     useEffect(() => {
-      const userId = 10; 
+      
     
-      axios.get(`http://localhost:3000/users/${userId}`)
+      api.get(`/users/${userId}`)
         .then(response => {
           const { name, first_name, email } = response.data;
             setName(name);
@@ -47,7 +50,7 @@ function UserProfil() {
           newPassword,
         };
 
-        const response = await axios.patch(`http://localhost:3000/users/${userId}`, updatedData, {
+        const response = await api.patch(`/users/${userId}`, updatedData, {
           headers: { "Content-Type": "application/json" },
         });
 
