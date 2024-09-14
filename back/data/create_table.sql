@@ -71,9 +71,10 @@ CREATE TABLE "reservation_has_ticket" (
 );
 
 CREATE TABLE "refreshtoken" (
+  "id" SERIAL PRIMARY KEY,
   "token" TEXT NOT NULL,
   "user_id" INT REFERENCES "user"("id"),
-  "expiryDate" DATE NOT NULL
+  "expiry_date" DATE NOT NULL
 );
 
 COMMIT;

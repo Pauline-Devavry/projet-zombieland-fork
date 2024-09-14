@@ -17,14 +17,14 @@ Refreshtoken.init(
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        expiryDate: {
+        expiry_date: {
             type: DataTypes.DATE,
             allowNull: false
         }
     }, 
     {
         sequelize: sequelize(),
-        tableName: "refreshtoken"
+        tableName: "refreshtoken",
     }
 )
 

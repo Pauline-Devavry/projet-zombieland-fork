@@ -14,23 +14,30 @@ export const login = async (req,res,next) => {
             })
         }
 
-        const accessToken = jwt.sign({user_id: user.id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "15m"})
+        const access_token = jwt.sign({user_id: user.id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "15m"})
         const refresh_token = jwt.sign({user_id: user.id}, process.env.REFRESH_TOKEN_SECRET, {expiresIn: "7d"})
 
         await Refreshtoken.create({
             token: refresh_token,
             user_id: user.id,
-            expiryDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+            expiry_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
         })
 
-        res.cookie('access_token', accessToken, {
+        res.cookie('refresh_token', refresh_token, {
+            secure: false,
+            httpOnly: true,
+            sameSite: "Strict",
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        })
+
+        res.cookie('access_token', access_token, {
             secure: false,
             httpOnly: true,
             sameSite: "Strict",
             maxAge: 15 * 60 * 1000
         })
 
-        return res.json({accessToken})
+        return res.json({access_token, refresh_token})
 
     })(req,res,next)
  {}
@@ -69,3 +76,7 @@ export const register = async (req, res) => {
         return res.status(500).json({ error: "Erreur serveur, veuillez réessayer plus tard." });
     }
 };
+
+export const refreshToken = (req, res, next) => {
+    
+}
