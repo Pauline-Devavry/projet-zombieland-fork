@@ -45,7 +45,7 @@ function AttractionInfo() {
                 <p className="text-white text-lg">
                   {" "}
                   {attractionsInfo.Category && (
-                    <span className="inline-block bg-slate-500 text-white text-sm px-2 py-0.5 rounded-full">
+                    <span className="inline-block bg-[#7B7B7B] text-white text-sm px-2 py-0.5 rounded-full">
                       {attractionsInfo.Category.name}
                     </span>
                   )}
