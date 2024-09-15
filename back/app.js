@@ -5,6 +5,8 @@ import router  from "./app/router/main.router.js";
 import multer from "multer";
 import cors from 'cors'
 import configurePassport from "./app/strategies/passport.config.js";
+import cookieParser from "cookie-parser";
+import { addBearerFromCookies } from "./app/utils/addBearerFromCookies.js";
 
 // Création de l'application
 const app = express();
@@ -26,8 +28,12 @@ app.use(cors({
 app.use(express.json()); // application/json
 app.use(express.urlencoded({ extended: true })); // application/x-www-form-urlencoded
 app.use(multer().none()); // multipart/form-data
+app.use(cookieParser())
 
 app.use(passport.initialize());
+
+app.use(addBearerFromCookies)
+
 
 // Mise en place du router
 app.use(router);
