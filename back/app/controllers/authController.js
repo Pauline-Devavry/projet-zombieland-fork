@@ -1,8 +1,7 @@
 import passport from "passport"
 import jwt from "jsonwebtoken"
-import { User } from "../models/Index.js"
+import { User, Refreshtoken } from "../models/Index.js"
 import bcrypt from "bcrypt"
-import { Refreshtoken } from "../models/Index.js"
 
 export const login = async (req,res,next) => {
 
@@ -15,7 +14,7 @@ export const login = async (req,res,next) => {
         }
 
         const access_token = jwt.sign({user_id: user.id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "15m"})
-        const refresh_token = jwt.sign({user_id: user.id}, process.env.REFRESH_TOKEN_SECRET, {expiresIn: "7d"})
+        const refresh_token = jwt.sign({user_id: user.id}, process.env.REFRESH_TOKEN_SECRET, {expiresIn: "2m"})
 
         await Refreshtoken.create({
             token: refresh_token,
@@ -24,20 +23,21 @@ export const login = async (req,res,next) => {
         })
 
         res.cookie('refresh_token', refresh_token, {
-            secure: false,
+            secure: process.env.NODE_ENV === "prod",
             httpOnly: true,
             sameSite: "Strict",
-            maxAge: 7 * 24 * 60 * 60 * 1000
+            // No max age because we need the cookies  to know the refresh token when we want to delete it
+            // in database
         })
 
         res.cookie('access_token', access_token, {
-            secure: false,
+            secure: process.env.NODE_ENV === "prod",
             httpOnly: true,
             sameSite: "Strict",
             maxAge: 15 * 60 * 1000
         })
 
-        return res.json({access_token, refresh_token})
+        return res.json("Authentification réussi")
 
     })(req,res,next)
  {}
@@ -77,6 +77,55 @@ export const register = async (req, res) => {
     }
 };
 
-export const refreshToken = (req, res, next) => {
+export const refreshAccessToken = (req, res, next) => {
+    const refreshToken = req.cookies.refresh_token
     
+    if(!refreshToken) return res.status(403).json("Aucun token trouvé.")
+
+    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, async (err, payload) => {
+            const tokenRecord = await Refreshtoken.findOne({
+                where: { token: refreshToken },
+                include: User
+            })
+            if(err || !tokenRecord) {
+                if(err && err.name === "TokenExpiredError") {
+                    res.clearCookie("refresh_token")
+                    await tokenRecord?.destroy()
+                }
+                return res.status(403).json("Token invalide ou expiré.")
+            }
+            const decodedToken = jwt.decode(refreshToken)
+    
+            const newRefreshToken = jwt.sign(
+                {user_id: tokenRecord.user_id},
+                process.env.REFRESH_TOKEN_SECRET,
+                {expiresIn: decodedToken.exp - Math.floor(Date.now() / 1000)}
+            )
+            const newAccessToken = jwt.sign(
+                {user_id: tokenRecord.user_id}, 
+                process.env.ACCESS_TOKEN_SECRET,
+                {expiresIn: "15m"}
+            )
+    
+            await tokenRecord.update({
+                token: newRefreshToken
+            })
+    
+            res.cookie('refresh_token', newRefreshToken, {
+                secure: process.env.NODE_ENV === "prod",
+                httpOnly: true,
+                sameSite: "Strict",
+            })
+    
+            res.cookie('access_token', newAccessToken, {
+                secure: process.env.NODE_ENV === "prod",
+                httpOnly: true,
+                sameSite: "Strict",
+                maxAge: 15 * 60 * 1000 // 15 minutes
+            })
+    
+            res.send({Message: "Nouveau token generer"})
+
+    })
+
 }

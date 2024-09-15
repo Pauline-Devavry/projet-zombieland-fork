@@ -38,6 +38,10 @@ app.use(addBearerFromCookies)
 // Mise en place du router
 app.use(router);
 
+app.post("/api/test", passport.authenticate("jwt", {session: false}), (req, res, next) => {
+  res.send(process.env.NODE_ENV === "prod")
+})
+
 // Démarrage du serveur
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
