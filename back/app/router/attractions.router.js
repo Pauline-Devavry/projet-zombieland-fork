@@ -3,10 +3,10 @@ import * as attractionController from "../controllers/attractionController.js"
 
 const router = Router()
 
-router.get("/attractions", attractionController.getAllAttractions)
-router.get("/attractions/:id", attractionController.getOneAttraction)
-router.post("/attractions", attractionController.createOneAttraction)
-router.patch("/attractions/:id", attractionController.updateOneAttraction)
-router.delete("/attractions/:id", attractionController.deleteOneAttraction)
+router.get("/api/attractions", attractionController.getAllAttractions)
+router.get("/api/attractions/:id", attractionController.getOneAttraction)
+router.post("/api/attractions", attractionController.createOneAttraction)
+router.patch("/api/attractions/:id", attractionController.updateOneAttraction)
+router.delete("/api/attractions/:id", attractionController.deleteOneAttraction)
 
 export default router

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+import { api } from '../api/axiosConfig';
 
 function Inscription() {
     const [name, setName] = useState('');
@@ -21,7 +21,7 @@ function Inscription() {
         }
 
         try {
-            const response = await axios.post('http://localhost:3000/register', {
+            const response = await api.post('/auth/register', {
                 name,
                 first_name: firstname,
                 email,

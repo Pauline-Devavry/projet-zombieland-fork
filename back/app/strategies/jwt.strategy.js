@@ -3,7 +3,7 @@ import {  User } from "../models/Index.js"
 
 const jwtOptions = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: process.env.JWT_SECRET
+    secretOrKey: process.env.ACCESS_TOKEN_SECRET
 }
 
 const jwtStrategy = new JwtStrategy(jwtOptions, async (payload, done) => {

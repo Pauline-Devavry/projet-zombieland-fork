@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { api } from '../api/axiosConfig';
+import { AuthContext } from '../context/AuthContext';
 
 function Connexion() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { setUser } = useContext(AuthContext)
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
+	try {
+		const response = await api.post("/auth/login", {
+			email,
+			password
+		})
+		if(response.status === 200) {
+			const userData = await api.get("/auth/me")
+			setUser(userData.data)
+		}
+	} catch (error) {
+		console.log(error)
+	}
   };
 
 
