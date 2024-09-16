@@ -2,12 +2,15 @@ import ZombieLandLogo from "../assets/logos/zombieland-logo.svg"
 import burgerMenu from "../assets/icons/burger-icon.svg"
 import { NavLink } from "react-router-dom";
 import closeBurger from "../assets/icons/close-burger.svg"
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Logo from "./Logo";
+import { AuthContext } from "../context/AuthContext";
 
 function Header() {
 
     const [showMenu, setShowMenu] = useState(false)
+
+    const { user } = useContext(AuthContext)
 
     const handleBurgerMenu = (e) => {
         e.preventDefault()
@@ -25,7 +28,13 @@ function Header() {
                         <li><NavLink to={'/faq'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Faq</NavLink></li>
                         <li><NavLink to={'/contact'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Contacter-nous</NavLink></li>
                         <li><NavLink to={'/a-propos'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>A propos</NavLink></li>
-                        <li><NavLink to={'/connexion'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Se connecter</NavLink></li>
+                        {
+                            !user ? (
+                                <li><NavLink to={'/connexion'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Se connecter</NavLink></li>
+                            ) : (
+                                <li><NavLink to={'/deconnexion'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Se déconnecter</NavLink></li>
+                            )
+                        }
                     </ul>
                     <a href="" className="absolute top-4 right-4" onClick={handleBurgerMenu}>
                         <img src={closeBurger} className="h-6" alt="Bouton pour fermer le menu de navigation" />
@@ -42,7 +51,13 @@ function Header() {
                         <li><NavLink to={'/faq'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Faq</NavLink></li>
                         <li><NavLink to={'/contact'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Contacter-nous</NavLink></li>
                         <li><NavLink to={'/a-propos'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>A propos</NavLink></li>
-                        <li><NavLink to={'/connexion'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Se connecter</NavLink></li>
+                        {
+                            !user ? (
+                                <li><NavLink to={'/connexion'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Se connecter</NavLink></li>
+                            ) : (
+                                <li><NavLink to={'/deconnexion'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Se déconnecter</NavLink></li>
+                            )
+                        }
                     </ul>
                     <a href="" onClick={handleBurgerMenu}>
                         <img src={burgerMenu} className="w-6 md:hidden" alt="Bouton pour ouvrir le menu de navigation." />
