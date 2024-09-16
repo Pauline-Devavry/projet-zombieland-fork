@@ -52,7 +52,6 @@ const router = createBrowserRouter([
       {
         path: "utilisateur",
         element: <UserLayout />,
-        errorElement: <NotFoundPage />,
         children: [
           {
             path: "reservations",
