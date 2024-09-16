@@ -4,6 +4,7 @@ import Container from "../components/Container";
 import AttractionCard from "../components/AttractionCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import img4 from "../assets/attraction/image4.png";
 
 function AttractionPage() {
   const [attractions, setAttractions] = useState([]);
@@ -60,9 +61,9 @@ function AttractionPage() {
         </h1>
       </header>
       <img
-        src="https://th.bing.com/th/id/R.290933e8d25f8756d719f421124508bc?rik=vQ96XP2fOcFHVA&riu=http%3a%2f%2fviraltalks.com%2fwp-content%2fuploads%2f2019%2f09%2fUTtws.jpg&ehk=oWbMdbItXeduverBDxM%2bWmskzd%2f%2bNiZTGIApqpj1QlM%3d&risl=&pid=ImgRaw&r=0"
+        src={img4}
         alt="image zombie "
-        className="rounded-lg mb-4  mx-auto border-[2px] border-[#72232D] w-[914px] h-[436px]"
+        className="rounded-lg mb-4  mx-auto border-[2px] border-[#72232D]"
       />
 
       <section className="mt-12">

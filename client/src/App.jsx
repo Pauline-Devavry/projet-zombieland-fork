@@ -47,23 +47,22 @@ const router = createBrowserRouter([
       {
         path: "attraction/:id",
         element: <AttractionInfo />,
-      }, 
+      },
       {
         path: "utilisateur",
         element: <UserLayout />,
         errorElement: <NotFoundPage />,
         children: [
           {
-            path: "reservations",
+            path: "reservations/:userId",
             element: <UserReservation />,
           },
           {
             path: "profil",
             element: <UserProfil />,
           },
-
-    ]
-      }
+        ],
+      },
     ],
   },
 ]);
