@@ -13,7 +13,7 @@ function UserLayout() {
                         <ul>
                         <li>
                     <NavLink
-                        to="/utilisateur/profil"
+                        to="/profil"
                         className={({ isActive }) =>
                         isActive ? "text-primaryColor" : "text-white"}
                     >
