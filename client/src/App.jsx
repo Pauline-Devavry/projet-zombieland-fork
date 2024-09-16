@@ -14,6 +14,7 @@ import Accordion from "./pages/FaqPage.jsx";
 import AttractionInfo from "./pages/AttractionInfo.jsx";
 import NotFoundPage from "./pages/404.jsx";
 import AuthProvider from "./context/AuthContext.jsx";
+import Reservation from "./pages/Reservation.jsx";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "attraction/:id",
         element: <AttractionInfo />,
+      }, 
+      {
+        path: "reserver",
+        element: <Reservation />,
       }, 
       {
         path: "utilisateur",
