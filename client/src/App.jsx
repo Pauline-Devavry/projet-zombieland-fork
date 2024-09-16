@@ -13,6 +13,7 @@ import UserProfil from "./pages/UserProfil.jsx";
 import Accordion from "./pages/FaqPage.jsx";
 import AttractionInfo from "./pages/AttractionInfo.jsx";
 import NotFoundPage from "./pages/404.jsx";
+import AuthProvider from "./context/AuthContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -69,7 +70,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
 
 export default App;
