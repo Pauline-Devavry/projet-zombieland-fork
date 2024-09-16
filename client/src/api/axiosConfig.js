@@ -14,15 +14,20 @@ api.interceptors.response.use(
         const originalRequest = error.config;
 
         if (error.response && error.response.status === 401 && !originalRequest._retry) {
+            // Ne pas essayer de rafraîchir le token pour /auth/me
+            if (originalRequest.url === "/auth/me") {
+                return Promise.reject(error);
+            }
+
             originalRequest._retry = true;
             try {
-                await api.post('/auth/refresh'); // Change URL selon ton API
+                await api.post('/auth/refresh');
                 return api(originalRequest);
             } catch (err) {
-                // Gestion des erreurs de rafraîchissement du token
                 return Promise.reject(err);
             }
         }
+
         return Promise.reject(error);
     }
 );

@@ -8,20 +8,26 @@ function AuthProvider({children}) {
     const [user, setUser] = useState(null)
 
     useEffect(() => {
-        try {
-            const fetchUser = async () => {
+        const fetchUser = async () => {
+            try {
                 const response = await api.get("/auth/me")
-                console.log(response.data)
-                setUser(response.data)
+                if(response && response.data) {
+                    setUser(response.data)
+                }
+            } catch (error) {
+                if(error.response && error.response.status === 401) {
+                    return
+                } else {
+                    console.log("Erreur lors de la connexion")
+                }
             }
-            fetchUser()
-        } catch {
-            setUser(null)
+            
         }
+        fetchUser()
     },[])
 
     return (
-        <AuthContext.Provider value={{user}}>
+        <AuthContext.Provider value={{user, setUser}}>
             {children}
         </AuthContext.Provider>
     )
