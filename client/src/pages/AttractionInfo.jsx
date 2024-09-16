@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Container from "../components/Container";
 import { useParams } from "react-router-dom";
 import RedShadow from "../components/ui/RedShadow";
+import { api } from "../api/axiosConfig";
 
 function AttractionInfo() {
   const [attractionsInfo, setAttractionsInfo] = useState([]);
@@ -11,14 +11,13 @@ function AttractionInfo() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        `http://localhost:3000/attractions/${id}`
-      );
+      const response = await api.get(
+        `/attractions/${id}`);
       setAttractionsInfo(response.data);
       console.log(response.data);
     };
     fetchData();
-  }, []);
+  }, [id]);
 
   return (
     <Container className="bg-backgroundColor min-h-screen flex items-center justify-center p-4">
