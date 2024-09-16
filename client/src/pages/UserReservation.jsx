@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Container from "../components/Container";
 import axios from "axios";
+import { api } from "../api/axiosConfig";
 
 function UserReservation() {
   const [reservations, setReservations] = useState([]);
@@ -10,9 +11,7 @@ function UserReservation() {
     const fetchReservations = async () => {
       try {
         const userId = 2; // Remplace par l'ID de l'utilisateur connecté
-        const response = await axios.get(
-          `http://localhost:3000/reservations/user/${userId}`
-        );
+        const response = await api.get(`/reservations/user/${userId}`);
         setReservations(response.data);
       } catch (err) {
         console.error("Erreur lors de la récupération des réservations", err);
@@ -33,10 +32,8 @@ function UserReservation() {
       );
     } else {
       // Logique pour annuler la réservation (requête à ton API)
-      axios
-        .delete(
-          `http://localhost:3000/reservations/${reservation.num_reservation}`
-        )
+      api
+        .delete(`/reservations/${reservation.num_reservation}`)
         .then(() => {
           alert("Votre réservation a été annulée avec succès.");
           setReservations((prevReservations) =>
