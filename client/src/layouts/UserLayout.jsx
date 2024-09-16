@@ -16,13 +16,14 @@ function UserLayout() {
                         to="/profil"
                         className={({ isActive }) =>
                         isActive ? "text-primaryColor" : "text-white"}
+                        end={true}
                     >
                     Mon profil
                     </NavLink>
                         </li>
                         <li className="mt-4">
                     <NavLink
-                        to="/utilisateur/reservations"
+                        to="/profil/reservations"
                         className={({ isActive }) =>
                         isActive ? "text-primaryColor" : "text-white"}
                     >

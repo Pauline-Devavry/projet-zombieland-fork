@@ -13,6 +13,7 @@ import UserReservation from "./pages/UserReservation.jsx";
 import UserProfil from "./pages/UserProfil.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 import Overview from "./pages/admin/Overview.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 
 const router = createBrowserRouter([
@@ -54,8 +55,12 @@ const router = createBrowserRouter([
                 element: <UserLayout />,
                 children: [
                     {
-                        path: "reservations/:userId",
-                        element: <UserReservation />,
+                        path: "reservations",
+                        element: (
+                            <ProtectedRoute>
+                                <UserReservation />
+                            </ProtectedRoute>
+                        ),
                     },
                     {
                         index: true,

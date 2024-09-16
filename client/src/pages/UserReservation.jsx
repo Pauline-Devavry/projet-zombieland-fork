@@ -1,17 +1,22 @@
-import { useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
 import Container from "../components/Container";
 import axios from "axios";
 import { api } from "../api/axiosConfig";
+import {AuthContext} from "../context/AuthContext.jsx";
 
 function UserReservation() {
   const [reservations, setReservations] = useState([]);
   const [error, setError] = useState(null);
 
+  const {user} = useContext(AuthContext)
+
   useEffect(() => {
+    if(!user) {
+      return
+    }
     const fetchReservations = async () => {
       try {
-        const userId = 2; // Remplace par l'ID de l'utilisateur connecté
-        const response = await api.get(`/reservations/user/${userId}`);
+        const response = await api.get(`/reservations/user/${user.id}`);
         setReservations(response.data);
       } catch (err) {
         console.error("Erreur lors de la récupération des réservations", err);
@@ -19,7 +24,7 @@ function UserReservation() {
       }
     };
     fetchReservations();
-  }, []);
+  }, [user]);
 
   const handleCancelReservation = (reservation) => {
     const currentDate = new Date();

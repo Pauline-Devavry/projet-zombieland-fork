@@ -32,7 +32,19 @@ function Header() {
                             !user ? (
                                 <li><NavLink to={'/connexion'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Se connecter</NavLink></li>
                             ) : (
-                                <li><NavLink to={'/deconnexion'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Se déconnecter</NavLink></li>
+                                <>
+                                    <li>
+                                        <NavLink to={'/profil'}
+                                                 className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Profil
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to={'/deconnexion'}
+                                                 className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Se
+                                            déconnecter
+                                        </NavLink>
+                                    </li>
+                                </>
                             )
                         }
                     </ul>
@@ -56,7 +68,7 @@ function Header() {
                                 <li><NavLink to={'/connexion'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Se connecter</NavLink></li>
                             ) : (
                                 <>
-                                    <li><NavLink to={'/utilisateur/profil'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Profile</NavLink></li>
+                                    <li><NavLink to={'/profil'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Profile</NavLink></li>
                                     <li><NavLink to={'/deconnexion'} className={(nav) => nav.isActive ? "text-primaryColor" : undefined}>Se déconnecter</NavLink></li>
                                 </>
                                 

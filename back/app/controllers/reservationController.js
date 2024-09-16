@@ -83,10 +83,12 @@ export async function deleteOneReservation(req, res, next) {
   res.json("Vous venez d'effacer la réservation").status(204);
 }
 
-export async function getReservationsByUserId(req, res, next) {
+export async function getUserReservations(req, res, next) {
   try {
-    const user_id = req.params.userId; // Récupérer l'ID de l'utilisateur depuis les paramètres d'URL
-    console.log(user_id);
+
+    const userId = req.user
+
+    console.log(userId)
 
     const reservations = await Reservation.findAll({
       where: { user_id: 2 }, // Remplace par l'ID de l'utilisateur souhaité
