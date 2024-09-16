@@ -1,354 +1,319 @@
-import React, { useState} from "react";
-import Container from "../components/Container"
-
+import { useEffect, useState } from "react";
+import Container from "../components/Container";
+import axios from "axios";
 
 function UserReservation() {
+  const [reservations, setReservations] = useState([]);
+  const [error, setError] = useState(null);
 
-    const numberReservation1 = '12345';
-    const dateVisit1 = '2024-09-15';
-    const quantityTickets1 = 3;
-    const status1 = 'Confirmé';
-    const totalPrice1 = '90€';
+  useEffect(() => {
+    const fetchReservations = async () => {
+      try {
+        const userId = 2; // Remplace par l'ID de l'utilisateur connecté
+        const response = await axios.get(
+          `http://localhost:3000/reservations/user/${userId}`
+        );
+        setReservations(response.data);
+      } catch (err) {
+        console.error("Erreur lors de la récupération des réservations", err);
+        setError(err);
+      }
+    };
+    fetchReservations();
+  }, []);
 
-
-    const numberReservation2 = '67890';
-    const dateVisit2 = '2024-09-20';
-    const quantityTickets2 = 5;
-    const status2 = 'En attente';
-    const totalPrice2 = '150€';
-
+  const handleCancelReservation = (reservation) => {
+    const currentDate = new Date();
+    const reservationDate = new Date(reservation.date_visit);
+    const timeDiff = reservationDate - currentDate;
+    const dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // Différence en jours
+    if (dayDiff < 10) {
+      alert(
+        "Votre réservation ne peut pas être annulée car elle est prévue dans moins de 10 jours. Les annulations doivent être effectuées au moins 10 jours avant la date de visite."
+      );
+    } else {
+      // Logique pour annuler la réservation (requête à ton API)
+      axios
+        .delete(
+          `http://localhost:3000/reservations/${reservation.num_reservation}`
+        )
+        .then(() => {
+          alert("Votre réservation a été annulée avec succès.");
+          setReservations((prevReservations) =>
+            prevReservations.filter(
+              (r) => r.num_reservation !== reservation.num_reservation
+            )
+          );
+        })
+        .catch((err) => {
+          console.error("Erreur lors de l'annulation de la réservation", err);
+          alert("Une erreur est survenue lors de l'annulation.");
+        });
+    }
+  };
+  if (error) {
     return (
-
-        <Container>
-            <div className="min-h-screen bg-secondaryBackgroundColor p-8 font-rubik mb-8 mt-6">
-                <h2 className="text-white text-2xl font-bold mb-6">Mes réservations</h2>
-                <p className="text-white mb-8">
-                    Vous voici sur la page <span href="/reservation" className="text-primaryColor">réservation</span>, vous pouvez effectuer votre réservation ci-dessous. 
-                    Vous avez également la possibilité de modifier ou d’annuler votre réservation jusqu’à 10 jours avant la date de visite.
-                </p>
-
-                <div className="bg-backgroundColor p-8 rounded-lg shadow-lg">
-                    <form className="grid grid-cols-2 gap-8 text-white">
-
-                        {/* Première Colonne */}
-                        <div>
-                            <label htmlFor="numberReservation" className="block text-sm mb-2">Numéro de réservation</label>
-                                <input
-                                    id="numberReservation"
-                                    type="text"
-                                    value={numberReservation1}
-                                    readOnly
-                                    className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-                                />
-                        </div>
-
-                        <div>
-                            <label htmlFor="numberReservation2" className="block text-sm mb-2">Numéro de réservation</label>
-                                <input
-                                    id="numberReservation2"
-                                    type="text"
-                                    value={numberReservation2}
-                                    readOnly
-                                    className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-                                />
-                        </div>
-
-                        {/* Deuxième Colonne */}
-                        <div>
-                            <label htmlFor="dateVisit" className="block text-sm mb-2">Date de visite</label>
-                                <input
-                                    id="dateVisit"
-                                    type="date"
-                                    value={dateVisit1}
-                                    readOnly
-                                    className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-                                />
-                        </div>
-
-                        <div>
-                            <label htmlFor="dateVisit2" className="block text-sm mb-2">Date de visite</label>
-                                <input
-                                    id="dateVisit2"
-                                    type="date"
-                                    value={dateVisit2}
-                                    readOnly
-                                    className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-                                />
-                        </div>
-
-                        {/* Troisième Colonne */}
-                        <div>
-                            <label htmlFor="quantityTickets" className="block text-sm mb-2">Nombre de billet</label>
-                                <input
-                                    id="quantityTickets"
-                                    type="number"
-                                    value={quantityTickets1}
-                                    readOnly
-                                    className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-                                />
-                        </div>
-
-                        <div>
-                            <label htmlFor="quantityTickets2" className="block text-sm mb-2">Nombre de billet</label>
-                                <input
-                                    id="quantityTickets2"
-                                    type="number"
-                                    value={quantityTickets2}
-                                    readOnly
-                                    className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-                                />
-                        </div>
-
-                        {/* Quatrième Colonne */}
-                        <div>
-                            <label htmlFor="status" className="block text-sm mb-2">Statut</label>
-                                <input
-                                    id="status"
-                                    type="text"
-                                    value={status1}
-                                    readOnly
-                                    className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-                                />
-                        </div>
-
-                        <div>
-                            <label htmlFor="status2" className="block text-sm mb-2">Statut</label>
-                                <input
-                                    id="status2"
-                                    type="text"
-                                    value={status2}
-                                    readOnly
-                                    className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-                                />
-                        </div>
-
-                        {/* Cinquième Colonne */}
-                        <div>
-                            <label htmlFor="totalPrice" className="block text-sm mb-2">Prix total</label>
-                                <input
-                                    id="totalPrice"
-                                    type="text"
-                                    value={totalPrice1}
-                                    readOnly
-                                    className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-                                />
-                        </div>
-
-                        <div>
-                            <label htmlFor="totalPrice2" className="block text-sm mb-2">Prix total</label>
-                                <input
-                                    id="totalPrice2"
-                                    type="text"
-                                    value={totalPrice2}
-                                    readOnly
-                                    className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-                                />
-                        </div>
-
-                        {/* Annuler réservation */}
-                        <div>
-                            <label htmlFor="cancelReservation">Annuler ma réservation</label>
-                            <button
-                                type="button"
-                                className="w-full p-3 bg-secondaryBackgroundColor text-white font-bold rounded hover:bg-primaryColor"
-                                onClick={() => alert('Réservation annulée !')}
-                            >
-                                ANNULER
-                            </button>
-                        </div>
-
-                        <div>
-                            <label htmlFor="cancelReservation2">Annuler ma réservation</label>
-                            <button
-                                type="button"
-                                className="w-full p-3 bg-secondaryBackgroundColor text-white font-bold rounded hover:bg-primaryColor"
-                                onClick={() => alert('Réservation annulée !')}
-                            >
-                                ANNULER
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </Container>
+      <Container>
+        <p className="text-red-500">Erreur : {error.message}</p>
+      </Container>
     );
+  }
+  return (
+    <Container>
+      <div className="min-h-screen bg-secondaryBackgroundColor p-8 font-rubik mb-8 mt-6">
+        <h2 className="text-white text-2xl font-bold mb-6">Mes réservations</h2>
+        {reservations.length > 0 ? (
+          reservations.map((reservation) => (
+            <div
+              key={reservation.num_reservation}
+              className="bg-backgroundColor p-8 rounded-lg shadow-lg mb-8"
+            >
+              <form className="grid grid-cols-2 gap-8 text-white">
+                <div>
+                  <label
+                    htmlFor="numero de reservation"
+                    className="block text-sm mb-2"
+                  >
+                    Numéro de réservation
+                  </label>
+                  <input
+                    id={`num_reservation-${reservation.num_reservation}`}
+                    name="num_reservation"
+                    type="string"
+                    value={reservation.num_reservation}
+                    readOnly
+                    className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="date de visite"
+                    className="block text-sm mb-2"
+                  >
+                    Date de visite
+                  </label>
+                  <input
+                    id={`date_visit-${reservation.date_visit}`}
+                    name="date_visit"
+                    type="date"
+                    value={reservation.date_visit}
+                    readOnly
+                    className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="nombre de billets"
+                    className="block text-sm mb-2"
+                  >
+                    Nombre de billets
+                  </label>
+                  <input
+                    id={`quantity_ticket-${reservation.tickets[0]?.ReservationHasTicket.quantity_ticket}`}
+                    name="quantity_ticket"
+                    type="number"
+                    value={
+                      reservation.tickets[0]?.ReservationHasTicket
+                        ?.quantity_ticket || 0
+                    }
+                    readOnly
+                    className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="statut" className="block text-sm mb-2">
+                    Statut
+                  </label>
+                  <input
+                    id={`status-${reservation.status}`}
+                    name="status"
+                    type="text"
+                    value={reservation.status}
+                    readOnly
+                    className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="prix total" className="block text-sm mb-2">
+                    Prix total
+                  </label>
+                  <input
+                    id={`total_price-${reservation.total_price}`}
+                    name="total_price"
+                    type="text"
+                    value={reservation.total_price}
+                    readOnly
+                    className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
+                  />
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    className="w-full p-3 bg-secondaryBackgroundColor text-white font-bold rounded hover:bg-primaryColor"
+                    onClick={() => handleCancelReservation(reservation)}
+                  >
+                    ANNULER
+                  </button>
+                </div>
+              </form>
+            </div>
+          ))
+        ) : (
+          <p className="text-white">Aucune réservation trouvée</p>
+        )}
+      </div>
+    </Container>
+  );
 }
-
 export default UserReservation;
-    
 
+// import { useEffect, useState } from "react";
+// import Container from "../components/Container";
+// import axios from "axios";
 
 // function UserReservation() {
-//     const [numberReservation, setNumberReservation] = useState('');
-//     const [dateVisit, setDateVisit] = useState('');
-//     const [quantityTickets, setQuantityTickets] = useState('');
-//     const [status, setStatus] = useState('');
-//     const [totalPrice, setTotalPrice] = useState('');
-//     const [cancelReservation, setCancelReservation] = useState('');
+//   const [reservations, setReservations] = useState([]);
+//   const [error, setError] = useState(null);
 
-//     const handleLogin = (event) => {
-//         event.preventDefault(); 
-
-//         console.log('Number Reservation:', numberReservation);
-//         console.log('Date Visite :', dateVisit);
-//         console.log('Quantity Tickets:', quantityTickets);
-//         console.log('Status:', status);
-//         console.log('Total Price:', totalPrice);
-//         console.log('Cancer Reservation:', cancelReservation);
-
+//   useEffect(() => {
+//     const fetchReservations = async () => {
+//       try {
+//         const userId = 2;
+//         const response = await axios.get(
+//           `http://localhost:3000/reservations/user/${userId}`
+//         );
+//         setReservations(response.data);
+//         console.log(
+//           response.data[0].tickets[0].ReservationHasTicket.quantity_ticket
+//         );
+//       } catch (err) {
+//         console.error("Erreur lors de la récupération des réservations", err);
+//         setError(err);
+//       }
 //     };
 
+//     fetchReservations();
+//   }, []);
+
+//   if (error) {
 //     return (
+//       <Container>
+//         <p className="text-red-500">Erreur : {error.message}</p>
+//       </Container>
+//     );
+//   }
 
-//         <Container>
-
-//         <div className="min-h-screen bg-secondaryBackgroundColor p-8 font-rubik mb-6 mt-6">
-//             <h2 className="text-white text-2xl font-bold mb-6">Mes réservations</h2>
-//                 <p className="text-white mb-8">
-//                     Vous voici sur la page <span href="/reservation" className="text-primaryColor">réservation</span>, vous pouvez effectuer votre réservation ci-dessous. 
-//                     Vous avez également la possibilité de modifier ou d’annuler votre réservation jusqu’à 10 jours avant la date de visite.
-//                 </p>
-
-//         <div className="bg-backgroundColor p-8 rounded-lg shadow-lg">
-//             <form onSubmit={handleLogin} className="grid grid-cols-2 gap-8 text-white">
-//             {/* Première Colonne */}
-//         <div>
-//             <label htmlFor="numberReservation" className="block text-sm mb-2">Numéro de réservation</label>
-//                 <input 
-//                     id="numberReservation"
-//                     type="text"
-//                     value={numberReservation}
+//   return (
+//     <Container>
+//       <div className="min-h-screen bg-secondaryBackgroundColor p-8 font-rubik mb-8 mt-6">
+//         <h2 className="text-white text-2xl font-bold mb-6">Mes réservations</h2>
+//         {reservations.length > 0 ? (
+//           reservations.map((reservation) => (
+//             <div
+//               key={reservation.num_reservation}
+//               className="bg-backgroundColor p-8 rounded-lg shadow-lg mb-8"
+//             >
+//               <form className="grid grid-cols-2 gap-8 text-white">
+//                 <div>
+//                   <label
+//                     htmlFor="numero de reservation"
+//                     className="block text-sm mb-2"
+//                   >
+//                     Numéro de réservation
+//                   </label>
+//                   <input
+//                     id={`num_reservation-${reservation.num_reservation}`}
+//                     name="num_reservation"
+//                     type="string"
+//                     value={reservation.num_reservation}
 //                     readOnly
 //                     className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-//                 />
-//         </div>
-//             <div>
-//                 <label htmlFor="numberReservation2" className="block text-sm mb-2">Numéro de réservation</label>
-//                     <input 
-//                         id="numberReservation2"
-//                         type="text"
-//                         value={numberReservation}
-//                         readOnly
-//                         className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-//                     />
-//             </div>
+//                   />
+//                 </div>
 
-//             {/* Deuxième Colonne */}
-//             <div>
-//                 <label htmlFor="dateVisit" className="block text-sm mb-2">Date de visite</label>
-//                     <input 
-//                         id="dateVisit"
-//                         type="date"
-//                         value={dateVisit}
-//                         readOnly
-//                         className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-//                     />
-//             </div>
-//             <div>
-//                 <label htmlFor="dateVisit2" className="block text-sm mb-2">Date de visite</label>
-//                     <input 
-//                         id="dateVisit2"
-//                         type="date"
-//                         value={dateVisit}
-//                         readOnly
-//                         className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-//                     />
-//             </div>
+//                 <div>
+//                   <label
+//                     htmlFor="date de visite"
+//                     className="block text-sm mb-2"
+//                   >
+//                     Date de visite
+//                   </label>
+//                   <input
+//                     id={`date_visit-${reservation.date_visit}`}
+//                     name="date_visit"
+//                     type="date"
+//                     value={reservation.date_visit}
+//                     readOnly
+//                     className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
+//                   />
+//                 </div>
 
-//             {/* Troisième Colonne */}
-//             <div>
-//                 <label htmlFor="quantityTickets" className="block text-sm mb-2">Nombre de billet</label>
-//                     <input 
-//                         id="quantityTickets"
-//                         type="number"
-//                         value={quantityTickets}
-//                         readOnly
-//                         className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-//                     />
-//             </div>
-//             <div>
-//                 <label htmlFor="quantityTickets2" className="block text-sm mb-2">Nombre de billet</label>
-//                     <input 
-//                         id="quantityTickets2"
-//                         type="number"
-//                         value={quantityTickets}
-//                         readOnly
-//                         className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-//                     />
-//             </div>
+//                 <div>
+//                   <label
+//                     htmlFor="nombre de billets"
+//                     className="block text-sm mb-2"
+//                   >
+//                     Nombre de billets
+//                   </label>
+//                   <input
+//                     // id={`quantity_ticket-${reservation.tickets.ReservationHasTicket.quantity_ticket}`}
+//                     name="quantity_ticket"
+//                     type="number"
+//                     value={
+//                       reservations[0].tickets[0].ReservationHasTicket
+//                         .quantity_ticket
+//                     }
+//                     readOnly
+//                     className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
+//                   />
+//                 </div>
 
-//             {/* Quatrième Colonne */}
-//             <div>
-//                 <label htmlFor="status" className="block text-sm mb-2">Statut</label>
-//                     <input 
-//                         id="status"
-//                         type="text"
-//                         value={status}
-//                         readOnly
-//                         className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-//                     />
-//             </div>
-//             <div>
-//                 <label htmlFor="status2" className="block text-sm mb-2">Statut</label>
-//                     <input 
-//                         id="status2"
-//                         type="text"
-//                         value={status}
-//                         readOnly
-//                         className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-//                     />
-//             </div>
+//                 <div>
+//                   <label htmlFor="statut" className="block text-sm mb-2">
+//                     Statut
+//                   </label>
+//                   <input
+//                     id={`status-${reservation.status}`}
+//                     name="status"
+//                     type="text"
+//                     value={reservation.status}
+//                     readOnly
+//                     className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
+//                   />
+//                 </div>
 
-//             {/* Cinquième Colonne */}
-//             <div>
-//                 <label htmlFor="totalPrice" className="block text-sm mb-2">Prix total</label>
-//                     <input 
-//                         id="totalPrice"
-//                         type="text"
-//                         value={totalPrice}
-//                         readOnly
-//                         className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-//                     />
-//             </div>
-//             <div>
-//                 <label htmlFor="totalPrice2" className="block text-sm mb-2">Prix total</label>
-//                     <input 
-//                         id="totalPrice2"
-//                         type="text"
-//                         value={totalPrice}
-//                         readOnly
-//                         className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
-//                     />
-//             </div>
+//                 <div>
+//                   <label htmlFor="prix total" className="block text-sm mb-2">
+//                     Prix total
+//                   </label>
+//                   <input
+//                     id={`total_price-${reservation.total_price}`}
+//                     name="total_price"
+//                     type="text"
+//                     value={reservation.total_price}
+//                     readOnly
+//                     className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
+//                   />
+//                 </div>
 
-//             {/* Sixième Colonne */}
-//             <div>
-//                 <label htmlFor="cancelReservation" className="block text-sm mb-2">Annuler ma réservation</label>
-//                     <button 
-//                         type="button"
-//                         className="w-full p-3 bg-secondaryBackgroundColor text-white font-bold rounded hover:bg-primaryColor"
-//                         onClick={() => setCancelReservation('ANNULÉ')}
-//                     >
-//                         ANNULER
-//                     </button>
+//                 <div>
+//                   <button
+//                     type="button"
+//                     className="w-full p-3 bg-secondaryBackgroundColor text-white font-bold rounded hover:bg-primaryColor"
+//                     onClick={() => alert("Réservation annulée !")}
+//                   >
+//                     ANNULER
+//                   </button>
+//                 </div>
+//               </form>
 //             </div>
-//             <div>
-//                 <label htmlFor="cancelReservation2" className="block text-sm mb-2">Annuler ma réservation</label>
-//                     <button 
-//                         type="button"
-//                         className="w-full p-3 bg-secondaryBackgroundColor text-white font-bold rounded hover:bg-primaryColor"
-//                         onClick={() => setCancelReservation('ANNULÉ')}
-//                     >
-//                         ANNULER
-//                     </button>
-//             </div>
-//         </form>
-//     </div>
-// </div>
-
-// </Container>
-
-// );
+//           ))
+//         ) : (
+//           <p className="text-white">Aucune réservation trouvée</p>
+//         )}
+//       </div>
+//     </Container>
+//   );
 // }
 
 // export default UserReservation;
