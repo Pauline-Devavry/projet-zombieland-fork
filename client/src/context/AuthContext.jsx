@@ -10,9 +10,12 @@ function AuthProvider({children}) {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await api.get("/auth/me")
-                if(response && response.data) {
-                    setUser(response.data)
+                const hasToken = await api.get("/auth/check-token")
+                if(hasToken.data) {
+                    const response = await api.get("/auth/me")
+                    if(response && response.data) {
+                        setUser(response.data)
+                    }
                 }
             } catch (error) {
                 if(error.response && error.response.status === 401) {
