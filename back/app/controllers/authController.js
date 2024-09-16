@@ -135,3 +135,11 @@ export const getUserDetails = (req, res) => {
     const { password, name, ...userData} = dataValues
     res.json(userData)
 };
+
+export const checkRefreshToken = (req, res, next) => {
+    const hasCookie = req.cookies.refresh_token
+    if(!hasCookie) {
+        return res.json(false)
+    } 
+    res.json(true)
+}

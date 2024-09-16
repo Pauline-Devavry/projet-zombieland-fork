@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { api } from '../api/axiosConfig';
 import { AuthContext } from '../context/AuthContext';
 
@@ -7,6 +7,9 @@ function Connexion() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { setUser } = useContext(AuthContext)
+
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -18,6 +21,8 @@ function Connexion() {
 		if(response.status === 200) {
 			const userData = await api.get("/auth/me")
 			setUser(userData.data)
+      const { from } = location.state || { from: { pathname: '/' } };
+      navigate(from.pathname, { replace: true });
 		}
 	} catch (error) {
 		console.log(error)

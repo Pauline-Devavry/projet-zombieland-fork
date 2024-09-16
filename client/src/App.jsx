@@ -14,6 +14,7 @@ import Accordion from "./pages/FaqPage.jsx";
 import AttractionInfo from "./pages/AttractionInfo.jsx";
 import NotFoundPage from "./pages/404.jsx";
 import AuthProvider from "./context/AuthContext.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
   {
