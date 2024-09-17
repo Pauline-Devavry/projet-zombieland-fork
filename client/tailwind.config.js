@@ -29,19 +29,27 @@ export default {
           '0%, 100%': { transform: 'translateY(-20px)' },
           '50%': { transform: 'translateY(20px)' },
         },
-        scrollLeft: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-100%)' },
+        penguinRun: {
+          '0%': {
+            transform: 'translateX(-100vw) scaleX(-1)'
+          },
+          '100%': {
+            transform: 'translateX(110vw) scaleX(-1)'
+          },
         },
-        scrollRight: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(50%)' },
+        zombieRun: {
+          '0%': {
+            transform: 'translateX(-100vw)'
+          },
+          '100%': {
+            transform: 'translateX(110vw)'
+          },
         },
       },
       animation: {
         bounce: 'bounce 2s infinite',
-        scrollLeft: 'scrollLeft 20s linear infinite',
-        scrollRight: 'scrollRight 20s linear infinite',
+        penguinRun: 'penguinRun 5s linear forwards',
+        zombieRun: 'zombieRun 6s linear forwards'
       },
     },
     fontFamily: {

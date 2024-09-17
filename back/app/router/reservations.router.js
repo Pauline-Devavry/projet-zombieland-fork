@@ -6,6 +6,8 @@ const router = Router();
 
 router.get("/api/reservations", reservationsController.getAllReservations);
 
+router.post("/api/reservations", reservationsController.createOneReservation)
+
 router.get(
   "/api/reservations/user/",
   passport.authenticate("jwt", {session: false}),
