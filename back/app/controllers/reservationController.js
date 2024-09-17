@@ -73,6 +73,16 @@ export async function updateOneReservation(req, res, next) {
   });
 }
 
+export async function createOneReservation(req, res) {
+
+  const data = req.body
+
+  console.log(data)
+
+  res.json("Hello world")
+
+}
+
 export async function deleteOneReservation(req, res, next) {
   const id = Number(req.params.id);
   await Reservation.destroy({ where: { id: id } });

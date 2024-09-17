@@ -40,21 +40,9 @@ function Reservation() {
         event.preventDefault();
 
         try {
-            const response = await api.post('/reservations', {
-                name,
-                first_name: firstname,
-                email,
-                typeTicket: ticketType,
-                totalPrice: totalPrice,
-            }, {
-                headers: { "Content-Type": "application/json" }
-            });
-
-            setSuccess(response.data.message);
-            setError('');
-        } catch (error) {
-            setError(error.response.data.error || "Erreur lors de la réservation.");
-            setSuccess('');
+            await api.post("/reservations", formData)
+        } catch (err) {
+            console.log(err)
         }
     };
 
