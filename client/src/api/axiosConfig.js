@@ -14,6 +14,10 @@ api.interceptors.response.use(
         const originalRequest = error.config;
 
         if (error.response && error.response.status === 401 && !originalRequest._retry) {
+            // Ne pas essayer de rafraîchir le token pour /auth/me
+            //if (originalRequest.url === "/auth/me") {
+            //    return Promise.reject(error);
+            //}
 
             originalRequest._retry = true;
             try {

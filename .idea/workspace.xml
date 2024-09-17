@@ -8,12 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/app/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/controllers/authController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/app/controllers/reservationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/controllers/reservationController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/app/router/reservations.router.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/router/reservations.router.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/api/axiosConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/axiosConfig.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/UserLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layouts/UserLayout.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/UserReservation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/UserReservation.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +65,7 @@
       <option name="presentableId" value="Default" />
       <updated>1726504906870</updated>
       <workItem from="1726504907912" duration="1666000" />
-      <workItem from="1726506585384" duration="10976000" />
+      <workItem from="1726506585384" duration="11904000" />
     </task>
     <servers />
   </component>

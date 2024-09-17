@@ -95,8 +95,6 @@ export const refreshAccessToken = (req, res, next) => {
                 return res.status(403).json("Token invalide ou expiré.")
             }
 
-            console.log("TOKEN VALIDE OUII")
-
             const decodedToken = jwt.decode(refreshToken)
     
             const newRefreshToken = jwt.sign(

@@ -3,7 +3,7 @@ import Container from "../components/Container";
 import axios from "axios";
 import { api } from "../api/axiosConfig";
 import {AuthContext} from "../context/AuthContext.jsx";
-
+import {toast} from "react-toastify"
 function UserReservation() {
   const [reservations, setReservations] = useState([]);
   const [error, setError] = useState(null);
@@ -16,7 +16,7 @@ function UserReservation() {
     }
     const fetchReservations = async () => {
       try {
-        const response = await api.get(`/reservations/user/${user.id}`);
+        const response = await api.get(`/reservations/user`);
         setReservations(response.data);
       } catch (err) {
         console.error("Erreur lors de la récupération des réservations", err);
@@ -38,9 +38,9 @@ function UserReservation() {
     } else {
       // Logique pour annuler la réservation (requête à ton API)
       api
-        .delete(`/reservations/${reservation.num_reservation}`)
+        .delete(`/reservations/${reservation.id}`)
         .then(() => {
-          alert("Votre réservation a été annulée avec succès.");
+          toast("Réservation annulé avec succes !", {type: "success", theme: "dark"})
           setReservations((prevReservations) =>
             prevReservations.filter(
               (r) => r.num_reservation !== reservation.num_reservation
