@@ -27,6 +27,7 @@ function Reservation() {
         })
     }
 
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -62,7 +63,7 @@ function Reservation() {
         }
     };
 
-    const handleTicketSelection = (ticket, quantity) => {
+    const handleTicketSelection = (ticket) => {
         const isChecked = ticketsChoice.find(t => t.id === ticket.id)
         if(isChecked) {
             return setTicketChoice(prev => prev.filter(t => t.id !== ticket.id))
