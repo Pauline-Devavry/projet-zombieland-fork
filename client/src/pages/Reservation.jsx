@@ -3,19 +3,29 @@ import { useEffect } from 'react';
 import { api } from '../api/axiosConfig';
 
 function Reservation() {
-    const [name, setName] = useState('');
-    const [firstname, setFirstname] = useState('');
-    const [email, setEmail] = useState('');
-    const [ticketType, setTicketType] = useState('');
-    const [totalPrice, setTotalPrice] = useState(0);
-    const [numberOfTickets, setNumberOfTickets] = useState('1');
-    const [error, setError] = useState('');
-    const [success, setSuccess] = useState('');
-    const [desiredDate, setDesiredDate] = useState('');
 
     const [tickets, setTickets] = useState([])
 
     const [ticketsChoice, setTicketChoice] = useState([])
+
+    const [formData, setFormData] = useState({
+        name: "",
+        firstname: "",
+        email: "",
+        ticketChoices: [],
+        date: "",
+        totalPrice: ""
+    })
+
+    const handleChangeFormData = (e) => {
+        const { name, value} = e.target
+        setFormData((prev) => {
+            return {
+                ...prev,
+                [name]: value
+            }
+        })
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -52,7 +62,7 @@ function Reservation() {
         }
     };
 
-    const handleTicketSelection = (ticket) => {
+    const handleTicketSelection = (ticket, quantity) => {
         const isChecked = ticketsChoice.find(t => t.id === ticket.id)
         if(isChecked) {
             return setTicketChoice(prev => prev.filter(t => t.id !== ticket.id))
@@ -60,28 +70,30 @@ function Reservation() {
         setTicketChoice(prev => [...prev, ticket])
     }
 
+    
+
 
     return (
         <div className="min-h-screen max-w-[75rem] mx-auto flex flex-col justify-center items-center text-white font-rubik">
             <div className="w-full mb-20">
                 <h2 className="text-lg mb-6">
-                    Vous souhaitez réserver vos places pour notre parc d’attractions ? {' '}
-                    Vous trouverez sur cette page notre <span className="text-primaryColor">formulaire de réservation</span>! {' '}
-                    Nous avons hâte de vous accueillir !
+                    Envie de réserver vos places pour notre parc d'attractions sur le thème des zombies ?  {' '}
+                    Vous trouverez sur cette page notre <span className="text-primaryColor">formulaire de réservation</span> ! {' '}
+                    Nous sommes impatients de vous faire frissonner !
                 </h2>
 
-                <form onSubmit={handleSubmit} className="max-w-[400px] mx-auto p-8 rounded-lg shadow-lg">
-                    {error && <p className="text-red-500">{error}</p>}
-                    {success && <p className="text-green-500">{success}</p>}
+                <form onSubmit={handleSubmit} className="max-w-[600px] mx-auto p-8 rounded-lg shadow-lg">
+                    
                     <div className="mb-6">
                         <label className="block text-sm font-medium mb-2" htmlFor="name">
                             Nom
                         </label>
                         <input
                             id="name"
+                            name='name'
                             type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            value={formData.name}
+                            onChange={handleChangeFormData}
                             placeholder="Nom"
                             required
                             className="w-full p-3 bg-white text-black border border-borderColor rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
@@ -93,9 +105,10 @@ function Reservation() {
                         </label>
                         <input
                             id="firstname"
+                            name='firstname'
                             type="text"
-                            value={firstname}
-                            onChange={(e) => setFirstname(e.target.value)}
+                            value={formData.firstname}
+                            onChange={handleChangeFormData}
                             placeholder="Prénom"
                             required
                             className="w-full p-3 bg-white text-black border border-borderColor rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
@@ -108,9 +121,10 @@ function Reservation() {
                         </label>
                         <input
                             id="email"
+                            name='email'
                             type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={formData.email}
+                            onChange={handleChangeFormData}
                             placeholder="Adresse mail"
                             required
                             className="w-full p-3 bg-white text-black border border-borderColor rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
@@ -121,22 +135,30 @@ function Reservation() {
                         <label className="block text-sm font-medium mb-2" htmlFor="ticketType">
                             Type de ticket
                         </label>
-                        <div className='flex flex-col gap-2'>
+                        <div className='flex flex-col gap-2 '>
                             {
                                 tickets.map((ticket) => {
                                     return (
-                                        <div key={ticket.id} className='flex gap-4'>
-                                            <input type="checkbox" name={`ticket-${ticket.id}`} id={`ticket-${ticket.id}`}  onChange={() => handleTicketSelection(ticket)}/>
-                                            <label htmlFor={`ticket-${ticket.id}`}>{ticket.name} - {ticket.price}€</label>
+                                        <div key={ticket.id} className='flex gap-4 border-y justify-between p-2'>
+                                            <div className='flex gap-4'>
+                                                <input type="checkbox" name={`ticket-${ticket.id}`} id={`ticket-${ticket.id}`}  onChange={() => handleTicketSelection(ticket)}/>
+                                                <label htmlFor={`ticket-${ticket.id}`}>{ticket.name} - {ticket.price}€</label>
+                                            </div>
+                                            {
+                                                ticketsChoice.filter(t => t.id === ticket.id).map((t) => {
+                                                    return (
+                                                        <div key={t.id} className='flex gap-4 items-center justify-center'>
+                                                            <label htmlFor="">Quantité : </label>
+                                                            <input type="number" name="quantity" value="0" id="" className='max-w-[45px]'/>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
                                         </div>
                                     )
                                 })
                             }
                         </div>
-                    </div>
-
-                    <div>
-
                     </div>
 
                     <div className="mb-6">
@@ -146,27 +168,15 @@ function Reservation() {
                         <input
                             id="desiredDate"
                             type="date"
-                            value={desiredDate}
-                            onChange={(e) => setDesiredDate(e.target.value)}
+                            name='date'
+                            value={formData.date}
+                            onChange={handleChangeFormData}
                             required
                             className="w-full p-3 bg-white text-black border border-borderColor rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
                         />
                     </div>
 
-                    <div className="mb-6">
-                        <label className="block text-sm font-medium mb-2" htmlFor="numberOfTickets">
-                            Nombre de tickets
-                        </label>
-                        <input
-                            id="numberOfTickets"
-                            type="number"
-                            value={numberOfTickets}
-                            onChange={(e) => setNumberOfTickets(Number(e.target.value))}
-                            min="1"
-                            required
-                            className="w-full p-3 bg-white text-black border border-borderColor rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
-                        />
-                    </div>
+                    
 
                     <div className="mb-6">
                         <label className="block text-sm font-medium mb-2" htmlFor="totalPrice">
@@ -175,7 +185,7 @@ function Reservation() {
                         <input
                             id="totalPrice"
                             type="text"
-                            value={`€${totalPrice.toFixed(2)}`}
+                            value={Number(formData.totalPrice).toFixed(2)}
                             readOnly
                             placeholder="Prix total"
                             className="w-full p-3 bg-white text-black border border-borderColor rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
