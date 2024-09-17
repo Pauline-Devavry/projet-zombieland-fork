@@ -14,6 +14,7 @@ function AuthProvider({children}) {
                 const hasToken = await api.get("/auth/check-token")
                 if(hasToken.data) {
                     const response = await api.get("/auth/me")
+                    console.log("User data:", response.data);
                     if(response && response.data) {
                         setUser(response.data)
                     }

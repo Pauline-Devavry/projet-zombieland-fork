@@ -121,7 +121,7 @@ export async function getUserReservations(req, res, next) {
     });
     
     if (!reservations.length) {
-      return res.status(404).json({ message: "Aucune réservation trouvée." });
+      return res.status(200).json({ message: "Aucune réservation trouvée." });
     }
     
     res.status(200).json(reservations);

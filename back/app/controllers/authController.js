@@ -132,9 +132,9 @@ export const refreshAccessToken = (req, res, next) => {
 }
 
 export const getUserDetails = (req, res) => {
-    const { dataValues } = req.user
-    const { password, name, ...userData} = dataValues
-    res.json(userData)
+    const { dataValues } = req.user;
+    const { password, ...userData } = dataValues;
+    res.json(userData);
 };
 
 export const checkRefreshToken = (req, res, next) => {

@@ -61,9 +61,9 @@ function UserProfil() {
               </div>
     
               <div className="mb-6">
-                <label className="block text-sm font-medium mb-2" htmlFor="name">Nom</label>
+                <label className="block text-sm font-medium mb-2" htmlFor="first_name">Nom</label>
                   <input
-                    id="name"
+                    id="first_name"
                     type="text"
                     value={user?.first_name}
                     className="w-full p-3 bg-white rounded text-black"
@@ -72,11 +72,11 @@ function UserProfil() {
               </div>
 
               <div className="mb-6">
-                <label className="block text-sm font-medium mb-2" htmlFor="firstname">Prénom</label>
+                <label className="block text-sm font-medium mb-2" htmlFor="name">Prénom</label>
                   <input
-                    id="firstname"
+                    id="name"
                     type="text"
-                    value={user?.first_name}
+                    value={user?.name}
                     className="w-full p-3 bg-white rounded text-black"
                     readOnly={!isEditing}
                   />
@@ -145,7 +145,10 @@ function UserProfil() {
                   <button
                     type="button"
                     className="bg-primaryColor text-white px-4 py-2 rounded"
-                    onClick={() => setIsEditing(true)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsEditing(true);
+                    }}
                   >
                     Modifier les informations
                   </button>
