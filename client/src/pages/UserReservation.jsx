@@ -1,18 +1,20 @@
-import {useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import Container from "../components/Container";
-import axios from "axios";
 import { api } from "../api/axiosConfig";
-import {AuthContext} from "../context/AuthContext.jsx";
-import {toast} from "react-toastify"
+import { AuthContext } from "../context/AuthContext.jsx";
+import { toast } from "react-toastify";
+
 function UserReservation() {
   const [reservations, setReservations] = useState([]);
   const [error, setError] = useState(null);
 
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    if(!user) {
-      return
+    console.log("user", user);
+
+    if (!user) {
+      return;
     }
     const fetchReservations = async () => {
       try {
@@ -40,7 +42,10 @@ function UserReservation() {
       api
         .delete(`/reservations/${reservation.id}`)
         .then(() => {
-          toast("Réservation annulé avec succes !", {type: "success", theme: "dark"})
+          toast("Réservation annulé avec succes !", {
+            type: "success",
+            theme: "dark",
+          });
           setReservations((prevReservations) =>
             prevReservations.filter(
               (r) => r.num_reservation !== reservation.num_reservation
