@@ -8,6 +8,7 @@ router.post("/api/auth/login", authController.login)
 router.post("/api/auth/register", authController.register)
 router.post("/api/auth/refresh", authController.refreshAccessToken)
 router.get("/api/auth/me", passport.authenticate("jwt", {session: false}) , authController.getUserDetails)
+router.get("/api/auth/check-token", authController.checkRefreshToken)
 
 
 export default router

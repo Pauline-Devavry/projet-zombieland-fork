@@ -3,21 +3,23 @@ import { sequelize } from "../database/client.js";
 
 export class ReservationHasTicket extends Model {}
 
-ReservationHasTicket.init({
+ReservationHasTicket.init(
+  {
     reservation_id: {
-        type: DataTypes.INTEGER,
-      },
+      type: DataTypes.INTEGER,
+    },
 
-      ticket_id: {
-        type: DataTypes.INTEGER,
-      },
+    ticket_id: {
+      type: DataTypes.INTEGER,
+    },
 
-      quantity_ticket: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      },
-    {
-      sequelize : sequelize(),
-      tableName: "reservation_ticket"
-    });
+    quantity_ticket: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize: sequelize(),
+    tableName: "reservation_has_ticket",
+  }
+);
