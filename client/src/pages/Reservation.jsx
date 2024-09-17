@@ -13,14 +13,21 @@ function Reservation() {
     const [success, setSuccess] = useState('');
     const [desiredDate, setDesiredDate] = useState('');
 
-    const ticketPrices = {
-        standard: 45,
-    };
+    const [tickets, setTickets] = useState([])
+
+    const [ticketsChoice, setTicketChoice] = useState([])
 
     useEffect(() => {
-        const pricePerTicket = ticketPrices[ticketType] || 0;
-        setTotalPrice(pricePerTicket * numberOfTickets);
-    }, [ticketType, numberOfTickets]);
+        const fetchData = async () => {
+            try {
+                const response = await api.get("/tickets")
+                setTickets(response.data)          
+            } catch (error) {
+                console.log({erreur: error})
+            }   
+        }
+        fetchData()
+    }, []);
 
 
     const handleSubmit = async (event) => {
@@ -44,6 +51,15 @@ function Reservation() {
             setSuccess('');
         }
     };
+
+    const handleTicketSelection = (ticket) => {
+        const isChecked = ticketsChoice.find(t => t.id === ticket.id)
+        if(isChecked) {
+            return setTicketChoice(prev => prev.filter(t => t.id !== ticket.id))
+        }
+        setTicketChoice(prev => [...prev, ticket])
+    }
+
 
     return (
         <div className="min-h-screen max-w-[75rem] mx-auto flex flex-col justify-center items-center text-white font-rubik">
@@ -105,16 +121,22 @@ function Reservation() {
                         <label className="block text-sm font-medium mb-2" htmlFor="ticketType">
                             Type de ticket
                         </label>
-                        <select
-                            id="ticketType"
-                            value={ticketType}
-                            onChange={(e) => setTicketType(e.target.value)}
-                            required
-                            className="w-full p-3 bg-white text-black border border-borderColor rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
-                        >
-                            <option value="">Sélectionnez un type de ticket</option>
-                            <option value="standard">Standard : 45€</option>
-                        </select>
+                        <div className='flex flex-col gap-2'>
+                            {
+                                tickets.map((ticket) => {
+                                    return (
+                                        <div key={ticket.id} className='flex gap-4'>
+                                            <input type="checkbox" name={`ticket-${ticket.id}`} id={`ticket-${ticket.id}`}  onChange={() => handleTicketSelection(ticket)}/>
+                                            <label htmlFor={`ticket-${ticket.id}`}>{ticket.name} - {ticket.price}€</label>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+
+                    <div>
+
                     </div>
 
                     <div className="mb-6">
