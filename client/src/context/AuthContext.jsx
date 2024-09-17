@@ -6,6 +6,7 @@ export const AuthContext = createContext()
 function AuthProvider({children}) {
 
     const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -19,10 +20,12 @@ function AuthProvider({children}) {
                 }
             } catch (error) {
                 if(error.response && error.response.status === 401) {
-                    return
+                    return Promise.resolve(error)
                 } else {
                     console.log("Erreur lors de la connexion")
                 }
+            } finally {
+                setLoading(false)
             }
             
         }
@@ -30,7 +33,7 @@ function AuthProvider({children}) {
     },[])
 
     return (
-        <AuthContext.Provider value={{user, setUser}}>
+        <AuthContext.Provider value={{user, setUser, loading}}>
             {children}
         </AuthContext.Provider>
     )

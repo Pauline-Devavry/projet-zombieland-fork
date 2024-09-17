@@ -14,7 +14,7 @@ export const login = async (req,res,next) => {
         }
 
         const access_token = jwt.sign({user_id: user.id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "15m"})
-        const refresh_token = jwt.sign({user_id: user.id}, process.env.REFRESH_TOKEN_SECRET, {expiresIn: "2m"})
+        const refresh_token = jwt.sign({user_id: user.id}, process.env.REFRESH_TOKEN_SECRET, {expiresIn: "7d"})
 
         await Refreshtoken.create({
             token: refresh_token,
@@ -94,6 +94,7 @@ export const refreshAccessToken = (req, res, next) => {
                 }
                 return res.status(403).json("Token invalide ou expiré.")
             }
+
             const decodedToken = jwt.decode(refreshToken)
     
             const newRefreshToken = jwt.sign(

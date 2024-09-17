@@ -4,16 +4,15 @@ import { Navigate, useLocation } from "react-router-dom"
 import { toast } from 'react-toastify';
 
 function ProtectedRoute({ children }) {
-    const { user } = useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
     const location = useLocation();
 
-    useEffect(() => {
-        if (!user) {
-            toast("Vous devez être connecté.", { theme: "dark", type: "error" });
-        }
-    }, [user]);
+    if(loading) {
+        return <div>Chargement</div>
+    }
 
     if (!user) {
+        toast("Vous devez être connecté.", { theme: "dark", type: "error" });
         return <Navigate to="/connexion" state={{ from: location }} replace />;
     }
     return children;
