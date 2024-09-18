@@ -8,13 +8,13 @@ function UserReservation() {
   const [reservations, setReservations] = useState([]);
   const [error, setError] = useState(null);
 
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
   useEffect(() => {
     console.log("user", user);
 
-    if (!user) {
-      return;
+    if (loading) {
+      return <h1>Chargement de la page</h1>;
     }
     const fetchReservations = async () => {
       try {
@@ -26,7 +26,7 @@ function UserReservation() {
       }
     };
     fetchReservations();
-  }, [user]);
+  }, [user, loading]);
 
   const handleCancelReservation = (reservation) => {
     const currentDate = new Date();
@@ -48,7 +48,7 @@ function UserReservation() {
           });
           setReservations((prevReservations) =>
             prevReservations.filter(
-              (r) => r.num_reservation !== reservation.num_reservation
+              (r) => r.id !== reservation.id
             )
           );
         })
@@ -72,7 +72,7 @@ function UserReservation() {
         {reservations.length > 0 ? (
           reservations.map((reservation) => (
             <div
-              key={reservation.num_reservation}
+              key={reservation.id}
               className="bg-backgroundColor p-8 rounded-lg shadow-lg mb-8"
             >
               <form className="grid grid-cols-2 gap-8 text-white">
@@ -84,10 +84,10 @@ function UserReservation() {
                     Numéro de réservation
                   </label>
                   <input
-                    id={`num_reservation-${reservation.num_reservation}`}
+                    id={`num_reservation-${reservation.id}`}
                     name="num_reservation"
                     type="string"
-                    value={reservation.num_reservation}
+                    value={reservation.id}
                     readOnly
                     className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
                   />
