@@ -55,8 +55,9 @@ INSERT INTO "user" (name, first_name, email, password, role) VALUES
 ('Tremblay', 'Louis', 'louis.tremblay@email.com', 'motdepasse223', 'utilisateur');
 
 -- Insertion des réservations
-INSERT INTO "reservation" (user_id, num_reservation, date_visit, status, total_price) VALUES
-(12, 'RES-2024-1261', '2024-11-30', 'confirmée', '45.00');
+INSERT INTO "reservation" (user_id, date_visit, status, total_price) VALUES
+(1, '2024-11-15', 'confirmée', '45.00'),
+(2, '2024-12-20', 'confirmée', '90.00');
 
 -- Insertion des messages
 INSERT INTO "message" (name, first_name, email, content) VALUES

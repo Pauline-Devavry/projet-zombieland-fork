@@ -7,6 +7,7 @@ ReservationHasTicket.init(
   {
     reservation_id: {
       type: DataTypes.INTEGER,
+      onDelete: 'CASCADE'
     },
 
     ticket_id: {

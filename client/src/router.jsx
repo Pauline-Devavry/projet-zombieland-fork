@@ -14,6 +14,7 @@ import UserProfil from "./pages/UserProfil.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 import Overview from "./pages/admin/Overview.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Reservation from "./pages/Reservation.jsx";
 
 
 const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
             {
                 path: "attractions",
                 element: <AttractionPage />,
+            },
+            {
+                path: "reserver",
+                element: <Reservation/>
             },
             {
                 path: "inscription",
