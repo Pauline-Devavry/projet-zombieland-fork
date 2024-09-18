@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { faPenToSquare, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { api } from "../../api/axiosConfig";
 import { useEffect, useState } from "react";
-
+import Pagination from "../../components/admin/Pagination";
 
 function MessagePage() {
 
@@ -51,7 +51,7 @@ function MessagePage() {
                         <div className="flex gap-4 items-center w-full">
                         <p className="w-1/4 min-w-[100px]">{message.first_name} {message.name}</p>
                         <p className="w-1/4 min-w-[150px]">{message.email}</p>
-                        {/* Application du tronquage ici avec ajustement de la largeur */}
+                        
                         <p className="flex-1 overflow-hidden text-ellipsis whitespace-nowrap w-[400px] max-w-[100%]">
                             {message.content}
                         </p>
@@ -67,20 +67,9 @@ function MessagePage() {
                 ))}
                 </ul>
                 
-                <div className="flex gap-4 items-center mt-4">
-                <button className="border border-primaryColor text-black px-3 py-[2px] rounded hover:bg-primaryColor hover:text-white transition-colors delay-75 ease-in-out">
-                    <FontAwesomeIcon icon={faChevronLeft} onClick={() => handlePagination(currentPage - 1)} />
-                </button>
-                <div>
-                    <span className="text-xl text-adminTextColor">{currentPage}</span>
-                </div>
-                <button className="border border-primaryColor text-adminTextColor px-3 py-[2px] rounded hover:bg-primaryColor hover:text-white transition-colors delay-75 ease-in-out">
-                    <FontAwesomeIcon icon={faChevronRight} onClick={() => handlePagination(currentPage + 1)} />
-                </button>
-                </div>
+                <Pagination onPageChange={handlePagination} currentPage={currentPage} />
             </div>
 
-            {/* Carte de droite alignée */}
             <div className="w-1/3 max-w-[calc(33%-1rem)] flex-shrink-0 ml-4">
                 <div className="bg-adminCardColor p-4 rounded-lg min-h-[140px] flex flex-col justify-between relative overflow-hidden">
                 <span className="text-adminTextGrayColor">Total messages</span>

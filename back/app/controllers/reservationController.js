@@ -10,13 +10,17 @@ import { usePagination } from "../utils/pagination.js";
 export async function getAllReservations(req, res) {
   const { limit, offset } = usePagination(req.query);
 
+  const totalReservations = await Reservation.count()
+
   const reservations = await Reservation.findAll({
     include: User,
     limit,
     offset,
   });
 
-  return res.json(reservations).status(200);
+  const totalPages = Math.ceil(totalReservations / limit)
+
+  return res.json({reservations, totalPages}).status(200);
 }
 
 export async function getOneReservation(req, res, next) {
