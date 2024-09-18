@@ -1,11 +1,12 @@
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { Link } from "react-router-dom"
 
 
 function ReservationCard({data}) {
     
     return (
-        <div className="bg-adminCardColor min-h-[150px] p-4 rounded-sm border-r-2 border-primaryColor font-thin flex flex-col justify-between">
+        <Link to={`/admin/reservations/${data.id}`} className="bg-adminCardColor min-h-[150px] p-4 rounded-sm border-r-2 border-primaryColor font-thin flex flex-col justify-between">
             <span>
                 Numéro: {data.id}
             </span>
@@ -19,7 +20,7 @@ function ReservationCard({data}) {
                     <span>{data.User.email}</span>
                 </div>
             </div>
-        </div>
+        </Link>
     )
     
 }
