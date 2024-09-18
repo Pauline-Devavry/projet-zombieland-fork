@@ -7,18 +7,24 @@ function Overview() {
     // Juste for now, later create a endpoint for fetching theses data
 
 
-    const [members, setMembers] = useState([])
-    const [messages, setMessages] = useState([])
-    const [attractions, setAttractions] = useState([])
+    const [totalMembers, setTotalMembers] = useState()
+    const [totalMessages, setTotalMessages] = useState()
+    const [totalAttractions, setTotalAttractions] = useState()
+
+    
 
     useEffect(() => {
         const fetchData = async () => {
-            const membersList = await api.get("/users")
-            setMembers(membersList.data)
-            const messagesList = await api.get("/messages?limit=100")
-            setMessages(messagesList.data)
-            const attractionsList = await api.get("/attractions")
-            setAttractions(attractionsList.data)
+            const [membersRes, messagesRes, attractionsRes] = await Promise.all([
+                api.get("/users/total"),
+                api.get("/messages/total"),
+                api.get("/attractions/total"),
+            ])
+            setTotalAttractions(attractionsRes.data.total)
+            setTotalMessages(messagesRes.data.total)
+            setTotalMembers(membersRes.data.total)
+
+            
         }
         fetchData()
     }, [])
@@ -30,7 +36,7 @@ function Overview() {
                     Total messages recu
                 </p>
                 <p>
-                    {messages.length}
+                    {totalMessages}
                 </p>
             </div>
             <div className="flex flex-col gap-3 p-6 rounded-lg bg-adminCardColor max-h-[164px]">
@@ -38,7 +44,7 @@ function Overview() {
                     Total de membres inscrit
                 </p>
                 <p>
-                    {members.length}
+                    {totalMembers}
                 </p>
             </div>
             <div className="flex flex-col gap-3 p-6 rounded-lg bg-adminCardColor max-h-[164px]">
@@ -46,7 +52,7 @@ function Overview() {
                     Total d&apos;attraction
                 </p>
                 <p>
-                    {attractions.length}
+                    {totalAttractions}
                 </p>
             </div>
         </div>
