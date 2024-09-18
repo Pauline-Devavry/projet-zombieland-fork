@@ -20,6 +20,7 @@ import InteractiveHomeMenu from "../components/InteractiveHomeMenu.jsx"
 import { useState, useEffect } from "react";
 import { api } from "../api/axiosConfig.js";
 import AttractionImage from "../components/AttractionImage.jsx"
+import Marquee from "react-fast-marquee";
 
 function HomePage() {
     const [attractions, setAttractions] = useState([]);
@@ -50,7 +51,7 @@ function HomePage() {
                         </h1>
                         <div className="max-w-[32.75rem] flex flex-col gap-4">
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                            Explorez des attractions d&apos;horreur fascinantes et plongez dans des expériences inoubliables qui éveilleront vos sens et feront battre votre cœur plus vite.
                             </p>
                             <Link to={"/reserver"} className="bg-primaryColor rounded-sm px-4 py-2 w-fit">
                                 Faire une réservation
@@ -74,6 +75,7 @@ function HomePage() {
                         De nombreuses attractions à découvrir
                     </h2>
                     <div className="mx-auto px-4 py-8">
+                        <Marquee>
                         <div className="flex flex-wrap justify-center gap-4">
                             {attractions.map((attraction) => (
                                 <div key={attraction.id} className="flex-basis-1/3 max-w-[calc(33%-1rem)]">
@@ -84,6 +86,7 @@ function HomePage() {
                                 </div>
                             ))}
                         </div>
+                        </Marquee>
                     </div>
                 </div>
             </div>
