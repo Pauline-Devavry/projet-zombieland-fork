@@ -15,6 +15,7 @@ import AdminLayout from "./layouts/AdminLayout.jsx";
 import Overview from "./pages/admin/Overview.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Reservation from "./pages/Reservation.jsx";
+import MessagePage from "./pages/admin/MessagePage.jsx";
 
 
 const router = createBrowserRouter([
@@ -89,7 +90,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "messages",
-                element: <h1>Hello message</h1>
+                element: <MessagePage/>
             },
             {
                 path: "membres",

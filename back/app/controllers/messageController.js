@@ -6,12 +6,15 @@ export async function getAllMessages(req, res) {
 	
 	const { limit, offset } = usePagination(req.query)
 
+	const totalMessages = await Message.count()
+	
 	const messages = await Message.findAll({
 		offset,
 		limit
 	})
 
-	res.json(messages)
+	const totalPages = Math.ceil(totalMessages / limit)
+	res.json({messages, totalPages})
 
 };
 
