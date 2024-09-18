@@ -6,7 +6,8 @@ import PropTypes from "prop-types"
 function MenuLink({faIcon, url = "", text}) {
     
     return (
-        <NavLink to={url ? `/admin/${url}` : "/admin"} 
+        <NavLink to={url ? `/admin${url}` : "/admin"} 
+        end
             className={({ isActive }) =>
                 `p-2 flex items-center gap-2 rounded w-full ${isActive ? "bg-primaryColor text-white" : ""}`
             }>
