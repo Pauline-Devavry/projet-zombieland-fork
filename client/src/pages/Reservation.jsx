@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { api } from '../api/axiosConfig';
-import RedShadow from "../components/ui/RedShadow.jsx"
 import Container from "../components/Container.jsx"
 import zombieGif from "../assets/gif/zombie.gif"
 import runningPenguin from "../assets/gif/cartoon-run.gif"
+import {toast} from "react-toastify"
+import { useNavigate } from 'react-router-dom';
 
 function Reservation() {
 
     const [tickets, setTickets] = useState([])
+    const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
         date: "",
@@ -41,8 +43,10 @@ function Reservation() {
 
         try {
             await api.post("/reservations", formData)
-        } catch (err) {
-            console.log(err)
+            toast("Réservation validée !", {theme: "dark", type: 'success'})
+            navigate("/profil/reservations")
+        } catch {
+            toast("Erreur lors de la réservation", {theme: "dark", type: 'error'})
         }
     };
 
@@ -94,7 +98,7 @@ function Reservation() {
                                 Planifier votre visite
                             </h2>
 
-                            <form onSubmit={handleSubmit} className="max-w-[600px] mx-auto p-8 rounded-lg shadow-lg">
+                            <form onSubmit={handleSubmit} className="max-w-[500px] mx-auto rounded-lg shadow-lg">
 
                                 <div className="mb-6">
                                     <label className="block text-sm font-medium mb-2" htmlFor="ticketType">
@@ -104,7 +108,7 @@ function Reservation() {
                                         {
                                             tickets.map((ticket) => {
                                                 return (
-                                                    <div key={ticket.id} className='flex gap-4 border-y justify-between p-2'>
+                                                    <div key={ticket.id} className='flex border-y justify-between p-2'>
                                                         <div className='flex gap-4'>
                                                             <input 
                                                                 type="checkbox" 
@@ -119,7 +123,7 @@ function Reservation() {
                                                             formData.ticketChoices.filter(t => t.id === ticket.id).map((t) => {
                                                                 return (
                                                                     <div key={t.id} className='flex gap-4 items-center justify-center'>
-                                                                        <label htmlFor="">Quantité : </label>
+                                                                        <label htmlFor="" className='hidden sm:block'>Quantité : </label>
                                                                         <input type="number" name="quantity" id="" className='max-w-[45px] text-black text-center' 
                                                                         onChange={(e) => handleQuantityChange(ticket.id, e.target.value)}
                                                                         value={formData.ticketChoices.find(t => t.id === ticket.id).quantity}
@@ -177,7 +181,8 @@ function Reservation() {
 
                         
                         <img src={zombieGif} alt=" " className='h-[150px] absolute bottom-0 left-32  -z-30 animate-zombieRun'/>
-                        <img src={runningPenguin} alt=" " className='h-[100px]  absolute bottom-0 left-32  -z-30 animate-penguinRun '/>
+                        <img src={runningPenguin} alt=" " className='h-[100px]  absolute bottom-0 left-32  -z-30 animate-penguinRun'/>
+                        
             
 
             </Container>

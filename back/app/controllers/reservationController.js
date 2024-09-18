@@ -79,11 +79,48 @@ export async function updateOneReservation(req, res, next) {
 
 export async function createOneReservation(req, res) {
 
-  const data = req.body
+  const userId = req.user.id
 
-  console.log(data)
+  const ticketChoiceSchema = Joi.object({
+    id: Joi.number().integer().required(),
+    quantity: Joi.number().integer().min(1).required(), 
+    price: Joi.string().regex(/^\d+(\.\d{1,2})?$/).required()
+  });
 
-  res.json("Hello world")
+  const reservationSchema = Joi.object({
+    date: Joi.date().iso().required(), 
+    totalPrice: Joi.string().regex(/^\d+(\.\d{1,2})?$/).required(), 
+    ticketChoices: Joi.array().items(ticketChoiceSchema).min(1).required() 
+  });
+
+  const { error, value } = reservationSchema.validate(req.body)
+
+  if(error) {
+    return res.status(500).json({erreur: "Données invalides."})
+  }
+
+  
+  const newReservation = await Reservation.create({
+    date_visit: value.date,
+    status: "confirmée",
+    total_price: value.totalPrice,
+    user_id: userId
+  })
+
+  const ticketChoicePromises = value.ticketChoices.map(ticket => {
+    return (
+      ReservationHasTicket.create({
+        reservation_id: newReservation.id,
+        ticket_id: ticket.id,
+        quantity_ticket: ticket.quantity
+      })
+    )
+  })
+
+
+  await Promise.all(ticketChoicePromises)
+
+  res.json({message: "Réservation éffectué."})
 
 }
 

@@ -5,11 +5,6 @@ export class Reservation extends Model {}
 
 Reservation.init(
   {
-    num_reservation: {
-      type: DataTypes.STRING(20), 
-      unique: true,
-    },
-
     date_visit: {
       type: DataTypes.DATE,
       allowNull: false,
