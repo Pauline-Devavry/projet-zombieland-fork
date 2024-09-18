@@ -60,3 +60,8 @@ export async function createOneMessage(req, res, next) {
   }
 
 
+export async function getTotalMessages(req, res) {
+	const total = await Message.count()
+	res.json({total})
+}
+

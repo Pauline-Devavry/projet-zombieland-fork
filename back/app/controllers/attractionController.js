@@ -101,3 +101,8 @@ export async function updateOneAttraction(req, res, next) {
         attraction: updatedOneAttraction,
     });
 }
+
+export async function getTotalAttractions(req, res) {
+  const total = await Attraction.count()
+  res.json({total})
+}

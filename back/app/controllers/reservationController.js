@@ -184,3 +184,8 @@ export async function getUserReservations(req, res, next) {
     });
   }
 }
+
+export async function getTotalReservations(req, res) {
+  const total = await Reservation.count()
+  res.json({total})
+}

@@ -14,6 +14,8 @@ router.get(
   reservationsController.getUserReservations
 );
 
+router.get("/api/reservations/total", reservationsController.getTotalReservations)
+
 router.get("/api/reservations/:id", reservationsController.getOneReservation);
 
 router.patch(
