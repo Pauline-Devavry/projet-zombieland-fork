@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { Message } from "../models/Index.js";
+import { Message, User } from "../models/Index.js";
 import { usePagination } from "../utils/pagination.js";
 
 export async function getAllMessages(req, res) {

@@ -16,6 +16,7 @@ import Overview from "./pages/admin/Overview.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Reservation from "./pages/Reservation.jsx";
 import MessagePage from "./pages/admin/MessagePage.jsx";
+import MessageDetails from "./pages/admin/MessageDetails.jsx";
 
 
 const router = createBrowserRouter([
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
             {
                 path: "messages",
                 element: <MessagePage/>
+            },
+            {
+                path: "message/:id",
+                element: <MessageDetails/>
             },
             {
                 path: "membres",

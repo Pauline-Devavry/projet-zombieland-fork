@@ -13,8 +13,12 @@ import MenuLink from '../components/admin/MenuLink'
 import { NavLink, Outlet } from 'react-router-dom'
 
 import profilePlaceholder from "../assets/admindashboard/profile-placeholder.svg"
+import { useContext } from "react"
+import { AuthContext } from "../context/AuthContext"
 
 function AdminLayout() {
+
+    const { user, loading } = useContext(AuthContext)
 
     return (
         <div className="h-screen w-screen bg-[#F9F9F9] flex text-adminTextColor font-rubik">
@@ -89,8 +93,8 @@ function AdminLayout() {
                     <div className='flex gap-4'>
                         <img src={profilePlaceholder} alt=" " className='h-[52px]'/>
                         <div>
-                            <p>Dave Lopper</p>
-                            <p>dave.lopper@gmail.com</p>
+                            <p>{user.first_name} {user.name}</p>
+                            <p>{user.email}</p>
                         </div>
                     </div>
                 </header>
