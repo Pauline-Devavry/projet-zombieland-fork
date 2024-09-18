@@ -19,7 +19,7 @@ import InteractiveHomeMenu from "../components/InteractiveHomeMenu.jsx"
 
 import { useState, useEffect } from "react";
 import { api } from "../api/axiosConfig.js";
-import AttractionCard from "../components/AttractionCard.jsx"
+import AttractionImage from "../components/AttractionImage.jsx"
 
 function HomePage() {
     const [attractions, setAttractions] = useState([]);
@@ -27,7 +27,7 @@ function HomePage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await api.get("/attractions?limit=4");
+                const response = await api.get("/attractions?limit=6");
                 setAttractions(response.data);
             } catch (error) {
                 console.error("Erreur lors de la récupération des attractions:", error);
@@ -74,17 +74,15 @@ function HomePage() {
                         De nombreuses attractions à découvrir
                     </h2>
                     <div className="mx-auto px-4 py-8">
-                        <div className="flex flex-col md:flex-row md:space-x-4">
-                            <div className="flex flex-col space-y-4 md:w-1/2">
-                                {attractions.map((attraction) => (
-                                    <AttractionCard
+                        <div className="flex flex-wrap justify-center gap-4">
+                            {attractions.map((attraction) => (
+                                <div key={attraction.id} className="flex-basis-1/3 max-w-[calc(33%-1rem)]">
+                                    <AttractionImage
                                         key={attraction.id}
-                                        id={attraction.id}
-                                        name={attraction.name}
-                                        description={attraction.description}
+                                        // image_url={attraction.image_url}
                                     />
-                                ))}
-                            </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
