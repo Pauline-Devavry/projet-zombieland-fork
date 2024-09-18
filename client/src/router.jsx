@@ -15,6 +15,7 @@ import AdminLayout from "./layouts/AdminLayout.jsx";
 import Overview from "./pages/admin/Overview.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Reservation from "./pages/Reservation.jsx";
+import MessagePage from "./pages/admin/MessagePage.jsx";
 
 
 const router = createBrowserRouter([
@@ -77,12 +78,41 @@ const router = createBrowserRouter([
     },
     {
         path: "admin",
-        element: <AdminLayout/>,
+        element: (
+            <ProtectedRoute>
+                <AdminLayout/>
+            </ProtectedRoute>
+        ),
         children: [
             {
                 index: true,
                 element: <Overview/>
-            }
+            },
+            {
+                path: "messages",
+                element: <MessagePage/>
+            },
+            {
+                path: "membres",
+                element: <h1>Members page</h1>
+            },
+            {
+                path: "reservations",
+                element: <h1>reservations page</h1>
+            },
+            {
+                path: "billets",
+                element: <h1>billets page</h1>
+            },
+            {
+                path: "categories",
+                element: <h1>category page</h1>
+            },
+            {
+                path: "attractions",
+                element: <h1>attractions page</h1>
+            },
+
         ]
     }
 ]);
