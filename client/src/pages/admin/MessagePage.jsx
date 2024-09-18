@@ -4,6 +4,7 @@ import { faPenToSquare, faChevronLeft, faChevronRight } from "@fortawesome/free-
 import { api } from "../../api/axiosConfig";
 import { useEffect, useState } from "react";
 import Pagination from "../../components/admin/Pagination";
+import CardTotal from "../../components/admin/CardTotal";
 
 function MessagePage() {
 
@@ -70,13 +71,7 @@ function MessagePage() {
                 <Pagination onPageChange={handlePagination} currentPage={currentPage} />
             </div>
 
-            <div className="w-1/3 max-w-[calc(33%-1rem)] flex-shrink-0 ml-4">
-                <div className="bg-adminCardColor p-4 rounded-lg min-h-[140px] flex flex-col justify-between relative overflow-hidden">
-                <span className="text-adminTextGrayColor">Total messages</span>
-                <span className="self-end z-20 text-white">{totalMessages}</span>
-                <div className="absolute w-32 h-32 bg-primaryColor rounded-full -right-8 -bottom-8" />
-                </div>  
-            </div>
+            <CardTotal total={totalMessages} modelName={"messages"} className={"w-1/3 max-w-[calc(33%-1rem)]"} />
         </div>
     );
 }

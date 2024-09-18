@@ -7,16 +7,16 @@ function ReservationCard({data}) {
     return (
         <div className="bg-adminCardColor min-h-[150px] p-4 rounded-sm border-r-2 border-primaryColor font-thin flex flex-col justify-between">
             <span>
-                Numéro: 1932
+                Numéro: {data.id}
             </span>
             <div className="flex justify-between items-end">
                 <div className="flex items-center gap-2">
                     <FontAwesomeIcon icon={faCalendarDays} className="text-primaryColor"/>
-                    <span>22/06/2025</span>
+                    <span>{data.date_visit}</span>
                 </div>
                 <div className="flex flex-col">
-                    <span>Elon Musk</span>
-                    <span>elon@musk.com</span>
+                    <span>{data.User.first_name} {data.User.name}</span>
+                    <span>{data.User.email}</span>
                 </div>
             </div>
         </div>
