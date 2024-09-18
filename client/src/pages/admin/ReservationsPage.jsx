@@ -14,6 +14,8 @@ function ReservationsPage() {
     const [totalPages, setTotalPages] = useState(0)
     const [totalReservations, setTotalReservations] = useState(0)
 
+    const [searchBar, setSearchBar] = useState(0)
+
     useEffect(() => {
         const fetchData = async () => {
             const { data: {reservations, totalPages} } = await api.get(`/reservations?page=${currentPage}&limit=12`)
@@ -31,12 +33,22 @@ function ReservationsPage() {
         }
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            const response = await api.get(`/reservations/${searchBar}`)
+            setReservations([response.data])
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
         <div className="flex flex-col gap-6">
         
-            <form className="flex">
+            <form className="flex" onSubmit={handleSubmit}>
                 <div className="flex gap-4">
-                    <input type="text" name="reservation_id" id="" placeholder="Numéro de réservation" className="border border-adminBorderColor p-1 rounded-sm"/>
+                    <input type="number" name="reservation_id" value={searchBar} id="" placeholder="Numéro de réservation" className="border border-adminBorderColor p-1 rounded-sm" onChange={(e) => {setSearchBar(Number(e.target.value))}}/>
                     <button className="border border-adminBorderColor p-1 rounded-sm px-2 ">
                         <FontAwesomeIcon icon={faMagnifyingGlass} className="text-primaryColor"/>
                     </button>
