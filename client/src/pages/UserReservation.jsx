@@ -47,9 +47,7 @@ function UserReservation() {
             theme: "dark",
           });
           setReservations((prevReservations) =>
-            prevReservations.filter(
-              (r) => r.id !== reservation.id
-            )
+            prevReservations.filter((r) => r.id !== reservation.id)
           );
         })
         .catch((err) => {
@@ -119,10 +117,7 @@ function UserReservation() {
                     id={`quantity_ticket-${reservation.tickets[0]?.ReservationHasTicket.quantity_ticket}`}
                     name="quantity_ticket"
                     type="number"
-                    value={
-                      reservation.tickets[0]?.ReservationHasTicket
-                        ?.quantity_ticket || 0
-                    }
+                    value={reservation.totalTickets}
                     readOnly
                     className="w-full p-3 bg-secondaryBackgroundColor rounded border border-gray-700"
                   />
