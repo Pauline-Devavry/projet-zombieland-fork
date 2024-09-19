@@ -19,6 +19,7 @@ import MessagePage from "./pages/admin/MessagePage.jsx";
 import MessageDetails from "./pages/admin/MessageDetails.jsx";
 import ReservationsPage from "./pages/admin/ReservationsPage.jsx";
 import ReservationDetails from "./pages/admin/ReservationDetails.jsx";
+import AttractionsPage from "./pages/admin/AttractionsPage.jsx";
 
 
 const router = createBrowserRouter([
@@ -121,7 +122,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "attractions",
-                element: <h1>attractions page</h1>
+                element: <AttractionsPage />
             },
 
         ]
