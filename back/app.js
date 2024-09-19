@@ -27,7 +27,7 @@ app.use(
 // Body parsers
 app.use(express.json()); // application/json
 app.use(express.urlencoded({ extended: true })); // application/x-www-form-urlencoded
-app.use(multer().none()); // multipart/form-data
+// app.use(multer().none()); // multipart/form-data
 app.use(cookieParser());
 
 app.use(passport.initialize());

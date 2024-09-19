@@ -6,6 +6,7 @@ import reservationsRouter from "./reservations.router.js"
 import ticketsRouter from "./tickets.router.js"
 import usersRouter from "./users.router.js"
 import authRouter from "./auth.router.js"
+import s3Router from "./s3.router.js"
 
 const router = Router()
 
@@ -16,6 +17,6 @@ router.use(reservationsRouter)
 router.use(ticketsRouter)
 router.use(usersRouter)
 router.use(authRouter)
-
+router.use(s3Router)
 
 export default router
