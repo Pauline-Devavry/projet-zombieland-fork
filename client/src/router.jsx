@@ -58,7 +58,7 @@ const router = createBrowserRouter([
       },
       {
         path: "faq",
-        element: <Accordion />,
+        element: <Accordion/>,
       },
       {
         path: "attraction/:id",
