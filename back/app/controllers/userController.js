@@ -84,3 +84,8 @@ export async function updateUser(req, res, next) {
       .json({ error: "Erreur lors de la mise à jour de l'utilisateur" });
   }
 }
+
+export async function getTotalUsers(req, res) {
+  const total = await User.count()
+  res.json({total})
+}

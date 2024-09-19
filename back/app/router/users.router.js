@@ -5,6 +5,7 @@ import passport from "passport";
 const router = Router();
 
 router.get("/api/users", userController.getAllUsers);
+router.get("/api/users/total", userController.getTotalUsers)
 router.get("/api/users/:id", userController.getOneUser);
 
 router.patch(

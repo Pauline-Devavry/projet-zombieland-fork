@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { Message } from "../models/Index.js";
+import { Message, User } from "../models/Index.js";
 import { usePagination } from "../utils/pagination.js";
 
 export async function getAllMessages(req, res) {
@@ -59,4 +59,9 @@ export async function createOneMessage(req, res, next) {
 	  return res.status(201).json({ message: 'Message créé avec succès', newMessage });
   }
 
+
+export async function getTotalMessages(req, res) {
+	const total = await Message.count()
+	res.json({total})
+}
 

@@ -10,70 +10,78 @@ import { usePagination } from "../utils/pagination.js";
 export async function getAllReservations(req, res) {
   const { limit, offset } = usePagination(req.query);
 
+  const totalReservations = await Reservation.count()
+
   const reservations = await Reservation.findAll({
     include: User,
     limit,
     offset,
   });
 
-  return res.json(reservations).status(200);
+  const totalPages = Math.ceil(totalReservations / limit)
+
+  return res.json({reservations, totalPages}).status(200);
 }
 
 export async function getOneReservation(req, res, next) {
   const id = Number(req.params.id);
-  const ReservationId = await Reservation.findByPk(id, { include: User });
-  if (ReservationId) {
-    res.json(ReservationId).status(200);
-  } else {
-    next();
-  }
+
+    
+    const reservation = await Reservation.findByPk(id, {
+      include: [
+        {
+          model: User,
+        },
+        {
+          model: Ticket,
+          as: "tickets", 
+          through: {
+            attributes: ["quantity_ticket"], 
+          },
+        },
+      ],
+    });
+
+    if (!reservation) {
+      return res.status(404).json({ message: "Réservation non trouvée." });
+    }
+
+    
+    const totalTickets = reservation.tickets.reduce(
+      (acc, ticket) => acc + ticket.ReservationHasTicket.quantity_ticket,
+      0
+    );
+
+    
+    const updatedReservation = {
+      ...reservation.dataValues,
+      totalTickets: totalTickets,
+    };
+
+    res.status(200).json(updatedReservation);
 }
 
 export async function updateOneReservation(req, res, next) {
   const reservationSchema = Joi.object({
-    num_reservation: Joi.string().required(),
-    date_visit: Joi.date().iso().required(),
-    status: Joi.string().required(),
-    total_price: Joi.number().required(),
-    user_id: Joi.number().required(),
+    date_visit: Joi.date().iso().optional(),
+    status: Joi.string().optional(),
   });
 
-  const { error } = reservationSchema.validate(req.body);
+  const { error, value } = reservationSchema.validate(req.body);
   if (error) {
-    const errorMessage = { message: "Vous devez remplir tous les champs" };
+    const errorMessage = { message: error };
     return res.status(400).json(errorMessage);
   }
 
   const id = Number(req.params.id);
 
-  const { num_reservation, date_visit, status, total_price, user_id } =
-    req.body;
-  const reservation = await Reservation.findByPk(id);
+  const reservation = await Reservation.findByPk(id)
 
-  if (num_reservation) {
-    reservation.num_reservation = num_reservation;
-  }
-
-  if (date_visit) {
-    reservation.date_visit = date_visit;
-  }
-
-  if (status) {
-    reservation.status = status;
-  }
-
-  if (total_price) {
-    reservation.total_price = total_price;
-  }
-
-  if (user_id) {
-    reservation.user_id = user_id;
-  }
-  const updateOneRes = await reservation.save();
+  const updatedReservation = await reservation.update(value)
 
   res.status(200).json({
     message: "La réservation a été modifiée avec succès.",
-    reservation: updateOneRes,
+    reservation: updatedReservation,
   });
 }
 
@@ -195,4 +203,9 @@ export async function getUserReservations(req, res, next) {
       error,
     });
   }
+}
+
+export async function getTotalReservations(req, res) {
+  const total = await Reservation.count()
+  res.json({total})
 }
