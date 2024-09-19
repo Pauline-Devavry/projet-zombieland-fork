@@ -19,6 +19,8 @@ import MessagePage from "./pages/admin/MessagePage.jsx";
 import MessageDetails from "./pages/admin/MessageDetails.jsx";
 import ReservationsPage from "./pages/admin/ReservationsPage.jsx";
 import ReservationDetails from "./pages/admin/ReservationDetails.jsx";
+import AttractionsPage from "./pages/admin/AttractionsPage.jsx";
+import AttractionAddForm from "./pages/admin/AttractionAddForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -90,42 +92,46 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      {
-        index: true,
-        element: <Overview />,
-      },
-      {
-        path: "messages",
-        element: <MessagePage />,
-      },
-      {
-        path: "message/:id",
-        element: <MessageDetails />,
-      },
-      {
-        path: "membres",
-        element: <h1>Members page</h1>,
-      },
-      {
-        path: "reservations",
-        element: <ReservationsPage />,
-      },
-      {
-        path: "reservations/:id",
-        element: <ReservationDetails />,
-      },
-      {
-        path: "billets",
-        element: <h1>billets page</h1>,
-      },
-      {
-        path: "categories",
-        element: <h1>category page</h1>,
-      },
-      {
-        path: "attractions",
-        element: <h1>attractions page</h1>,
-      },
+            {
+                index: true,
+                element: <Overview/>
+            },
+            {
+                path: "messages",
+                element: <MessagePage/>
+            },
+            {
+                path: "message/:id",
+                element: <MessageDetails/>
+            },
+            {
+                path: "membres",
+                element: <h1>Members page</h1>
+            },
+            {
+                path: "reservations",
+                element: <ReservationsPage/>
+            },
+            {
+                path: "reservations/:id",
+                element: <ReservationDetails/>
+            },
+            {
+                path: "billets",
+                element: <h1>billets page</h1>
+            },
+            {
+                path: "categories",
+                element: <h1>category page</h1>
+            },
+            {
+                path: "attractions",
+                element: <AttractionsPage />
+            },
+            {
+                path: "attractions/ajouter",
+                element: <AttractionAddForm />
+            }
     ],
   },
 ]);
