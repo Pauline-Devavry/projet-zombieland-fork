@@ -24,6 +24,7 @@ import Marquee from "react-fast-marquee";
 
 function HomePage() {
     const [attractions, setAttractions] = useState([]);
+    const [marqueeLoading, setMarqueeLoading] = useState(true)
     const [isPaused, setIsPaused] = useState(false);
 
     const togglePause = () => {
@@ -33,8 +34,9 @@ function HomePage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await api.get("/attractions?");
-                setAttractions(response.data);
+                const {data: {attractions}} = await api.get("/attractions?");
+                setAttractions(attractions);
+                setMarqueeLoading(false)
             } catch (error) {
                 console.error("Erreur lors de la récupération des attractions:", error);
             }
@@ -87,53 +89,63 @@ function HomePage() {
 
             {/* Wave section */}
             <div className="flex flex-col gap-0">
-  <img src={waveImg} alt="" className="w-full -mb-1" />
-  <div className="bg-gradient-to-b from-gradiantDarkRed to-primaryColor flex flex-col items-center gap-20 overflow-hidden py-24">
-    <h2 className="text-heading2-mobile text-center md:text-heading2-desktop">
-      De nombreuses attractions à découvrir
-    </h2>
-    <div className="w-full">
-      <div className="mx-auto px-4 py-4" onClick={togglePause}>
-        <Marquee direction="left" speed={40} pauseOnHover={true} pauseOnClick={true} play={!isPaused} gradient={false}>
-          {attractions.slice(0, 13).map((attraction) => (
-            <div key={attraction.id} className="w-64 h-64 mx-4">
-              <AttractionImage
-                // image_url={attraction.image_url}
-              />
+              <img src={waveImg} alt="" className="w-full -mb-1" />
+              <div className="bg-gradient-to-b from-gradiantDarkRed to-primaryColor flex flex-col items-center gap-20 overflow-hidden py-24">
+                <h2 className="text-heading2-mobile text-center md:text-heading2-desktop">
+                  De nombreuses attractions à découvrir
+                </h2>
+                <div className="w-full">
+                  {
+                    marqueeLoading ? (
+                      <h1>Chargement des images...</h1>
+                    ) : (
+                      <>
+
+                        <div className="mx-auto px-4 py-4" onClick={togglePause}>
+                          <Marquee direction="left" speed={40} pauseOnHover={true} pauseOnClick={true} play={!isPaused} gradient={false}>
+                            {attractions.slice(0, 13).map((attraction) => (
+                              <div key={attraction.id} className="w-64 h-64 mx-4">
+                                <AttractionImage
+                                  // image_url={attraction.image_url}
+                                />
+                              </div>
+                            ))}
+                            {/* Répétition pour un défilement continu */}
+                            {attractions.slice(0, 13).map((attraction) => (
+                              <div key={`repeat-${attraction.id}`} className="w-64 h-64 mx-4">
+                                <AttractionImage
+                                  // image_url={attraction.image_url}
+                                />
+                              </div>
+                            ))}
+                          </Marquee>
+                        </div>
+                        <div className="mx-auto px-4 py-4" onClick={togglePause}>
+                          <Marquee direction="right" speed={40} pauseOnHover={true} pauseOnClick={true} play={!isPaused} gradient={false}>
+                            {attractions.slice(13).map((attraction) => (
+                              <div key={attraction.id} className="w-64 h-64 mx-4">
+                                <AttractionImage
+                                  // image_url={attraction.image_url}
+                                />
+                              </div>
+                            ))}
+                            {/* Répétition pour un défilement continu */}
+                            {attractions.slice(13).map((attraction) => (
+                              <div key={`repeat-${attraction.id}`} className="w-64 h-64 mx-4">
+                                <AttractionImage
+                                  // image_url={attraction.image_url}
+                                />
+                              </div>
+                            ))}
+                          </Marquee>
+                        </div>
+
+                      </>
+                    )
+                  }
+                </div>
+              </div>
             </div>
-          ))}
-          {/* Répétition pour un défilement continu */}
-          {attractions.slice(0, 13).map((attraction) => (
-            <div key={`repeat-${attraction.id}`} className="w-64 h-64 mx-4">
-              <AttractionImage
-                // image_url={attraction.image_url}
-              />
-            </div>
-          ))}
-        </Marquee>
-      </div>
-      <div className="mx-auto px-4 py-4" onClick={togglePause}>
-        <Marquee direction="right" speed={40} pauseOnHover={true} pauseOnClick={true} play={!isPaused} gradient={false}>
-          {attractions.slice(13).map((attraction) => (
-            <div key={attraction.id} className="w-64 h-64 mx-4">
-              <AttractionImage
-                // image_url={attraction.image_url}
-              />
-            </div>
-          ))}
-          {/* Répétition pour un défilement continu */}
-          {attractions.slice(13).map((attraction) => (
-            <div key={`repeat-${attraction.id}`} className="w-64 h-64 mx-4">
-              <AttractionImage
-                // image_url={attraction.image_url}
-              />
-            </div>
-          ))}
-        </Marquee>
-      </div>
-    </div>
-  </div>
-</div>
 
             {/* Interactive menu seperated in its own component*/}
 

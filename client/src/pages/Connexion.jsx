@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, useNavigate, useLocation, Navigate } from "react-router-dom";
 import { api } from "../api/axiosConfig";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
@@ -7,10 +7,14 @@ import { toast } from "react-toastify";
 function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setUser } = useContext(AuthContext);
+  const { loading, user, setUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  if(user) {
+    return <Navigate to={"/"} replace/>
+  }
 
   const handleLogin = async (event) => {
     event.preventDefault();
