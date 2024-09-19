@@ -16,15 +16,20 @@ function AttractionCard({data}) {
                         <div>
                             <h3>{data.name}</h3>
                             <p className="text-adminTextGrayColor font-thin text-[12px]">
-                                {data.description} 
+                                {
+                                    data.description.slice(0,90)
+                                }
+                                 ... 
                             </p>
                         </div>
 
                         <div className="flex justify-between ">
-                            <Link className="z-30 text-white">
+                            <Link to={`/admin/attractions/${data.id}`} className="z-30 text-white">
                                 Modifier
                             </Link>
-                            <FontAwesomeIcon icon={faTrash} className="text-primaryColor"/>
+                            <button>
+                                <FontAwesomeIcon icon={faTrash} className="text-primaryColor"/> 
+                            </button>
                         </div>
 
                     </div>

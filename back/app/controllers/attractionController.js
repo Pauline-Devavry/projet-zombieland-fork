@@ -12,8 +12,15 @@ export async function getAllAttractions(req, res) {
         limit,
         offset
     });
+
+    const totalAttractions = await Attraction.count()
+
+    const totalPages = Math.ceil(totalAttractions / limit)
     
-    return res.json(attractions).status(200);
+    return res.json({
+      attractions,
+      totalPages
+    }).status(200);
 }
 
 export async function getOneAttraction(req, res, next) {
