@@ -3,7 +3,7 @@ import { faArrowLeft, faTicketSimple, faCalendarDays } from "@fortawesome/free-s
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { api } from "../../api/axiosConfig";
-
+import { toast } from "react-toastify";
 
 function ReservationDetails() {
 
@@ -13,7 +13,7 @@ function ReservationDetails() {
     const [loading, setLoading] = useState(true)
     const [formData, setFormData] = useState({
         status: "",
-        visiteDate: ""
+        visitDate: ""
     })
 
     useEffect(() => {
@@ -21,7 +21,7 @@ function ReservationDetails() {
             try {
                 const response = await api.get(`/reservations/${id}`)
                 setReservation(response.data)
-                setFormData(prev => ({...prev, visiteDate: response.data.date_visit}))
+                setFormData(prev => ({...prev, visitDate: response.data.date_visit}))
                 setFormData(prev => ({...prev, status: response.data.status}))
                 setLoading(false)
             } catch (error) {
@@ -29,11 +29,7 @@ function ReservationDetails() {
             }
         }
         fetchData()
-    }, [])
-
-    const handleInputChange = (e) => {
-        setVisitDate(e.target.value)
-    }
+    }, [id])
 
     const handleFormChange = (e) => {
         const { name, value } = e.target
@@ -43,6 +39,19 @@ function ReservationDetails() {
                 [name]: value
             }
         })
+    }
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            await api.patch(`/reservations/${id}`, {
+                status: formData.status,
+                date_visit: formData.visitDate
+            })
+            toast("Réservation mise à jour !", {type: "success", theme: "light"})
+        } catch {
+            toast("Erreur lors de la mise à jour", {type: "error", theme: "light"})
+        }
     }
 
     return (
@@ -68,7 +77,7 @@ function ReservationDetails() {
                                     <span>{reservation.User.email}</span>
                                 </div>
                             </div>
-                            <form className="flex justify-between items-end">
+                            <form className="flex justify-between items-end" onSubmit={handleFormSubmit}>
                                 <div className="flex flex-col gap-4">
                                     <div className="flex flex-col gap-2">
                                         <span>Nombre de billets</span>
@@ -94,7 +103,7 @@ function ReservationDetails() {
                                         <span>Date de visite</span>
                                         <div className="flex gap-4 items-center">
                                             <FontAwesomeIcon icon={faCalendarDays} className="text-primaryColor"/>
-                                            <input type="date" value={`${formData.visiteDate}`} onChange={handleFormChange}/>
+                                            <input type="date" name="visitDate" value={`${formData.visitDate}`} onChange={handleFormChange}/>
                                         </div>
                                     </div>
                                 </div>
