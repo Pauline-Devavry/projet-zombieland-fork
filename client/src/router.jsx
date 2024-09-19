@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import BaseLayout from "./layouts/BaseLayout.jsx";
 import NotFoundPage from "./pages/404.jsx";
 import HomePage from "./pages/HomePage.jsx";
@@ -20,112 +20,114 @@ import MessageDetails from "./pages/admin/MessageDetails.jsx";
 import ReservationsPage from "./pages/admin/ReservationsPage.jsx";
 import ReservationDetails from "./pages/admin/ReservationDetails.jsx";
 
-
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <BaseLayout />,
-        errorElement: <NotFoundPage />,
-        children: [
-            {
-                index: true,
-                element: <HomePage />,
-            },
-            {
-                path: "attractions",
-                element: <AttractionPage />,
-            },
-            {
-                path: "reserver",
-                element: <Reservation/>
-            },
-            {
-                path: "inscription",
-                element: <Inscription />,
-            },
-            {
-                path: "connexion",
-                element: <Connexion />,
-            },
-            {
-                path: "contact",
-                element: <Contact />,
-            },
-            {
-                path: "faq",
-                element: <Accordion />,
-            },
-            {
-                path: "attraction/:id",
-                element: <AttractionInfo />,
-            },
-            {
-                path: "profil",
-                element: <UserLayout />,
-                children: [
-                    {
-                        path: "reservations",
-                        element: (
-                            <ProtectedRoute>
-                                <UserReservation />
-                            </ProtectedRoute>
-                        ),
-                    },
-                    {
-                        index: true,
-                        element: <UserProfil />,
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        path: "admin",
+  {
+    path: "/",
+    element: <BaseLayout />,
+    errorElement: <NotFoundPage />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: "attractions",
+        element: <AttractionPage />,
+      },
+      {
+        path: "reserver",
         element: (
-            <ProtectedRoute>
-                <AdminLayout/>
-            </ProtectedRoute>
+          <ProtectedRoute>
+            <Reservation />
+          </ProtectedRoute>
         ),
+      },
+      {
+        path: "inscription",
+        element: <Inscription />,
+      },
+      {
+        path: "connexion",
+        element: <Connexion />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
+        path: "faq",
+        element: <Accordion />,
+      },
+      {
+        path: "attraction/:id",
+        element: <AttractionInfo />,
+      },
+      {
+        path: "profil",
+        element: <UserLayout />,
         children: [
-            {
-                index: true,
-                element: <Overview/>
-            },
-            {
-                path: "messages",
-                element: <MessagePage/>
-            },
-            {
-                path: "message/:id",
-                element: <MessageDetails/>
-            },
-            {
-                path: "membres",
-                element: <h1>Members page</h1>
-            },
-            {
-                path: "reservations",
-                element: <ReservationsPage/>
-            },
-            {
-                path: "reservations/:id",
-                element: <ReservationDetails/>
-            },
-            {
-                path: "billets",
-                element: <h1>billets page</h1>
-            },
-            {
-                path: "categories",
-                element: <h1>category page</h1>
-            },
-            {
-                path: "attractions",
-                element: <h1>attractions page</h1>
-            },
-
-        ]
-    }
+          {
+            path: "reservations",
+            element: (
+              <ProtectedRoute>
+                <UserReservation />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            index: true,
+            element: <UserProfil />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "admin",
+    element: (
+      <ProtectedRoute>
+        <AdminLayout />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Overview />,
+      },
+      {
+        path: "messages",
+        element: <MessagePage />,
+      },
+      {
+        path: "message/:id",
+        element: <MessageDetails />,
+      },
+      {
+        path: "membres",
+        element: <h1>Members page</h1>,
+      },
+      {
+        path: "reservations",
+        element: <ReservationsPage />,
+      },
+      {
+        path: "reservations/:id",
+        element: <ReservationDetails />,
+      },
+      {
+        path: "billets",
+        element: <h1>billets page</h1>,
+      },
+      {
+        path: "categories",
+        element: <h1>category page</h1>,
+      },
+      {
+        path: "attractions",
+        element: <h1>attractions page</h1>,
+      },
+    ],
+  },
 ]);
 
-export  default  router
+export default router;
