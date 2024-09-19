@@ -11,9 +11,18 @@ function AttractionAddForm() {
     const [formData, setFormData] = useState({
         name: "",
         file: null,
-        category: "",
+        category: 1,
         description: ""
     })
+    const [categories, setCategories] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const { data } = await api.get("/categories")
+            setCategories(data)
+        }
+        fetchData()
+    },[])
 
     const handleFormChange = (e) => {
         const { name, value, type, files } = e.target;
@@ -28,10 +37,20 @@ function AttractionAddForm() {
     const handleFormSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await api.get("/s3/test", {
-                file: formData.file
+            const formDataImage = new FormData()
+            formDataImage.append('image', formData.file)
+            const { data: { imgUrl } } = await api.post("/s3/upload-image", formDataImage, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
             })
-            console.log(response)
+            await api.post("/attractions", {
+                name: formData.name,
+                image_url: imgUrl,
+                description: formData.description,
+                category_id: formData.category
+            })
+            toast("Attraction ajouté !", {theme: "light", type: "success"})
         } catch {
             toast("Une erreur est survenue", {type: "error", theme: "light"})
         }
@@ -51,33 +70,36 @@ function AttractionAddForm() {
                             <h2 className="mb-2">Ajouter une attraction</h2>
                             <div className="flex flex-col gap-4">
                                 <div>
-                                    <input type="file" name="file" id="file_input" className="hidden" onChange={handleFormChange}/>
+                                    <input type="file" name="file" id="file_input" className="hidden" onChange={handleFormChange} required/>
                                     <label htmlFor="file_input" className="border border-primaryColor border-dashed  w-[365px] h-[144px] flex items-center justify-center rounded cursor-pointer bg-white">
-                                        <span className="text-adminTextGrayColor font-light">Télécharger une image</span>
+                                        <span className="text-adminTextGrayColor font-light">{formData.file ? formData.file.name : "Télécharger une image"}</span>
                                     </label>
                                 </div>
                                 <div className="flex flex-col gap-2">
                                     <label htmlFor="attraction_name">Nom de l&apos;attraction</label>
-                                    <input type="text" name="name" id="attraction_name" className="border border-primaryColor rounded" onChange={handleFormChange} value={formData.name}/>
+                                    <input type="text" name="name" id="attraction_name" className="border border-primaryColor rounded" onChange={handleFormChange} value={formData.name} required/>
                                 </div>
                                 <div className="flex flex-col gap-2">
                                     <label htmlFor="attraction_category">Séléctionnez catégories</label>
-                                    <select name="category" id="attraction_category" className="border border-primaryColor rounded">
-                                        <option value="">Zombulator</option>
-                                        <option value="">Roler</option>
-                                        <option value="">Zombulator</option>
-                                        <option value="">Zombulator</option>
+                                    <select name="category" id="attraction_category" className="border border-primaryColor rounded" required value={formData.category} onChange={handleFormChange}>
+                                        {
+                                            categories?.map((category) => (
+                                                <option key={category.id} value={category.id}>
+                                                    {category.name}
+                                                </option>
+                                            ))
+                                        }
                                     </select>
                                 </div>
                                 <div className="flex flex-col gap-2">
                                     <label htmlFor="attraction_description">Description</label>
-                                    <textarea name="description" id="attraction_description" rows={8} className="border border-primaryColor rounded"/>
+                                    <textarea name="description" id="attraction_description" rows={8} className="border border-primaryColor rounded" value={formData.description} onChange={handleFormChange} required/>
                                 </div>
                                 <button className="bg-primaryColor text-white py-2 rounded">
                                     Ajouter
                                 </button>
                             </div>
-                            
+
                         </form>
                     </div>
         </div>

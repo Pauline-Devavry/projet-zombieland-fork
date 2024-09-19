@@ -27,7 +27,7 @@ function AttractionsPage() {
             }
         }
         fetchData()
-    })
+    },[currentPage])
 
     const handlePagination = (page) => {
         if(page >= 1 && page <= totalPages) {

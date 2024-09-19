@@ -139,6 +139,19 @@ function Header() {
         <Logo />
         <nav>
           <ul className="hidden md:flex gap-4 font-extralight">
+            {
+              user?.role === "administrateur" ? (
+                <li>
+                  <NavLink
+                    to={"/admin"}
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+              ) : (
+                undefined
+              )
+            }
             <li>
               <NavLink
                 to={"/"}

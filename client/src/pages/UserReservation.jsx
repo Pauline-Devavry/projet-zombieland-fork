@@ -11,8 +11,6 @@ function UserReservation() {
   const { user, loading } = useContext(AuthContext);
 
   useEffect(() => {
-    console.log("user", user);
-
     if (loading) {
       return <h1>Chargement de la page</h1>;
     }
