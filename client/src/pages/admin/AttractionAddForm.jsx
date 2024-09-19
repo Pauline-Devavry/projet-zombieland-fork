@@ -28,7 +28,10 @@ function AttractionAddForm() {
     const handleFormSubmit = async (e) => {
         e.preventDefault()
         try {
-            console.log(formData)
+            const response = await api.get("/s3/test", {
+                file: formData.file
+            })
+            console.log(response)
         } catch {
             toast("Une erreur est survenue", {type: "error", theme: "light"})
         }
