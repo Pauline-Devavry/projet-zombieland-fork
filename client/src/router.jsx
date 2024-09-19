@@ -66,7 +66,11 @@ const router = createBrowserRouter([
       },
       {
         path: "profil",
-        element: <UserLayout />,
+        element: (
+            <ProtectedRoute>
+                <UserLayout/>
+            </ProtectedRoute>
+        ),
         children: [
           {
             path: "reservations",
@@ -87,7 +91,7 @@ const router = createBrowserRouter([
   {
     path: "admin",
     element: (
-      <ProtectedRoute>
+      <ProtectedRoute adminOnly={true}>
         <AdminLayout />
       </ProtectedRoute>
     ),
