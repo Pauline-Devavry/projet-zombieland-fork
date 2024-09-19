@@ -25,11 +25,6 @@ import Marquee from "react-fast-marquee";
 function HomePage() {
     const [attractions, setAttractions] = useState([]);
     const [marqueeLoading, setMarqueeLoading] = useState(true)
-    const [isPaused, setIsPaused] = useState(false);
-
-    const togglePause = () => {
-        setIsPaused(!isPaused);
-    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -101,10 +96,10 @@ function HomePage() {
                     ) : (
                       <>
 
-                        <div className="mx-auto px-4 py-4" onClick={togglePause}>
-                          <Marquee direction="left" speed={40} pauseOnHover={true} pauseOnClick={true} play={!isPaused} gradient={false}>
+                        <div className="flex flex-col gap-6">
+                          <Marquee direction="left" speed={70} pauseOnHover={true} pauseOnClick={false} gradient={false}>
                             {attractions.slice(0, 13).map((attraction) => (
-                              <div key={attraction.id} className="w-64 h-64 mx-4">
+                              <div key={attraction.id} className="mx-4">
                                 <AttractionImage
                                   // image_url={attraction.image_url}
                                 />
@@ -112,26 +107,24 @@ function HomePage() {
                             ))}
                             {/* Répétition pour un défilement continu */}
                             {attractions.slice(0, 13).map((attraction) => (
-                              <div key={`repeat-${attraction.id}`} className="w-64 h-64 mx-4">
+                              <div key={`repeat-${attraction.id}`} className="mx-4">
                                 <AttractionImage
                                   // image_url={attraction.image_url}
                                 />
                               </div>
                             ))}
                           </Marquee>
-                        </div>
-                        <div className="mx-auto px-4 py-4" onClick={togglePause}>
-                          <Marquee direction="right" speed={40} pauseOnHover={true} pauseOnClick={true} play={!isPaused} gradient={false}>
-                            {attractions.slice(13).map((attraction) => (
-                              <div key={attraction.id} className="w-64 h-64 mx-4">
+                          <Marquee direction="right" speed={70} pauseOnHover={true} pauseOnClick={false}  gradient={false}>
+                            {attractions.slice(0, 13).map((attraction) => (
+                              <div key={attraction.id} className="mx-4">
                                 <AttractionImage
                                   // image_url={attraction.image_url}
                                 />
                               </div>
                             ))}
                             {/* Répétition pour un défilement continu */}
-                            {attractions.slice(13).map((attraction) => (
-                              <div key={`repeat-${attraction.id}`} className="w-64 h-64 mx-4">
+                            {attractions.slice(0, 13).map((attraction) => (
+                              <div key={`repeat-${attraction.id}`} className="mx-4">
                                 <AttractionImage
                                   // image_url={attraction.image_url}
                                 />
@@ -139,7 +132,6 @@ function HomePage() {
                             ))}
                           </Marquee>
                         </div>
-
                       </>
                     )
                   }

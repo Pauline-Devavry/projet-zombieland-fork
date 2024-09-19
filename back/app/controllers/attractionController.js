@@ -53,20 +53,13 @@ export async function createOneAttraction(req, res, next) {
     category_id: Joi.number().required(),
   });
 
-  const { error } = attractionSchema.validate(req.body);
+  const { error, value } = attractionSchema.validate(req.body);
   if (error) {
     const errorMessage = { message: "Vous devez remplir tous les champs" };
     return res.status(400).json(errorMessage);
   }
 
-  const { name, description, image_url, category_id } = req.body;
-
-  const createdOneAttraction = await Attraction.create({
-    name,
-    description,
-    image_url,
-    category_id,
-  });
+  const createdOneAttraction = await Attraction.create(value);
 
 
   return res.status(201).json({
