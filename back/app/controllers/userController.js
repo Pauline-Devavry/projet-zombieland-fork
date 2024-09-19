@@ -26,25 +26,41 @@ export async function getOneUser(req, res, next) {
 
 export async function updateUser(req, res, next) {
   const { name, first_name, email, oldPassword, newPassword } = req.body;
+
   // Définir le schéma de validation
   const userSchema = Joi.object({
     name: Joi.string().optional(),
     first_name: Joi.string().optional(),
     email: Joi.string().email().optional(),
     oldPassword: Joi.string().optional(),
-    newPassword: Joi.string().optional(), // Exemple de validation pour le mot de passe
+    newPassword: Joi.string().optional(),
   });
+
   const { error } = userSchema.validate(req.body);
   if (error) {
     return res.status(400).json({ error: error.details[0].message });
   }
+
   try {
     // Trouver l'utilisateur à partir de l'ID de la session (supposé disponible dans req.user.id)
     const user = await User.findByPk(req.user.id);
-    // Mise à jour des champs de l'utilisateur
+
+    // Vérification de l'email s'il est fourni
+    if (email) {
+      // Vérifier si un autre utilisateur avec cet email existe déjà
+      const existingUser = await User.findOne({ where: { email } });
+      if (existingUser && existingUser.id !== user.id) {
+        return res.status(400).json({ error: "Cet email est déjà utilisé." });
+      }
+
+      // Si l'email n'est pas utilisé, le mettre à jour
+      user.email = email;
+    }
+
+    // Mise à jour des autres champs
     if (name) user.name = name;
     if (first_name) user.first_name = first_name;
-    if (email) user.email = email;
+
     // Gestion des mots de passe
     if (oldPassword && newPassword) {
       // Vérifiez l'ancien mot de passe
@@ -55,6 +71,7 @@ export async function updateUser(req, res, next) {
       // Hash du nouveau mot de passe
       user.password = await bcrypt.hash(newPassword, 10);
     }
+
     // Enregistrer les modifications
     await user.save();
     return res

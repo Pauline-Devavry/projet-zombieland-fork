@@ -53,6 +53,22 @@ export const login = async (req, res, next) => {
   }
 };
 
+export const logout = async (req, res) => {
+  const refreshToken = req.cookies.refresh_token
+  const token = await Refreshtoken.findOne({
+    where : {
+      token : refreshToken
+    }
+  })
+  await token.destroy();
+ res.clearCookie("access_token"),
+ res.clearCookie("refresh_token")
+
+
+
+ return res.json("Vous êtes déconnecté").status(200)
+}
+
 export const register = async (req, res) => {
   const { name, first_name, email, password, confirmPassword } = req.body;
 

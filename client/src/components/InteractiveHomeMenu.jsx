@@ -11,9 +11,9 @@ function InteractiveHomeMenu() {
     const [textIndex, setTextIndex] = useState(0)
 
     const texts = [
-        "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
-        "Lorem ipsum odor amet, consectetuer adipiscing elit. Neque massa lacinia sem libero nisl. Maecenas odio platea euismod porta odio suspendisse parturient ut. Massa cursus sodales, duis congue primis elit. Ultricies blandit semper, litora auctor erat non congue imperdiet. Senectus netus urna porta cursus egestas volutpat lacus.",
-        "Lorem ipsum odor amet, consectetuer adipiscing elit. Elit morbi efficitur maximus ipsum lacinia a scelerisque. Ridiculus eleifend class egestas per tempus varius lacinia vulputate lectus. Pulvinar posuere fusce ipsum libero quis primis lacinia. Fames viverra curabitur penatibus eget lobortis quis. Per nostra gravida dapibus, ultricies congue"
+        "Découvrez un monde palpitant où chaque attraction vous plonge dans une aventure unique. Que vous cherchiez des sensations fortes ou des expériences immersives, notre parc offre une gamme d'activités qui éveilleront votre esprit d'aventure et raviront vos sens.",
+        "Nous nous engageons à garantir votre sécurité et confort tout au long de votre visite. Nos installations modernes et notre personnel formé assurent un environnement sécurisé et agréable, vous permettant de profiter pleinement de chaque moment sans souci.",
+        "Participez à nos événements spéciaux tout au long de l'année, conçus pour offrir des expériences inoubliables. Que ce soit pour une fête, une célébration ou une soirée thématique, nous avons tout prévu pour rendre chaque événement exceptionnel et mémorable."
     ]
 
     const images = [
@@ -31,7 +31,7 @@ function InteractiveHomeMenu() {
         <Container className="py-32 flex flex-col items-center gap-16 md:flex-row md:py-52 relative">
                 <div className="md:w-1/2 flex flex-col gap-8 order-1">
                     <h2 className="text-heading2-mobile md:text-heading2-desktop">
-                        Lorem <span className="text-primaryColor">ipsum</span> dolor text
+                        Prêts à tenter l&apos;<span className="text-primaryColor">aventure ?</span>
                     </h2>
                     <p>
                         {texts[textIndex]}
@@ -46,7 +46,7 @@ function InteractiveHomeMenu() {
                                 onClick={(e) => handleClick(0, e)}>
                                 <span>Aventure et Attractions</span>
                                 <p className="font-thin">
-                                    Re-usable components built using Radix UI and Tailwind CSS
+                                Sensation fortes et aventures captivantes vous attendent.
                                 </p>
                             </a>
                             <a href="" 
@@ -54,7 +54,7 @@ function InteractiveHomeMenu() {
                             onClick={(e) => handleClick(1, e)}>
                                 <span>Sécurité et Confort</span>
                                 <p className="font-thin">
-                                    How to install dependencies and structure your app.
+                                Sécurité optimale et confort inégalé pour votre tranquillité.
                                 </p>
                             </a>
                             <a href="" 
@@ -62,7 +62,7 @@ function InteractiveHomeMenu() {
                             onClick={(e) => handleClick(2, e)}>
                                 <span>Événements Spéciaux</span>
                                 <p className="font-thin">
-                                    Styles for headings, paragraphs, lists...etc
+                                Événements uniques pour des moments mémorables et festifs.
                                 </p>
                             </a>
                         </div>

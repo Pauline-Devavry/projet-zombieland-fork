@@ -1,43 +1,44 @@
-import React, { useContext, useState } from 'react';
-import { NavLink, useNavigate, useLocation } from 'react-router-dom';
-import { api } from '../api/axiosConfig';
-import { AuthContext } from '../context/AuthContext';
-import { toast } from 'react-toastify';
+import { useContext, useState } from "react";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { api } from "../api/axiosConfig";
+import { AuthContext } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 function Connexion() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { setUser } = useContext(AuthContext)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { setUser } = useContext(AuthContext);
 
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogin = async (event) => {
     event.preventDefault();
-	try {
-		const response = await api.post("/auth/login", {
-			email,
-			password
-		})
-		if(response.status === 200) {
-			const userData = await api.get("/auth/me")
-			setUser(userData.data)
-      toast("Vous etes connecté !", {theme: "dark", type: "success"})
-      const { from } = location.state || { from: { pathname: '/' } };
-      navigate(from.pathname, { replace: true });
-		}
-	} catch (error) {
-		console.log(error)
-	}
+    try {
+      const response = await api.post("/auth/login", {
+        email,
+        password,
+      });
+      if (response.status === 200) {
+        const userData = await api.get("/auth/me");
+        setUser(userData.data);
+        toast("Vous etes connecté !", { theme: "dark", type: "success" });
+        const { from } = location.state || { from: { pathname: "/" } };
+        navigate(from.pathname, { replace: true });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-
-return (
+  return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-backgroundColor">
       <div className="bg-transparent p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-white text-lg mb-4">
-          Pas de compte chez Zombieland ?{' '}
-          <NavLink to={"/inscription"} className="text-primaryColor">Inscrivez-vous !</NavLink>
+          Pas de compte chez Zombieland ?{" "}
+          <NavLink to={"/inscription"} className="text-primaryColor">
+            Inscrivez-vous !
+          </NavLink>
         </h2>
         <form onSubmit={handleLogin}>
           <div className="mb-4">

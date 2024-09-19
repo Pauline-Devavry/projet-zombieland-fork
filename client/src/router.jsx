@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import BaseLayout from "./layouts/BaseLayout.jsx";
 import NotFoundPage from "./pages/404.jsx";
 import HomePage from "./pages/HomePage.jsx";
@@ -22,73 +22,76 @@ import ReservationDetails from "./pages/admin/ReservationDetails.jsx";
 import AttractionsPage from "./pages/admin/AttractionsPage.jsx";
 import AttractionAddForm from "./pages/admin/AttractionAddForm.jsx";
 
-
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <BaseLayout />,
-        errorElement: <NotFoundPage />,
-        children: [
-            {
-                index: true,
-                element: <HomePage />,
-            },
-            {
-                path: "attractions",
-                element: <AttractionPage />,
-            },
-            {
-                path: "reserver",
-                element: <Reservation/>
-            },
-            {
-                path: "inscription",
-                element: <Inscription />,
-            },
-            {
-                path: "connexion",
-                element: <Connexion />,
-            },
-            {
-                path: "contact",
-                element: <Contact />,
-            },
-            {
-                path: "faq",
-                element: <Accordion />,
-            },
-            {
-                path: "attraction/:id",
-                element: <AttractionInfo />,
-            },
-            {
-                path: "profil",
-                element: <UserLayout />,
-                children: [
-                    {
-                        path: "reservations",
-                        element: (
-                            <ProtectedRoute>
-                                <UserReservation />
-                            </ProtectedRoute>
-                        ),
-                    },
-                    {
-                        index: true,
-                        element: <UserProfil />,
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        path: "admin",
+  {
+    path: "/",
+    element: <BaseLayout />,
+    errorElement: <NotFoundPage />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: "attractions",
+        element: <AttractionPage />,
+      },
+      {
+        path: "reserver",
         element: (
-            <ProtectedRoute>
-                <AdminLayout/>
-            </ProtectedRoute>
+          <ProtectedRoute>
+            <Reservation />
+          </ProtectedRoute>
         ),
+      },
+      {
+        path: "inscription",
+        element: <Inscription />,
+      },
+      {
+        path: "connexion",
+        element: <Connexion />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
+        path: "faq",
+        element: <Accordion />,
+      },
+      {
+        path: "attraction/:id",
+        element: <AttractionInfo />,
+      },
+      {
+        path: "profil",
+        element: <UserLayout />,
         children: [
+          {
+            path: "reservations",
+            element: (
+              <ProtectedRoute>
+                <UserReservation />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            index: true,
+            element: <UserProfil />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "admin",
+    element: (
+      <ProtectedRoute>
+        <AdminLayout />
+      </ProtectedRoute>
+    ),
+    children: [
             {
                 index: true,
                 element: <Overview/>
@@ -129,9 +132,8 @@ const router = createBrowserRouter([
                 path: "attractions/ajouter",
                 element: <AttractionAddForm />
             }
-
-        ]
-    }
+    ],
+  },
 ]);
 
-export  default  router
+export default router;

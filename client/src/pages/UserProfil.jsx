@@ -13,6 +13,11 @@ function UserProfil() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  // États pour stocker les valeurs d'origine
+  const [originalName, setOriginalName] = useState("");
+  const [originalFirstname, setOriginalFirstname] = useState("");
+  const [originalEmail, setOriginalEmail] = useState("");
+
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -20,6 +25,11 @@ function UserProfil() {
       setName(user.name || "");
       setFirstname(user.first_name || "");
       setEmail(user.email || "");
+
+      // Enregistrer les valeurs originales au moment où les données utilisateur sont chargées
+      setOriginalName(user.name || "");
+      setOriginalFirstname(user.first_name || "");
+      setOriginalEmail(user.email || "");
     }
   }, [user]);
 
@@ -55,18 +65,47 @@ function UserProfil() {
       setSuccess("Informations mises à jour avec succès !");
       setError("");
       setIsEditing(false);
+
+      setOldPassword("");
+      setNewPassword("");
+
+      // Mettre à jour les valeurs originales après modification
+      setOriginalName(name);
+      setOriginalFirstname(firstname);
+      setOriginalEmail(email);
     } catch (error) {
       // Gestion des erreurs depuis le serveur
-      if (error.response && error.response.status === 401) {
-        setError("Ancien mot de passe incorrect.");
+      if (error.response) {
+        if (error.response.status === 401) {
+          setError("Ancien mot de passe incorrect.");
+        } else if (
+          error.response.status === 400 &&
+          error.response.data.error === "Cet email est déjà utilisé."
+        ) {
+          setError("Cet email est déjà utilisé. Impossible de l'ajouter.");
+        } else {
+          setError(
+            error.response.data.message ||
+              "Erreur lors de la mise à jour des informations."
+          );
+        }
       } else {
-        setError(
-          error.response?.data?.message ||
-            "Erreur lors de la mise à jour des informations."
-        );
+        setError("Une erreur est survenue. Veuillez réessayer.");
       }
       setSuccess("");
     }
+  };
+
+  // Fonction pour annuler les modifications et revenir aux valeurs d'origine
+  const handleCancel = () => {
+    setName(originalName);
+    setFirstname(originalFirstname);
+    setEmail(originalEmail);
+    setOldPassword("");
+    setNewPassword("");
+    setIsEditing(false);
+    setError(""); // Réinitialiser les messages d'erreur
+    setSuccess(""); // Réinitialiser les messages de succès
   };
 
   return (
@@ -83,7 +122,7 @@ function UserProfil() {
               className="block text-sm font-medium mb-2"
               htmlFor="first_name"
             >
-              Nom
+              Prénom
             </label>
             <input
               id="first_name"
@@ -97,7 +136,7 @@ function UserProfil() {
 
           <div className="mb-6">
             <label className="block text-sm font-medium mb-2" htmlFor="name">
-              Prenom
+              Nom
             </label>
             <input
               id="name"
@@ -167,17 +206,17 @@ function UserProfil() {
             {isEditing ? (
               <>
                 <button
-                  type="submit"
-                  className="bg-primaryColor text-white px-4 py-2 rounded"
-                >
-                  Enregistrer
-                </button>
-                <button
                   type="button"
                   className="bg-primaryColor text-white px-4 py-2 rounded"
-                  onClick={() => setIsEditing(false)}
+                  onClick={handleCancel}
                 >
                   Annuler
+                </button>
+                <button
+                  type="submit"
+                  className="bg-primaryColor text-white px-4 py-2 rounded ml-auto"
+                >
+                  Enregistrer
                 </button>
               </>
             ) : (

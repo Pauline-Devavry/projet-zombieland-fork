@@ -5,11 +5,12 @@ import closeBurger from "../assets/icons/close-burger.svg";
 import { useContext, useState } from "react";
 import Logo from "./Logo";
 import { AuthContext } from "../context/AuthContext";
+import { api } from "../api/axiosConfig";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
 
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
 
   const handleBurgerMenu = (e) => {
     e.preventDefault();
@@ -109,14 +110,14 @@ function Header() {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    to={"/deconnexion"}
-                    className={(nav) =>
-                      nav.isActive ? "text-primaryColor" : undefined
-                    }
+                  <a
+                    onClick={ async () => {
+                      await api.post("/auth/logout")
+
+                    }}
                   >
                     Se déconnecter
-                  </NavLink>
+                  </a>
                 </li>
               </>
             )}
@@ -222,14 +223,15 @@ function Header() {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    to={"/deconnexion"}
-                    className={(nav) =>
-                      nav.isActive ? "text-primaryColor" : undefined
-                    }
+                <button
+                    onClick={ async () => {
+                      await api.post("/auth/logout")
+                      setUser(null)
+
+                    }}
                   >
                     Se déconnecter
-                  </NavLink>
+                  </button>
                 </li>
               </>
             )}
