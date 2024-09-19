@@ -7,12 +7,17 @@ function ProtectedRoute({ children }) {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
 
+  useEffect(() => {
+    if(!loading && !user) {
+      toast("Vous devez être connecté.", { theme: "dark", type: "error" });
+    }
+  })
+
   if (loading) {
     return <div>Chargement</div>;
   }
 
   if (!user) {
-    toast("Vous devez être connecté.", { theme: "dark", type: "error" });
     return <Navigate to="/connexion" state={{ from: location }} replace />;
   }
   return children;
