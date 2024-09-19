@@ -1,37 +1,40 @@
 import 'dotenv/config'
 import aws from "aws-sdk";
 import multer from "multer"
+import { S3Client } from "@aws-sdk/client-s3"; 
 import { Upload } from "@aws-sdk/lib-storage";
 
-aws.config.update({
-    accessKeyId: "AKIA4SDNVOO2AUANPKPJ",
-    secretAccessKey: "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",
-    region: "eu-north-1"
-})
-
-const s3 = new aws.S3()
 const storage = multer.memoryStorage();
-const upload = multer({storage: storage})
+const upload = multer({ storage: storage });
+
+export const uploadMiddlware = upload.single('image')
 
 export const uploadImageToS3 = async (req, res) => {
     try {
 
+        const s3Client = new S3Client({
+            region: "eu-north-1",
+            credentials: {
+                accessKeyId: "AKIA4SDNVOO2DYCWXZYX",
+                secretAccessKey: "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"
+            }
+        })
+
         const file = req.file;
         const paralleUploads3 = new Upload({
-            client: new AWS.S3(),
+            client: s3Client,
             params: {
                 Bucket: "zombiebucket-papaye",
                 Key: `${Date.now().toString()}_${file.originalname}`,
                 Body: file.buffer,
-                ContentType: file.mimeType 
+                ContentType: file.mimetype 
             }
         })
 
         const data = await paralleUploads3.done()
-        req.status(200).json({message: "Images uploadé avec succées", fileUrl: data.Location})
+        res.json({message: "Images uploadé avec succées", fileUrl: data.Location})
     } catch(err) {
-        console.log("erruer lors de l'upload")
+        console.log(err)
     }
 }
 
-export const uploadMiddlware = upload.single('image')
