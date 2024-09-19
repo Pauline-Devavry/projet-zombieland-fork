@@ -21,6 +21,7 @@ import ReservationsPage from "./pages/admin/ReservationsPage.jsx";
 import ReservationDetails from "./pages/admin/ReservationDetails.jsx";
 import AttractionsPage from "./pages/admin/AttractionsPage.jsx";
 import AttractionAddForm from "./pages/admin/AttractionAddForm.jsx";
+import AttractionEditForm from "./pages/admin/AttractionEditForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -135,6 +136,10 @@ const router = createBrowserRouter([
             {
                 path: "attractions/ajouter",
                 element: <AttractionAddForm />
+            },
+            {
+                path: "attractions/:id",
+                element: <AttractionEditForm />
             }
     ],
   },

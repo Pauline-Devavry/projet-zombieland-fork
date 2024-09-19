@@ -3,22 +3,34 @@ import { api } from "../../api/axiosConfig"
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
-function AttractionAddForm() {
+function AttractionEditForm() {
+
+    const { id } = useParams()
 
     const [formData, setFormData] = useState({
         name: "",
         file: null,
         category: 1,
-        description: ""
+        description: "",
+        image_url: ""
     })
     const [categories, setCategories] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const response = await api.get(`/attractions/${id}`)
+                const attraction = response.data
+                setFormData({
+                    name: attraction.name,
+                    image_url: attraction.image_url,
+                    description: attraction.description,
+                    file: null,
+                    category: attraction.category
+                })
                 const { data } = await api.get("/categories")
                 setCategories(data)
             } catch {
@@ -26,7 +38,7 @@ function AttractionAddForm() {
             }
         }
         fetchData()
-    },[])
+    },[id])
 
     const handleFormChange = (e) => {
         const { name, value, type, files } = e.target;
@@ -41,20 +53,24 @@ function AttractionAddForm() {
     const handleFormSubmit = async (e) => {
         e.preventDefault()
         try {
-            const formDataImage = new FormData()
-            formDataImage.append('image', formData.file)
-            const { data: { imgUrl } } = await api.post("/s3/upload-image", formDataImage, {
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                }
-            })
-            await api.post("/attractions", {
+            let newImage = formData.image_url;
+            if(formData.file) {
+                const formDataImage = new FormData()
+                formDataImage.append('image', formData.file)
+                const { data: { imgUrl } } = await api.post("/s3/upload-image", formDataImage, {
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    }
+                })
+                newImage = imgUrl
+            }
+            await api.patch(`/attractions/${id}`, {
                 name: formData.name,
-                image_url: imgUrl,
+                image_url: newImage,
                 description: formData.description,
                 category_id: formData.category
             })
-            toast("Attraction ajouté !", {theme: "light", type: "success"})
+            toast("Attraction mise à jour !", {theme: "light", type: "success"})
         } catch {
             toast("Une erreur est survenue", {type: "error", theme: "light"})
         }
@@ -71,10 +87,10 @@ function AttractionAddForm() {
                     </div>
                     <div className="flex-grow flex items-center">
                         <form className="w-[365px]" onSubmit={handleFormSubmit}>
-                            <h2 className="mb-2">Ajouter une attraction</h2>
+                            <h2 className="mb-2">Modifier une attraction</h2>
                             <div className="flex flex-col gap-4">
                                 <div>
-                                    <input type="file" name="file" id="file_input" className="hidden" onChange={handleFormChange} required/>
+                                    <input type="file" name="file" id="file_input" className="hidden" onChange={handleFormChange}/>
                                     <label htmlFor="file_input" className="border border-primaryColor border-dashed  w-[365px] h-[144px] flex items-center justify-center rounded cursor-pointer bg-white">
                                         <span className="text-adminTextGrayColor font-light">{formData.file ? formData.file.name : "Télécharger une image"}</span>
                                     </label>
@@ -111,4 +127,4 @@ function AttractionAddForm() {
 
 }
 
-export default AttractionAddForm
+export default AttractionEditForm
