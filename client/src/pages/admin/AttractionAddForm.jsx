@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react"
 import { api } from "../../api/axiosConfig"
 import { toast } from "react-toastify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+
 
 function AttractionAddForm() {
 
@@ -13,7 +17,6 @@ function AttractionAddForm() {
 
     const handleFormChange = (e) => {
         const { name, value, type, files } = e.target;
-        console.log(name, value, type, files)
         setFormData((prev) => {
             return {
                 ...prev,
@@ -33,8 +36,14 @@ function AttractionAddForm() {
 
 
     return (
-        <div className=" h-full text-adminTextColor flex items-center justify-center">
-                    <div>
+        <div className=" h-full text-adminTextColor flex flex-col items-center ">
+                    <div className="flex w-full">
+                    <Link to={"/admin/attractions"} className="text-lg flex gap-4 items-center w-fit">
+                        <FontAwesomeIcon icon={faArrowLeft} className="text-primaryColor"/>
+                        Retour
+                    </Link>
+                    </div>
+                    <div className="flex-grow flex items-center">
                         <form className="w-[365px]" onSubmit={handleFormSubmit}>
                             <h2 className="mb-2">Ajouter une attraction</h2>
                             <div className="flex flex-col gap-4">
