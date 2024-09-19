@@ -16,8 +16,8 @@ function AttractionPage() {
   useEffect(() => {
     const fetchData = async () => {
       // await axios.get("http://localhost:3000/attractions").then(data => setAttractions(data))
-      const response = await api.get("/attractions?limit=100");
-      setAttractions(response.data);
+      const { data: {attractions} } = await api.get("/attractions?limit=100");
+      setAttractions(attractions);
 
       const responseCategory = await api.get("/categories");
       setCategory(responseCategory.data);
