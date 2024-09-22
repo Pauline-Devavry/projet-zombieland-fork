@@ -13,8 +13,7 @@ function AttractionInfo() {
     const fetchData = async () => {
       const response = await api.get(
         `/attractions/${id}`);
-      setAttractionsInfo(response.data);
-      console.log(response.data);
+      setAttractionsInfo(response.data); 
     };
     fetchData();
   }, [id]);
@@ -25,7 +24,7 @@ function AttractionInfo() {
         <div className="flex flex-col md:flex-row md:space-x-8 mb-8">
           <div className="md:w-1/2 mb-4 md:mb-0">
             <img
-              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg_kJvhvYKsQqlcLEVfLxcTLSGYFEhOhPjerGdIwEDIIXwv3bKRSuxDVSre-WyqA5qUbVWcT8TVVHlHvsQ5tHp3k2aglTtcRUu28r8XAbyef8vpMrLsJ9eSsLGfxODNF_25Tz1GVfvDggI/s1600/Halloween+2013-+Walibi.jpg"
+              src={`${attractionsInfo.image_url}`}
               alt={attractionsInfo.name}
               className="w-full h-64 md:h-96 object-cover rounded-lg border-[2px] border-[#72232D]"
             />
