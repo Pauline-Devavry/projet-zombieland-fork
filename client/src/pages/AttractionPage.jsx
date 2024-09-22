@@ -104,10 +104,7 @@ function AttractionPage() {
             return (
               <AttractionCard
                 key={attraction.id}
-                id={attraction.id}
-                name={attraction.name}
-                description={shortDescription}
-                category={attraction.Category.name}
+                data={{...attraction, description: shortDescription}}
               />
             );
           })}
